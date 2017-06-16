@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { RaisedButton as MUIRaisedButton } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -51,7 +53,7 @@ class RaisedButton extends Component {
 }
 
 RaisedButton.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 RaisedButton.defaultProps = {

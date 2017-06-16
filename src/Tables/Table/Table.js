@@ -1,9 +1,11 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import IndeterminateCheckbox from 'material-ui/svg-icons/content/remove';
 import $ from 'jquery';
 
-import { CheckBox } from '../../';
+import CheckBox from '../../InputForms/CheckBox/CheckBox';
 
 import { buildTheme } from '../../themeBuilder';
 

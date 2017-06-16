@@ -30,6 +30,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _reactRouter = require('react-router');
 
 var _clone = require('clone');
@@ -114,40 +118,40 @@ var Link = (_temp = _class = function (_Component) {
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to MaterialUI component.
      */
-    muiProps: _react.PropTypes.object,
+    muiProps: _propTypes2.default.object,
     /**
      * Forwarded to wrapper component.
      */
-    qflProps: _react.PropTypes.object,
+    qflProps: _propTypes2.default.object,
     /**
      * style for the anchor element.
      */
-    linkStyle: _react.PropTypes.object,
+    linkStyle: _propTypes2.default.object,
     /**
      * style for the embedded span element.
      */
-    labelStyle: _react.PropTypes.object,
+    labelStyle: _propTypes2.default.object,
     /**
      * url target with IndexLink behaviour
      */
-    to: _react.PropTypes.string,
+    to: _propTypes2.default.string,
     /**
      * url target with default behaviour
      */
-    href: _react.PropTypes.string,
+    href: _propTypes2.default.string,
     /**
      * link text
      */
-    label: _react.PropTypes.string
+    label: _propTypes2.default.string
 }, _temp);
 
 
 Link.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 Link.defaultProps = {

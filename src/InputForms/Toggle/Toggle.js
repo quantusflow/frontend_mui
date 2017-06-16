@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Toggle as MUIToggle } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -47,7 +49,7 @@ class Toggle extends Component {
 }
 
 Toggle.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 Toggle.defaultProps = {

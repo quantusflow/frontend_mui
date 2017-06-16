@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Snackbar from 'material-ui/Snackbar';
 
@@ -77,7 +78,7 @@ class SnackBar extends Component {
 }
 
 SnackBar.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
 
 SnackBar.defaultProps = {

@@ -30,6 +30,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _materialUi = require('material-ui');
 
 var _themeBuilder = require('../../themeBuilder');
@@ -109,29 +113,29 @@ var CheckBox = (_temp = _class = function (_Component) {
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to MaterialUI component.
      */
-    muiProps: _react.PropTypes.object,
+    muiProps: _propTypes2.default.object,
     /**
      * Forwarded to wrapper component.
      */
-    qflProps: _react.PropTypes.object,
+    qflProps: _propTypes2.default.object,
     /**
      * Value of the CheckBox.
      */
-    value: _react.PropTypes.bool,
+    value: _propTypes2.default.bool,
     /**
      * Fired when value changes
      */
-    onChange: _react.PropTypes.func,
-    dataKey: _react.PropTypes.string
+    onChange: _propTypes2.default.func,
+    dataKey: _propTypes2.default.string
 }, _temp);
 
 
 CheckBox.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 CheckBox.defaultProps = {

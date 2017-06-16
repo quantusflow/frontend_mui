@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { IndexLink } from 'react-router';
 import clone from 'clone';
@@ -96,7 +97,7 @@ class Link extends Component {
 }
 
 Link.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 Link.defaultProps = {

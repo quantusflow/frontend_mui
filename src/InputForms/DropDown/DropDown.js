@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { DropDownMenu as MUIDropDownMenu } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -87,7 +89,7 @@ class DropDown extends Component {
 }
 
 DropDown.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 DropDown.defaultProps = {

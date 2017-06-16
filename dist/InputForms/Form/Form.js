@@ -30,7 +30,33 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ = require('../../');
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _TextField = require('../TextField/TextField');
+
+var _TextField2 = _interopRequireDefault(_TextField);
+
+var _RadioBox = require('../RadioBox/RadioBox');
+
+var _RadioBox2 = _interopRequireDefault(_RadioBox);
+
+var _DropDown = require('../DropDown/DropDown');
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+var _CheckBox = require('../CheckBox/CheckBox');
+
+var _CheckBox2 = _interopRequireDefault(_CheckBox);
+
+var _DatePicker = require('../../DateTime/DatePicker/DatePicker');
+
+var _DatePicker2 = _interopRequireDefault(_DatePicker);
+
+var _AutoComplete = require('../AutoComplete/AutoComplete');
+
+var _AutoComplete2 = _interopRequireDefault(_AutoComplete);
 
 var _materialUi = require('material-ui');
 
@@ -204,7 +230,7 @@ var Form = (_temp = _class = function (_Component) {
                                     }
                                 }
 
-                                resultingElement = _react2.default.createElement(_.CheckBox, {
+                                resultingElement = _react2.default.createElement(_CheckBox2.default, {
                                     key: element.key,
                                     theme: element.theme,
                                     value: currentValue,
@@ -248,7 +274,7 @@ var Form = (_temp = _class = function (_Component) {
                                     }
 
                                     resultingElement = _react2.default.createElement(
-                                        _.RadioBox,
+                                        _RadioBox2.default,
                                         {
                                             key: element.key,
                                             value: _currentValue,
@@ -336,7 +362,7 @@ var Form = (_temp = _class = function (_Component) {
                                     }
 
                                     resultingElement = _react2.default.createElement(
-                                        _.DropDown,
+                                        _DropDown2.default,
                                         {
                                             key: element.key,
                                             label: element.label,
@@ -383,7 +409,7 @@ var Form = (_temp = _class = function (_Component) {
                                         }
                                     }
 
-                                    resultingElement = _react2.default.createElement(_.DatePicker, {
+                                    resultingElement = _react2.default.createElement(_DatePicker2.default, {
                                         key: element.key,
                                         value: _currentValue3,
                                         theme: element.theme,
@@ -431,7 +457,7 @@ var Form = (_temp = _class = function (_Component) {
                                         }
                                     }
 
-                                    resultingElement = _react2.default.createElement(_.AutoComplete, {
+                                    resultingElement = _react2.default.createElement(_AutoComplete2.default, {
                                         key: element.key,
                                         label: element.label,
                                         theme: element.theme,
@@ -479,7 +505,7 @@ var Form = (_temp = _class = function (_Component) {
                                         }
                                     }
 
-                                    resultingElement = _react2.default.createElement(_.TextField, {
+                                    resultingElement = _react2.default.createElement(_TextField2.default, {
                                         key: element.key,
                                         value: _currentValue5,
                                         theme: element.theme,
@@ -553,32 +579,32 @@ var Form = (_temp = _class = function (_Component) {
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to wrapper component.
      */
-    qflProps: _react.PropTypes.object,
+    qflProps: _propTypes2.default.object,
     /**
      * Setup of the shown form items.
      */
-    layout: _react.PropTypes.array,
+    layout: _propTypes2.default.array,
     /**
      * Item holding form data (entity).
      */
-    item: _react.PropTypes.object,
+    item: _propTypes2.default.object,
     /**
      * Defines the name of the primary key attribute of the item.
      */
-    keyAttributeName: _react.PropTypes.string,
+    keyAttributeName: _propTypes2.default.string,
     /**
      * A function returning a map of dataproviders for list based selections (e.g. DropDowns)
      */
-    dataProvider: _react.PropTypes.func
+    dataProvider: _propTypes2.default.func
 }, _temp);
 
 
 Form.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 Form.defaultProps = {

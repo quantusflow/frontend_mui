@@ -26,6 +26,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _materialUi = require('material-ui');
 
 var _themeBuilder = require('../../themeBuilder');
@@ -76,16 +80,16 @@ var TimePicker = (_temp = _class = function (_Component) {
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to MaterialUI component.
      */
-    muiProps: _react.PropTypes.object
+    muiProps: _propTypes2.default.object
 }, _temp);
 
 
 TimePicker.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 TimePicker.defaultProps = {

@@ -1,6 +1,13 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { TextField, RadioBox, DropDown, CheckBox, DatePicker, AutoComplete, Stepper } from '../../';
+import TextField from '../TextField/TextField';
+import RadioBox from '../RadioBox/RadioBox';
+import DropDown from '../DropDown/DropDown';
+import CheckBox from '../CheckBox/CheckBox';
+import DatePicker from '../../DateTime/DatePicker/DatePicker';
+import AutoComplete from '../AutoComplete/AutoComplete';
+
 import { RadioButton, MenuItem } from 'material-ui';
 
 import CheckedIcon from 'material-ui/svg-icons/toggle/radio-button-checked';
@@ -524,7 +531,7 @@ class Form extends Component {
 }
 
 Form.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 Form.defaultProps = {

@@ -30,6 +30,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _materialUi = require('material-ui');
 
 var _themeBuilder = require('../../themeBuilder');
@@ -105,28 +109,28 @@ var DatePicker = (_temp = _class = function (_Component) {
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to MaterialUI component.
      */
-    muiProps: _react.PropTypes.object,
+    muiProps: _propTypes2.default.object,
     /**
      * Forwarded to wrapper component.
      */
-    qflProps: _react.PropTypes.object,
+    qflProps: _propTypes2.default.object,
     /**
      * Value of the TextField.
      */
-    value: _react.PropTypes.string,
+    value: _propTypes2.default.string,
     /**
      * Fired when value changes
      */
-    onChange: _react.PropTypes.func
+    onChange: _propTypes2.default.func
 }, _temp);
 
 
 DatePicker.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 DatePicker.defaultProps = {

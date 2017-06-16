@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { FlatButton as MUIFlatButton } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -51,7 +53,7 @@ class FlatButton extends Component {
 }
 
 FlatButton.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 FlatButton.defaultProps = {

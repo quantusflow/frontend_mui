@@ -30,6 +30,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _materialUi = require('material-ui');
 
 var _themeBuilder = require('../../themeBuilder');
@@ -169,33 +173,33 @@ var NavigationBar = (_temp = _class = function (_Component) {
     /**
      * Location for selecting the right item based on route
      */
-    location: _react.PropTypes.object.isRequired,
+    location: _propTypes2.default.object.isRequired,
     /**
      * Pushed to MaterialUI component. Use this for setup menu
      */
-    menuItems: _react.PropTypes.array.isRequired,
+    menuItems: _propTypes2.default.array.isRequired,
     /**
      * Fires when list item is clicked
      */
-    onChange: _react.PropTypes.func.isRequired,
+    onChange: _propTypes2.default.func.isRequired,
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to MaterialUI component.
      */
-    muiProps: _react.PropTypes.object,
+    muiProps: _propTypes2.default.object,
     /**
      * Forwarded to wrapper component.
      */
-    qflProps: _react.PropTypes.object,
-    listMuiProps: _react.PropTypes.object,
-    dividerMuiProps: _react.PropTypes.object,
-    listItemMuiProps: _react.PropTypes.object,
-    hideBarFill: _react.PropTypes.bool
+    qflProps: _propTypes2.default.object,
+    listMuiProps: _propTypes2.default.object,
+    dividerMuiProps: _propTypes2.default.object,
+    listItemMuiProps: _propTypes2.default.object,
+    hideBarFill: _propTypes2.default.bool
 }, _class.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 }, _class.defaultProps = {
     theme: 'Default',
     muiProps: {},

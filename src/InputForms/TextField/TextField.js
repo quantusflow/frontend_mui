@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { TextField as MUITextField } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -76,7 +78,7 @@ class TextField extends Component {
 }
 
 TextField.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 TextField.defaultProps = {

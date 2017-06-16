@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { RadioButtonGroup as MUIRadioButtonGroup } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -87,7 +89,7 @@ class RadioBox extends Component {
 }
 
 RadioBox.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 RadioBox.defaultProps = {

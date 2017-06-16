@@ -1,6 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { getMuiTheme } from 'material-ui/styles';
-import { Link, ToolBar, CheckBox } from '../../';
+
+import Link from '../../Buttons/Link/Link';
+import ToolBar from '../../Bars/ToolBar/ToolBar';
+import CheckBox from '../../InputForms/CheckBox/CheckBox';
+
 import { ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 
 class TableOverlay extends Component {

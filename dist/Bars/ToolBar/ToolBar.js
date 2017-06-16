@@ -26,6 +26,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Toolbar = require('material-ui/Toolbar');
 
 var _themeBuilder = require('../../themeBuilder');
@@ -85,28 +89,28 @@ var ToolBar = (_temp = _class = function (_Component) {
     /**
      * Pushed as children to MaterialUI component. Use this for ToolbarGroups
      */
-    items: _react.PropTypes.node,
+    items: _propTypes2.default.node,
     /**
      * Pushed as children to MaterialUI component. Can also be used for ToolbarGroups
      */
-    children: _react.PropTypes.node,
+    children: _propTypes2.default.node,
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to MaterialUI component.
      */
-    muiProps: _react.PropTypes.object,
+    muiProps: _propTypes2.default.object,
     /**
      * Forwarded to wrapper component.
      */
-    qflProps: _react.PropTypes.object
+    qflProps: _propTypes2.default.object
 }, _temp);
 
 
 ToolBar.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 ToolBar.defaultProps = {

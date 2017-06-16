@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { DatePicker as MUIDatePicker } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -75,7 +77,7 @@ class DatePicker extends Component {
 }
 
 DatePicker.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 DatePicker.defaultProps = {

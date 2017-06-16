@@ -30,9 +30,15 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _materialUi = require('material-ui');
 
-var _index = require('../../index');
+var _Dialog = require('../Dialog/Dialog');
+
+var _Dialog2 = _interopRequireDefault(_Dialog);
 
 var _Stepper = require('material-ui/Stepper');
 
@@ -210,7 +216,7 @@ var Stepper = (_temp = _class = function (_Component) {
             var currentStepper = null;
             if (isDialog) {
                 currentStepper = _react2.default.createElement(
-                    _index.Dialog,
+                    _Dialog2.default,
                     {
                         theme: this.props.dialogTheme,
                         muiProps: (0, _extends3.default)({
@@ -238,50 +244,50 @@ var Stepper = (_temp = _class = function (_Component) {
     }]);
     return Stepper;
 }(_react.Component), _class.propTypes = {
-    children: _react.PropTypes.node,
+    children: _propTypes2.default.node,
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to MaterialUI component.
      */
-    muiProps: _react.PropTypes.object,
+    muiProps: _propTypes2.default.object,
     /**
      * Forwarded to wrapper component.
      */
-    qflProps: _react.PropTypes.object,
+    qflProps: _propTypes2.default.object,
     /**
      * defines the steps in an array
      */
-    steps: _react.PropTypes.array,
+    steps: _propTypes2.default.array,
     /**
      * default it's true
      */
-    isLinear: _react.PropTypes.bool,
+    isLinear: _propTypes2.default.bool,
     /**
      * when it's true a Dialog will wrap stepper
      */
-    isDialog: _react.PropTypes.bool,
+    isDialog: _propTypes2.default.bool,
     /**
      * when it's true a Dialog cannot be closed
      */
-    isModal: _react.PropTypes.bool,
+    isModal: _propTypes2.default.bool,
     /**
      * content of stepper when all steps are finished
      */
-    finishedContent: _react.PropTypes.any,
-    onFinish: _react.PropTypes.func,
+    finishedContent: _propTypes2.default.any,
+    onFinish: _propTypes2.default.func,
 
-    onDialogClose: _react.PropTypes.func,
-    dialogMuiProps: _react.PropTypes.any,
-    dialogQflProps: _react.PropTypes.any,
-    dialogTheme: _react.PropTypes.object
+    onDialogClose: _propTypes2.default.func,
+    dialogMuiProps: _propTypes2.default.any,
+    dialogQflProps: _propTypes2.default.any,
+    dialogTheme: _propTypes2.default.object
 }, _temp);
 
 
 Stepper.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 Stepper.defaultProps = {

@@ -30,7 +30,13 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ = require('../../');
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _RaisedButton = require('../../Buttons/RaisedButton/RaisedButton');
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
 var _themeBuilder = require('../../themeBuilder');
 
@@ -86,7 +92,7 @@ var Confirm = (_temp = _class = function (_Component) {
 
 
             var resultingButtons = layout.map(function (element, elementIdx) {
-                return _react2.default.createElement(_.RaisedButton, {
+                return _react2.default.createElement(_RaisedButton2.default, {
                     key: element.key,
                     theme: element.theme,
                     muiProps: (0, _extends3.default)({
@@ -118,24 +124,24 @@ var Confirm = (_temp = _class = function (_Component) {
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to wrapper component.
      */
-    qflProps: _react.PropTypes.object,
+    qflProps: _propTypes2.default.object,
     /**
      * Setup of the shown choosable buttons.
      */
-    layout: _react.PropTypes.array,
+    layout: _propTypes2.default.array,
     /**
      * Message shown above confirmation.
      */
-    message: _react.PropTypes.string
+    message: _propTypes2.default.string
 }, _temp);
 
 
 Confirm.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 Confirm.defaultProps = {

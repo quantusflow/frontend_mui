@@ -30,6 +30,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Snackbar = require('material-ui/Snackbar');
 
 var _Snackbar2 = _interopRequireDefault(_Snackbar);
@@ -89,37 +93,37 @@ var SnackBar = (_temp = _class = function (_Component) {
   }]);
   return SnackBar;
 }(_react.Component), _class.propTypes = {
-  children: _react.PropTypes.node,
+  children: _propTypes2.default.node,
   /**
    * Applies a given MaterialUI theme.
    */
-  theme: _react.PropTypes.object,
+  theme: _propTypes2.default.object,
   /**
    * Forwarded to MaterialUI component.
    */
-  muiProps: _react.PropTypes.object,
+  muiProps: _propTypes2.default.object,
   /**
    * Forwarded to wrapper component.
    */
-  qflProps: _react.PropTypes.object,
+  qflProps: _propTypes2.default.object,
   /**
    * the message in the SnackBar
    */
-  message: _react.PropTypes.string,
+  message: _propTypes2.default.string,
   /**
    * time until close the Snackbar
    */
-  autoHideDuration: _react.PropTypes.number,
+  autoHideDuration: _propTypes2.default.number,
 
-  openSnackBar: _react.PropTypes.bool,
-  onRequestClose: _react.PropTypes.func,
-  bodyStyle: _react.PropTypes.object
+  openSnackBar: _propTypes2.default.bool,
+  onRequestClose: _propTypes2.default.func,
+  bodyStyle: _propTypes2.default.object
 
 }, _temp);
 
 
 SnackBar.childContextTypes = {
-  muiTheme: _react2.default.PropTypes.object
+  muiTheme: _propTypes2.default.object
 };
 
 SnackBar.defaultProps = {

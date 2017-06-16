@@ -31,7 +31,29 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ = require('../');
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _RaisedButton = require('../Buttons/RaisedButton/RaisedButton');
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+var _Dialog = require('../Dialogs/Dialog/Dialog');
+
+var _Dialog2 = _interopRequireDefault(_Dialog);
+
+var _themeBuilder = require('../themeBuilder');
+
+var _themeBuilder2 = _interopRequireDefault(_themeBuilder);
+
+var _Form = require('../InputForms/Form/Form');
+
+var _Form2 = _interopRequireDefault(_Form);
+
+var _Confirm = require('../InputForms/Confirm/Confirm');
+
+var _Confirm2 = _interopRequireDefault(_Confirm);
 
 var _mustache = require('mustache');
 
@@ -120,7 +142,7 @@ var ProcessContainer = (_temp = _class = function (_Component) {
                       }
 
                       if (parsedType === 'RadioBox') {
-                        options.radioButtonMuiProps = (0, _.buildTheme)({
+                        options.radioButtonMuiProps = (0, _themeBuilder2.default)({
                           theme: _this2.props.formItemTheme,
                           sourceMuiProps: {},
                           componentName: 'RadioButton'
@@ -166,7 +188,7 @@ var ProcessContainer = (_temp = _class = function (_Component) {
               }
 
               widget = {
-                component: _.Form,
+                component: _Form2.default,
                 isModal: this.props.modal,
                 props: {
                   theme: this.props.widgetTheme,
@@ -212,7 +234,7 @@ var ProcessContainer = (_temp = _class = function (_Component) {
               }
 
               widget = {
-                component: _.Confirm,
+                component: _Confirm2.default,
                 isModal: this.props.modal,
                 props: {
                   theme: this.props.widgetTheme,
@@ -297,7 +319,7 @@ var ProcessContainer = (_temp = _class = function (_Component) {
     value: function render() {
       var _this5 = this;
 
-      var _buildTheme = (0, _.buildTheme)({
+      var _buildTheme = (0, _themeBuilder2.default)({
         theme: this.props.theme,
         sourceMuiProps: this.props.muiProps,
         sourceQflProps: this.props.qflProps,
@@ -314,7 +336,7 @@ var ProcessContainer = (_temp = _class = function (_Component) {
 
       var widget = null;
       if (this.widgetConfig && this.widgetConfig.component && this.widgetConfig.component.name === 'Form') {
-        proceedButton = _react2.default.createElement(_.RaisedButton, {
+        proceedButton = _react2.default.createElement(_RaisedButton2.default, {
           theme: this.props.buttonTheme,
           muiProps: {
             label: 'Weiter',
@@ -328,7 +350,7 @@ var ProcessContainer = (_temp = _class = function (_Component) {
         });
 
         if (this.props.modal) {
-          cancelButton = _react2.default.createElement(_.RaisedButton, {
+          cancelButton = _react2.default.createElement(_RaisedButton2.default, {
             theme: this.props.buttonTheme,
             muiProps: {
               label: 'Abbrechen',
@@ -404,7 +426,7 @@ var ProcessContainer = (_temp = _class = function (_Component) {
                 }
               }, qflProps),
               _react2.default.createElement(
-                _.Dialog,
+                _Dialog2.default,
                 {
                   theme: this.props.dialogTheme,
                   muiProps: (0, _extends3.default)({
@@ -482,30 +504,30 @@ var ProcessContainer = (_temp = _class = function (_Component) {
   }]);
   return ProcessContainer;
 }(_react.Component), _class.propTypes = {
-  children: _react.PropTypes.node,
-  processable: _react.PropTypes.object,
-  mbClient: _react.PropTypes.object,
-  buttonTheme: _react.PropTypes.object,
-  dialogTheme: _react.PropTypes.object,
-  modal: _react.PropTypes.bool,
-  formItemTheme: _react.PropTypes.object,
-  widgetTheme: _react.PropTypes.object,
-  confirmItemTheme: _react.PropTypes.object,
-  processableClassName: _react.PropTypes.string,
-  modalProcessableClassName: _react.PropTypes.string,
+  children: _propTypes2.default.node,
+  processable: _propTypes2.default.object,
+  mbClient: _propTypes2.default.object,
+  buttonTheme: _propTypes2.default.object,
+  dialogTheme: _propTypes2.default.object,
+  modal: _propTypes2.default.bool,
+  formItemTheme: _propTypes2.default.object,
+  widgetTheme: _propTypes2.default.object,
+  confirmItemTheme: _propTypes2.default.object,
+  processableClassName: _propTypes2.default.string,
+  modalProcessableClassName: _propTypes2.default.string,
   /**
    * Forwarded to MaterialUI component.
    */
-  dialogMuiProps: _react.PropTypes.object,
+  dialogMuiProps: _propTypes2.default.object,
   /**
    * Forwarded to wrapper component.
    */
-  qflProps: _react.PropTypes.object,
-  dialogQflProps: _react.PropTypes.object,
+  qflProps: _propTypes2.default.object,
+  dialogQflProps: _propTypes2.default.object,
   /**
    * Applies a given MaterialUI theme.
    */
-  theme: _react.PropTypes.object
+  theme: _propTypes2.default.object
 }, _temp);
 exports.default = ProcessContainer;
 module.exports = exports['default'];

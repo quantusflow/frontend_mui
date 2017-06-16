@@ -1,5 +1,12 @@
-import React, { Component, PropTypes } from 'react';
-import { Table, RaisedButton, TextField, Processable, DropDown } from '../../';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import Table from '../../Tables/Table/Table';
+import RaisedButton from '../../Buttons/RaisedButton/RaisedButton';
+import TextField from '../../InputForms/TextField/TextField';
+import Processable from '../ProcessContainer';
+import DropDown from '../../InputForms/DropDown/DropDown';
+
 import { MenuItem } from 'material-ui';
 import ExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import { TableOverlay } from './TableOverlay';

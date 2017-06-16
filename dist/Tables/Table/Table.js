@@ -30,6 +30,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _reactBootstrapTable = require('react-bootstrap-table');
 
 var _remove = require('material-ui/svg-icons/content/remove');
@@ -40,7 +44,9 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _ = require('../../');
+var _CheckBox = require('../../InputForms/CheckBox/CheckBox');
+
+var _CheckBox2 = _interopRequireDefault(_CheckBox);
 
 var _themeBuilder = require('../../themeBuilder');
 
@@ -91,7 +97,7 @@ var getSelectable = function getSelectable(theme, muiProps, qflProps) {
           muiPropsObj.checkedIcon = _react2.default.createElement(_remove2.default, null);
         }
 
-        return _react2.default.createElement(_.CheckBox, {
+        return _react2.default.createElement(_CheckBox2.default, {
           value: this.props.checked,
           key: this.props.rowIndex,
           theme: theme,
@@ -110,13 +116,13 @@ var getSelectable = function getSelectable(theme, muiProps, qflProps) {
     }]);
     return SelectableCheckBox;
   }(_react.Component), _class.propTypes = {
-    type: _react.PropTypes.string,
-    checked: _react.PropTypes.bool,
-    disabled: _react.PropTypes.bool,
-    rowIndex: _react.PropTypes.any,
-    indeterminate: _react.PropTypes.bool,
-    onChange: _react.PropTypes.func,
-    selectRowProp: _react.PropTypes.bool
+    type: _propTypes2.default.string,
+    checked: _propTypes2.default.bool,
+    disabled: _propTypes2.default.bool,
+    rowIndex: _propTypes2.default.any,
+    indeterminate: _propTypes2.default.bool,
+    onChange: _propTypes2.default.func,
+    selectRowProp: _propTypes2.default.bool
   }, _temp);
 
 
@@ -286,32 +292,32 @@ var Table = (_temp2 = _class2 = function (_Component2) {
   /**
    * Applies a given MaterialUI theme.
    */
-  theme: _react.PropTypes.object,
-  selectorTheme: _react.PropTypes.object,
-  selectorMuiProps: _react.PropTypes.object,
-  selectorQflProps: _react.PropTypes.object,
+  theme: _propTypes2.default.object,
+  selectorTheme: _propTypes2.default.object,
+  selectorMuiProps: _propTypes2.default.object,
+  selectorQflProps: _propTypes2.default.object,
   /**
    * Array of elements to show in the table.
    */
-  dataSource: _react.PropTypes.array,
+  dataSource: _propTypes2.default.array,
   /**
    * Props forwarded to Bootstraptable.
    */
-  rbtProps: _react.PropTypes.object,
+  rbtProps: _propTypes2.default.object,
   /**
    * Schema describing properties for rendering TableHeaderColumns.
    */
-  thcSchema: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-    name: _react.PropTypes.string.isRequired,
-    thcProps: _react.PropTypes.object
+  thcSchema: _propTypes2.default.arrayOf(_propTypes2.default.shape({
+    name: _propTypes2.default.string.isRequired,
+    thcProps: _propTypes2.default.object
   })).isRequired,
-  stylingProps: _react.PropTypes.object,
-  onSelectedRowsChanged: _react.PropTypes.func
+  stylingProps: _propTypes2.default.object,
+  onSelectedRowsChanged: _propTypes2.default.func
 }, _temp2);
 
 
 Table.childContextTypes = {
-  muiTheme: _react.PropTypes.object
+  muiTheme: _propTypes2.default.object
 };
 
 Table.defaultProps = {

@@ -30,6 +30,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _materialUi = require('material-ui');
 
 var _themeBuilder = require('../../themeBuilder');
@@ -108,32 +112,32 @@ var AutoComplete = (_temp = _class = function (_Component) {
     /**
      * Pushed as children to MaterialUI component. Use this for MenuItems
      */
-    items: _react.PropTypes.array,
+    items: _propTypes2.default.array,
     /**
      * Pushed as children to MaterialUI component. Can also be used for MenuItems
      */
-    children: _react.PropTypes.node,
+    children: _propTypes2.default.node,
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to MaterialUI component.
      */
-    muiProps: _react.PropTypes.object,
+    muiProps: _propTypes2.default.object,
     /**
      * label for the Dropdown.
      */
-    label: _react.PropTypes.string,
+    label: _propTypes2.default.string,
     /**
      * Selectedvalue of the AutoComplete.
      */
-    value: _react.PropTypes.any
+    value: _propTypes2.default.any
 }, _temp);
 
 
 AutoComplete.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 AutoComplete.defaultProps = {

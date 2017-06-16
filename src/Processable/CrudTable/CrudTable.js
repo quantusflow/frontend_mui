@@ -1,6 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { buildTheme } from '../../themeBuilder';
-import { ProcessableTable } from '../../';
+import ProcessableTable from '../Table/Table';
 
 class ProcessableCrudTable extends Component {
   static propTypes = {

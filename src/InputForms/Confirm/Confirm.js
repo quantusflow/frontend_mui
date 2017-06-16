@@ -1,6 +1,7 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { RaisedButton } from '../../';
+import RaisedButton from '../../Buttons/RaisedButton/RaisedButton';
 
 import { buildTheme } from '../../themeBuilder';
 
@@ -86,7 +87,7 @@ class Confirm extends Component {
 }
 
 Confirm.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 Confirm.defaultProps = {

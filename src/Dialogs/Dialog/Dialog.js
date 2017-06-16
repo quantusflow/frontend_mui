@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Dialog as MUIDialog } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -56,7 +58,7 @@ class Dialog extends Component {
 }
 
 Dialog.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 Dialog.defaultProps = {

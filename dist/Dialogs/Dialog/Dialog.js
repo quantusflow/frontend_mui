@@ -26,6 +26,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _materialUi = require('material-ui');
 
 var _themeBuilder = require('../../themeBuilder');
@@ -79,24 +83,24 @@ var Dialog = (_temp = _class = function (_Component) {
     }]);
     return Dialog;
 }(_react.Component), _class.propTypes = {
-    children: _react.PropTypes.node,
+    children: _propTypes2.default.node,
     /**
      * Applies a given MaterialUI theme.
      */
-    theme: _react.PropTypes.object,
+    theme: _propTypes2.default.object,
     /**
      * Forwarded to MaterialUI component.
      */
-    muiProps: _react.PropTypes.object,
+    muiProps: _propTypes2.default.object,
     /**
      * Forwarded to wrapper component.
      */
-    qflProps: _react.PropTypes.object
+    qflProps: _propTypes2.default.object
 }, _temp);
 
 
 Dialog.childContextTypes = {
-    muiTheme: _react2.default.PropTypes.object
+    muiTheme: _propTypes2.default.object
 };
 
 Dialog.defaultProps = {

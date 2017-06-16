@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Drawer as MUIDrawer, Divider} from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -43,7 +45,7 @@ class NavigationBar extends Component {
     };
 
     static childContextTypes = {
-        muiTheme: React.PropTypes.object
+        muiTheme: PropTypes.object
     };
 
     static defaultProps = {

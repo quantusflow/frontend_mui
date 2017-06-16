@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Checkbox as MUICheckBox } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -81,7 +83,7 @@ class CheckBox extends Component {
 }
 
 CheckBox.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 CheckBox.defaultProps = {

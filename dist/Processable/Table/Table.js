@@ -30,7 +30,29 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ = require('../../');
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Table = require('../../Tables/Table/Table');
+
+var _Table2 = _interopRequireDefault(_Table);
+
+var _RaisedButton = require('../../Buttons/RaisedButton/RaisedButton');
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+var _TextField = require('../../InputForms/TextField/TextField');
+
+var _TextField2 = _interopRequireDefault(_TextField);
+
+var _ProcessContainer = require('../ProcessContainer');
+
+var _ProcessContainer2 = _interopRequireDefault(_ProcessContainer);
+
+var _DropDown = require('../../InputForms/DropDown/DropDown');
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
 
 var _materialUi = require('material-ui');
 
@@ -247,7 +269,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
 
       var createButton = null;
       if (this.props.createProcessKey) {
-        createButton = _react2.default.createElement(_.RaisedButton, (0, _extends3.default)({
+        createButton = _react2.default.createElement(_RaisedButton2.default, (0, _extends3.default)({
           theme: this.props.createButtonTheme,
           muiProps: (0, _extends3.default)({
             label: '+',
@@ -274,7 +296,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
         var createProcessContainer = null;
         var createProcessable = this.state.subscriptions && this.state.subscriptions['Create' + this.props.dataClassName] || null;
         if (createProcessable && createProcessable.started && createProcessable.taskChannelName) {
-          createProcessContainer = _react2.default.createElement(_.Processable, { modal: true, key: createProcessable.nextTaskEntity.id, processable: createProcessable,
+          createProcessContainer = _react2.default.createElement(_ProcessContainer2.default, { modal: true, key: createProcessable.nextTaskEntity.id, processable: createProcessable,
             buttonTheme: this.props.createButtonTheme, dialogTheme: this.props.createDialogTheme,
             formItemTheme: this.props.createFormItemTheme, confirmTheme: this.props.createConfirmTheme,
             widgetTheme: this.props.createWidgetTheme, theme: this.props.createTheme,
@@ -287,7 +309,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
       var filterMenuElements = [];
       if (this.props.filterMenuSchema && this.props.filterMenuSchema.length > 0) {
         filterMenuElements = this.props.filterMenuSchema.map(function (filterMenuSchemaItem) {
-          return _react2.default.createElement(_.DropDown, {
+          return _react2.default.createElement(_DropDown2.default, {
             key: filterMenuSchemaItem.key,
             theme: filterMenuSchemaItem.theme,
             value: filterMenuSchemaItem.currentValue,
@@ -328,7 +350,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
             var itemBasedButtonProcessContainer = null;
             var itemBasedButtonProcessable = _this5.state.subscriptions && _this5.state.subscriptions[buttonSchemaItem.processableKey] || null;
             if (itemBasedButtonProcessable && itemBasedButtonProcessable.started && itemBasedButtonProcessable.taskChannelName) {
-              itemBasedButtonProcessContainer = _react2.default.createElement(_.Processable, {
+              itemBasedButtonProcessContainer = _react2.default.createElement(_ProcessContainer2.default, {
                 modal: true,
                 key: itemBasedButtonProcessable.nextTaskEntity.id,
                 processable: itemBasedButtonProcessable,
@@ -344,7 +366,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
 
             processables.push(itemBasedButtonProcessContainer);
 
-            return _react2.default.createElement(_.RaisedButton, (0, _extends3.default)({
+            return _react2.default.createElement(_RaisedButton2.default, (0, _extends3.default)({
               theme: _this5.props.itemBasedButtonTheme,
               muiProps: (0, _extends3.default)({
                 icon: buttonSchemaItem.icon,
@@ -383,7 +405,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
                 var itemBasedButtonProcessContainer = null;
                 var itemBasedButtonProcessable = _this5.state.subscriptions && _this5.state.subscriptions[buttonSchemaItem.processableKey] || null;
                 if (itemBasedButtonProcessable && itemBasedButtonProcessable.started && itemBasedButtonProcessable.taskChannelName) {
-                  itemBasedButtonProcessContainer = _react2.default.createElement(_.Processable, {
+                  itemBasedButtonProcessContainer = _react2.default.createElement(_ProcessContainer2.default, {
                     modal: true,
                     key: itemBasedButtonProcessable.nextTaskEntity.id,
                     processable: itemBasedButtonProcessable,
@@ -413,7 +435,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
                   display: 'inline-block'
                 }
               },
-              _react2.default.createElement(_.RaisedButton, (0, _extends3.default)({
+              _react2.default.createElement(_RaisedButton2.default, (0, _extends3.default)({
                 theme: this.props.itemBasedButtonTheme,
                 muiProps: (0, _extends3.default)({
                   icon: _react2.default.createElement(_expandMore2.default, null),
@@ -490,7 +512,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
 
       var searchField = null;
       if (this.props.onSearch) {
-        searchField = _react2.default.createElement(_.TextField, (0, _extends3.default)({
+        searchField = _react2.default.createElement(_TextField2.default, (0, _extends3.default)({
           watch: true,
           value: this.state.searchValue,
           theme: this.props.searchFieldTheme,
@@ -569,7 +591,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
           },
           className: this.props.tableStyles.contentOverlayClassName
         }),
-        _react2.default.createElement(_.Table, (0, _extends3.default)({
+        _react2.default.createElement(_Table2.default, (0, _extends3.default)({
           ref: 'listBoxTable',
           theme: this.props.tableTheme,
           selectorTheme: this.props.tableSelectorTheme,
@@ -615,65 +637,65 @@ var ProcessableTable = (_temp = _class = function (_Component) {
   }]);
   return ProcessableTable;
 }(_react.Component), _class.propTypes = {
-  title: _react.PropTypes.string,
-  children: _react.PropTypes.node,
-  frame: _react.PropTypes.bool,
+  title: _propTypes2.default.string,
+  children: _propTypes2.default.node,
+  frame: _propTypes2.default.bool,
 
-  createProcessKey: _react.PropTypes.string,
-  createStartToken: _react.PropTypes.any,
+  createProcessKey: _propTypes2.default.string,
+  createStartToken: _propTypes2.default.any,
 
-  createButtonMuiProps: _react.PropTypes.object,
-  createButtonQflProps: _react.PropTypes.object,
-  createButtonProps: _react.PropTypes.object,
+  createButtonMuiProps: _propTypes2.default.object,
+  createButtonQflProps: _propTypes2.default.object,
+  createButtonProps: _propTypes2.default.object,
 
-  createButtonTheme: _react.PropTypes.object,
-  createDialogTheme: _react.PropTypes.object,
-  createFormItemTheme: _react.PropTypes.object,
-  createConfirmTheme: _react.PropTypes.object,
-  createWidgetTheme: _react.PropTypes.object,
-  createTheme: _react.PropTypes.object,
+  createButtonTheme: _propTypes2.default.object,
+  createDialogTheme: _propTypes2.default.object,
+  createFormItemTheme: _propTypes2.default.object,
+  createConfirmTheme: _propTypes2.default.object,
+  createWidgetTheme: _propTypes2.default.object,
+  createTheme: _propTypes2.default.object,
 
-  itemBasedButtonTheme: _react.PropTypes.object,
-  listBasedButtonTheme: _react.PropTypes.object,
-  filterMenuTheme: _react.PropTypes.object,
-  baseFilterMenuTheme: _react.PropTypes.object,
-  searchFieldTheme: _react.PropTypes.object,
+  itemBasedButtonTheme: _propTypes2.default.object,
+  listBasedButtonTheme: _propTypes2.default.object,
+  filterMenuTheme: _propTypes2.default.object,
+  baseFilterMenuTheme: _propTypes2.default.object,
+  searchFieldTheme: _propTypes2.default.object,
 
-  onSearch: _react.PropTypes.func,
-  searchFieldMuiProps: _react.PropTypes.object,
-  searchFieldQflProps: _react.PropTypes.object,
-  searchFieldProps: _react.PropTypes.object,
-  searchValue: _react.PropTypes.string,
-  tableProps: _react.PropTypes.object,
-  data: _react.PropTypes.any,
-  searchKeyDelay: _react.PropTypes.number,
-  controlledHeight: _react.PropTypes.number,
+  onSearch: _propTypes2.default.func,
+  searchFieldMuiProps: _propTypes2.default.object,
+  searchFieldQflProps: _propTypes2.default.object,
+  searchFieldProps: _propTypes2.default.object,
+  searchValue: _propTypes2.default.string,
+  tableProps: _propTypes2.default.object,
+  data: _propTypes2.default.any,
+  searchKeyDelay: _propTypes2.default.number,
+  controlledHeight: _propTypes2.default.number,
 
-  dataClassName: _react.PropTypes.string.required,
+  dataClassName: _propTypes2.default.string.required,
 
-  itemBasedButtonSchema: _react.PropTypes.any,
-  itemBasedButtonMuiProps: _react.PropTypes.object,
-  itemBasedButtonQflProps: _react.PropTypes.object,
-  itemBasedButtonProps: _react.PropTypes.object,
-  itemBasedMoreButtonMuiProps: _react.PropTypes.object,
-  itemBasedMoreButtonQflProps: _react.PropTypes.object,
-  itemBasedMoreButtonProps: _react.PropTypes.object,
+  itemBasedButtonSchema: _propTypes2.default.any,
+  itemBasedButtonMuiProps: _propTypes2.default.object,
+  itemBasedButtonQflProps: _propTypes2.default.object,
+  itemBasedButtonProps: _propTypes2.default.object,
+  itemBasedMoreButtonMuiProps: _propTypes2.default.object,
+  itemBasedMoreButtonQflProps: _propTypes2.default.object,
+  itemBasedMoreButtonProps: _propTypes2.default.object,
 
-  listBasedButtonSchema: _react.PropTypes.any,
-  filterMenuSchema: _react.PropTypes.any,
-  onFilterChange: _react.PropTypes.func,
+  listBasedButtonSchema: _propTypes2.default.any,
+  filterMenuSchema: _propTypes2.default.any,
+  onFilterChange: _propTypes2.default.func,
 
-  baseFilterMenuSchema: _react.PropTypes.any,
+  baseFilterMenuSchema: _propTypes2.default.any,
 
-  onProcessEnded: _react.PropTypes.func,
+  onProcessEnded: _propTypes2.default.func,
 
-  tableOverlayStyles: _react.PropTypes.object,
+  tableOverlayStyles: _propTypes2.default.object,
 
-  tableStyles: _react.PropTypes.object,
+  tableStyles: _propTypes2.default.object,
 
-  theme: _react.PropTypes.object,
-  tableTheme: _react.PropTypes.object,
-  tableSelectorTheme: _react.PropTypes.object
+  theme: _propTypes2.default.object,
+  tableTheme: _propTypes2.default.object,
+  tableSelectorTheme: _propTypes2.default.object
 }, _class.defaultProps = {
   title: null,
   frame: true,
@@ -698,7 +720,7 @@ var ProcessableTable = (_temp = _class = function (_Component) {
     menuItemClassName: null
   }
 }, _class.contextTypes = {
-  viewer: _react.PropTypes.object
+  viewer: _propTypes2.default.object
 }, _temp);
 exports.default = ProcessableTable;
 module.exports = exports['default'];

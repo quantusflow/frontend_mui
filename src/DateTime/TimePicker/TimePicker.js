@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { TimePicker as MUITimePicker } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -47,7 +49,7 @@ class TimePicker extends Component {
 }
 
 TimePicker.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 TimePicker.defaultProps = {

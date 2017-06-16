@@ -1,6 +1,8 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Stepper as MUIStepper } from 'material-ui';
-import { Dialog } from '../../index';
+import Dialog from '../Dialog/Dialog';
 import { Step, StepLabel, StepContent, StepButton } from 'material-ui/Stepper';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -212,7 +214,7 @@ class Stepper extends Component {
 }
 
 Stepper.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 Stepper.defaultProps = {

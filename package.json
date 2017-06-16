@@ -27,6 +27,7 @@
     "jquery": "^3.2.1",
     "material-ui": "^0.18.3",
     "mustache": "^2.3.0",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-bootstrap-table": "^3.4.0",
     "react-dom": "^15.6.1",

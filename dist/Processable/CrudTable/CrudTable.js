@@ -30,9 +30,15 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _themeBuilder = require('../../themeBuilder');
 
-var _ = require('../../');
+var _Table = require('../Table/Table');
+
+var _Table2 = _interopRequireDefault(_Table);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -371,7 +377,7 @@ var ProcessableCrudTable = (_temp = _class = function (_Component) {
 
       var tableElement = null;
       if (this.state.hasLoaded) {
-        tableElement = _react2.default.createElement(_.ProcessableTable, {
+        tableElement = _react2.default.createElement(_Table2.default, {
           mbClient: this.props.mbClient,
 
           tableOverlayStyles: this.props.tableOverlayStyles,
@@ -448,50 +454,50 @@ var ProcessableCrudTable = (_temp = _class = function (_Component) {
   }]);
   return ProcessableCrudTable;
 }(_react.Component), _class.propTypes = {
-  children: _react.PropTypes.node,
-  title: _react.PropTypes.string,
+  children: _propTypes2.default.node,
+  title: _propTypes2.default.string,
 
-  mbClient: _react.PropTypes.object,
-  entityCollection: _react.PropTypes.object,
-  fetcher: _react.PropTypes.func.required,
-  fetchingMode: _react.PropTypes.object,
-  baseFilter: _react.PropTypes.func,
+  mbClient: _propTypes2.default.object,
+  entityCollection: _propTypes2.default.object,
+  fetcher: _propTypes2.default.func.required,
+  fetchingMode: _propTypes2.default.object,
+  baseFilter: _propTypes2.default.func,
 
-  pageSize: _react.PropTypes.number,
-  entityTypeName: _react.PropTypes.string,
-  onRowDoubleClick: _react.PropTypes.func,
+  pageSize: _propTypes2.default.number,
+  entityTypeName: _propTypes2.default.string,
+  onRowDoubleClick: _propTypes2.default.func,
 
-  createStartToken: _react.PropTypes.object,
-  createButtonTheme: _react.PropTypes.object,
-  createDialogTheme: _react.PropTypes.object,
-  createFormItemTheme: _react.PropTypes.object,
-  createConfirmTheme: _react.PropTypes.object,
-  createWidgetTheme: _react.PropTypes.object,
-  createTheme: _react.PropTypes.object,
+  createStartToken: _propTypes2.default.object,
+  createButtonTheme: _propTypes2.default.object,
+  createDialogTheme: _propTypes2.default.object,
+  createFormItemTheme: _propTypes2.default.object,
+  createConfirmTheme: _propTypes2.default.object,
+  createWidgetTheme: _propTypes2.default.object,
+  createTheme: _propTypes2.default.object,
 
-  itemBasedButtonSchema: _react.PropTypes.arrayOf(_react.PropTypes.object),
-  listBasedButtonSchema: _react.PropTypes.arrayOf(_react.PropTypes.object),
-  filterMenuSchema: _react.PropTypes.arrayOf(_react.PropTypes.object),
-  baseFilterMenuSchema: _react.PropTypes.arrayOf(_react.PropTypes.object),
+  itemBasedButtonSchema: _propTypes2.default.arrayOf(_propTypes2.default.object),
+  listBasedButtonSchema: _propTypes2.default.arrayOf(_propTypes2.default.object),
+  filterMenuSchema: _propTypes2.default.arrayOf(_propTypes2.default.object),
+  baseFilterMenuSchema: _propTypes2.default.arrayOf(_propTypes2.default.object),
 
-  itemBasedButtonTheme: _react.PropTypes.object,
-  listBasedButtonTheme: _react.PropTypes.object,
-  filterMenuTheme: _react.PropTypes.object,
-  baseFilterMenuTheme: _react.PropTypes.object,
+  itemBasedButtonTheme: _propTypes2.default.object,
+  listBasedButtonTheme: _propTypes2.default.object,
+  filterMenuTheme: _propTypes2.default.object,
+  baseFilterMenuTheme: _propTypes2.default.object,
 
-  searchFieldTheme: _react.PropTypes.object,
+  searchFieldTheme: _propTypes2.default.object,
 
-  defaultSortName: _react.PropTypes.string,
-  defaultSortOrder: _react.PropTypes.string,
+  defaultSortName: _propTypes2.default.string,
+  defaultSortOrder: _propTypes2.default.string,
 
-  columnSchema: _react.PropTypes.arrayOf(_react.PropTypes.object),
+  columnSchema: _propTypes2.default.arrayOf(_propTypes2.default.object),
 
-  tableOverlayStyles: _react.PropTypes.object,
-  tableStyles: _react.PropTypes.object,
+  tableOverlayStyles: _propTypes2.default.object,
+  tableStyles: _propTypes2.default.object,
 
-  theme: _react.PropTypes.object,
-  tableTheme: _react.PropTypes.object,
-  tableSelectorTheme: _react.PropTypes.object
+  theme: _propTypes2.default.object,
+  tableTheme: _propTypes2.default.object,
+  tableSelectorTheme: _propTypes2.default.object
 }, _class.defaultProps = {
   pageSize: 16,
   fetchingMode: 'initial',

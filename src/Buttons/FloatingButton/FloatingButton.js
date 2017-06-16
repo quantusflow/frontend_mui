@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { FloatingActionButton as MUIFloatingActionButton } from 'material-ui';
 
 import { buildTheme } from '../../themeBuilder';
@@ -53,7 +55,7 @@ class FloatingButton extends Component {
 }
 
 FloatingButton.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 FloatingButton.defaultProps = {

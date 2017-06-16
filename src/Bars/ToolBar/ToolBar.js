@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Toolbar as MUIToolBar } from 'material-ui/Toolbar';
 
 import { buildTheme } from '../../themeBuilder';
@@ -66,7 +68,7 @@ class ToolBar extends Component {
 }
 
 ToolBar.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 ToolBar.defaultProps = {

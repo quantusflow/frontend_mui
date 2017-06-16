@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { AutoComplete as MUIAutoComplete } from 'material-ui';
 
@@ -85,7 +86,7 @@ class AutoComplete extends Component {
 }
 
 AutoComplete.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 AutoComplete.defaultProps = {

@@ -1,4 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import {
     IconButton as MUIIconButton,
     Badge as MUIBadge
@@ -87,7 +89,7 @@ class IconButton extends Component {
 }
 
 IconButton.childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: PropTypes.object
 };
 
 IconButton.defaultProps = {

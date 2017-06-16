@@ -1,5 +1,12 @@
-import React, { PropTypes, Component } from 'react';
-import { RaisedButton, Dialog, buildTheme, Form, Confirm } from '../';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import RaisedButton from '../Buttons/RaisedButton/RaisedButton';
+import Dialog from '../Dialogs/Dialog/Dialog';
+import buildTheme from '../themeBuilder';
+import Form from '../InputForms/Form/Form';
+import Confirm from '../InputForms/Confirm/Confirm';
+
 import mustache from 'mustache';
 import JSONTree from 'react-json-tree'
 
