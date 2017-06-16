@@ -2295,9 +2295,9 @@ react-base16-styling@^0.5.1:
     lodash.flow "^3.3.0"
     pure-color "^1.2.0"
 
-react-bootstrap-table@^3.4.0:
+"react-bootstrap-table@ssh://github.com/zimoony/react-bootstrap-table.git#master":
   version "3.4.0"
-  resolved "https://registry.yarnpkg.com/react-bootstrap-table/-/react-bootstrap-table-3.4.0.tgz#2edb03a6055b0850475b4fe3df3501eca5350c22"
+  resolved "ssh://github.com/zimoony/react-bootstrap-table.git#35047f35633ca1a6316469c388418fd5ceca4fdf"
   dependencies:
     "@allenfang/react-toastr" "2.8.2"
     classnames "^2.1.2"

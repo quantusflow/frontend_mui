@@ -29,7 +29,7 @@
     "mustache": "^2.3.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
-    "react-bootstrap-table": "^3.4.0",
+    "react-bootstrap-table": "ssh://github.com/zimoony/react-bootstrap-table.git#master",
     "react-dom": "^15.6.1",
     "react-json-tree": "^0.10.9",
     "react-router": "^4.1.1",
