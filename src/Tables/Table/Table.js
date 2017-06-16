@@ -71,7 +71,7 @@ const getSelectable = (theme, muiProps, qflProps) => {
   }
 
   return SelectableCheckBox;
-}
+};
 
 
 /**
@@ -234,7 +234,7 @@ class Table extends Component {
 }
 
 Table.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
 
 Table.defaultProps = {

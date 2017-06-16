@@ -6,67 +6,67 @@ import { TableOverlay } from './TableOverlay';
 
 import $ from 'jquery';
 
-class ProcessableTable extends React.Component {
+class ProcessableTable extends Component {
   static propTypes = {
-    title: React.PropTypes.string,
-    children: React.PropTypes.node,
-    frame: React.PropTypes.bool,
+    title: PropTypes.string,
+    children: PropTypes.node,
+    frame: PropTypes.bool,
 
-    createProcessKey: React.PropTypes.string,
-    createStartToken: React.PropTypes.any,
+    createProcessKey: PropTypes.string,
+    createStartToken: PropTypes.any,
 
-    createButtonMuiProps: React.PropTypes.object,
-    createButtonQflProps: React.PropTypes.object,
-    createButtonProps: React.PropTypes.object,
+    createButtonMuiProps: PropTypes.object,
+    createButtonQflProps: PropTypes.object,
+    createButtonProps: PropTypes.object,
 
-    createButtonTheme: React.PropTypes.object,
-    createDialogTheme: React.PropTypes.object,
-    createFormItemTheme: React.PropTypes.object,
-    createConfirmTheme: React.PropTypes.object,
-    createWidgetTheme: React.PropTypes.object,
-    createTheme: React.PropTypes.object,
+    createButtonTheme: PropTypes.object,
+    createDialogTheme: PropTypes.object,
+    createFormItemTheme: PropTypes.object,
+    createConfirmTheme: PropTypes.object,
+    createWidgetTheme: PropTypes.object,
+    createTheme: PropTypes.object,
 
-    itemBasedButtonTheme: React.PropTypes.object,
-    listBasedButtonTheme: React.PropTypes.object,
-    filterMenuTheme: React.PropTypes.object,
-    baseFilterMenuTheme: React.PropTypes.object,
-    searchFieldTheme: React.PropTypes.object,
+    itemBasedButtonTheme: PropTypes.object,
+    listBasedButtonTheme: PropTypes.object,
+    filterMenuTheme: PropTypes.object,
+    baseFilterMenuTheme: PropTypes.object,
+    searchFieldTheme: PropTypes.object,
 
-    onSearch: React.PropTypes.func,
-    searchFieldMuiProps: React.PropTypes.object,
-    searchFieldQflProps: React.PropTypes.object,
-    searchFieldProps: React.PropTypes.object,
-    searchValue: React.PropTypes.string,
-    tableProps: React.PropTypes.object,
-    data: React.PropTypes.any,
-    searchKeyDelay: React.PropTypes.number,
-    controlledHeight: React.PropTypes.number,
+    onSearch: PropTypes.func,
+    searchFieldMuiProps: PropTypes.object,
+    searchFieldQflProps: PropTypes.object,
+    searchFieldProps: PropTypes.object,
+    searchValue: PropTypes.string,
+    tableProps: PropTypes.object,
+    data: PropTypes.any,
+    searchKeyDelay: PropTypes.number,
+    controlledHeight: PropTypes.number,
 
-    dataClassName: React.PropTypes.string.required,
+    dataClassName: PropTypes.string.required,
 
-    itemBasedButtonSchema: React.PropTypes.any,
-    itemBasedButtonMuiProps: React.PropTypes.object,
-    itemBasedButtonQflProps: React.PropTypes.object,
-    itemBasedButtonProps: React.PropTypes.object,
-    itemBasedMoreButtonMuiProps: React.PropTypes.object,
-    itemBasedMoreButtonQflProps: React.PropTypes.object,
-    itemBasedMoreButtonProps: React.PropTypes.object,
+    itemBasedButtonSchema: PropTypes.any,
+    itemBasedButtonMuiProps: PropTypes.object,
+    itemBasedButtonQflProps: PropTypes.object,
+    itemBasedButtonProps: PropTypes.object,
+    itemBasedMoreButtonMuiProps: PropTypes.object,
+    itemBasedMoreButtonQflProps: PropTypes.object,
+    itemBasedMoreButtonProps: PropTypes.object,
 
-    listBasedButtonSchema: React.PropTypes.any,
-    filterMenuSchema: React.PropTypes.any,
-    onFilterChange: React.PropTypes.func,
+    listBasedButtonSchema: PropTypes.any,
+    filterMenuSchema: PropTypes.any,
+    onFilterChange: PropTypes.func,
 
-    baseFilterMenuSchema: React.PropTypes.any,
+    baseFilterMenuSchema: PropTypes.any,
 
-    onProcessEnded: React.PropTypes.func,
+    onProcessEnded: PropTypes.func,
 
-    tableOverlayStyles: React.PropTypes.object,
+    tableOverlayStyles: PropTypes.object,
 
-    tableStyles: React.PropTypes.object,
+    tableStyles: PropTypes.object,
 
-    theme: React.PropTypes.object,
-    tableTheme: React.PropTypes.object,
-    tableSelectorTheme: React.PropTypes.object
+    theme: PropTypes.object,
+    tableTheme: PropTypes.object,
+    tableSelectorTheme: PropTypes.object
   };
 
   static defaultProps = {
@@ -95,7 +95,7 @@ class ProcessableTable extends React.Component {
   };
 
   static contextTypes = {
-    viewer: React.PropTypes.object
+    viewer: PropTypes.object
   };
 
   constructor(props) {

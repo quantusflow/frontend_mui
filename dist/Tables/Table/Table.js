@@ -311,7 +311,7 @@ var Table = (_temp2 = _class2 = function (_Component2) {
 
 
 Table.childContextTypes = {
-  muiTheme: _react2.default.PropTypes.object
+  muiTheme: _react.PropTypes.object
 };
 
 Table.defaultProps = {

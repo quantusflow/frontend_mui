@@ -46,8 +46,8 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ProcessableTable = (_temp = _class = function (_React$Component) {
-  (0, _inherits3.default)(ProcessableTable, _React$Component);
+var ProcessableTable = (_temp = _class = function (_Component) {
+  (0, _inherits3.default)(ProcessableTable, _Component);
 
   function ProcessableTable(props) {
     (0, _classCallCheck3.default)(this, ProcessableTable);
@@ -614,66 +614,66 @@ var ProcessableTable = (_temp = _class = function (_React$Component) {
     }
   }]);
   return ProcessableTable;
-}(_react2.default.Component), _class.propTypes = {
-  title: _react2.default.PropTypes.string,
-  children: _react2.default.PropTypes.node,
-  frame: _react2.default.PropTypes.bool,
+}(_react.Component), _class.propTypes = {
+  title: _react.PropTypes.string,
+  children: _react.PropTypes.node,
+  frame: _react.PropTypes.bool,
 
-  createProcessKey: _react2.default.PropTypes.string,
-  createStartToken: _react2.default.PropTypes.any,
+  createProcessKey: _react.PropTypes.string,
+  createStartToken: _react.PropTypes.any,
 
-  createButtonMuiProps: _react2.default.PropTypes.object,
-  createButtonQflProps: _react2.default.PropTypes.object,
-  createButtonProps: _react2.default.PropTypes.object,
+  createButtonMuiProps: _react.PropTypes.object,
+  createButtonQflProps: _react.PropTypes.object,
+  createButtonProps: _react.PropTypes.object,
 
-  createButtonTheme: _react2.default.PropTypes.object,
-  createDialogTheme: _react2.default.PropTypes.object,
-  createFormItemTheme: _react2.default.PropTypes.object,
-  createConfirmTheme: _react2.default.PropTypes.object,
-  createWidgetTheme: _react2.default.PropTypes.object,
-  createTheme: _react2.default.PropTypes.object,
+  createButtonTheme: _react.PropTypes.object,
+  createDialogTheme: _react.PropTypes.object,
+  createFormItemTheme: _react.PropTypes.object,
+  createConfirmTheme: _react.PropTypes.object,
+  createWidgetTheme: _react.PropTypes.object,
+  createTheme: _react.PropTypes.object,
 
-  itemBasedButtonTheme: _react2.default.PropTypes.object,
-  listBasedButtonTheme: _react2.default.PropTypes.object,
-  filterMenuTheme: _react2.default.PropTypes.object,
-  baseFilterMenuTheme: _react2.default.PropTypes.object,
-  searchFieldTheme: _react2.default.PropTypes.object,
+  itemBasedButtonTheme: _react.PropTypes.object,
+  listBasedButtonTheme: _react.PropTypes.object,
+  filterMenuTheme: _react.PropTypes.object,
+  baseFilterMenuTheme: _react.PropTypes.object,
+  searchFieldTheme: _react.PropTypes.object,
 
-  onSearch: _react2.default.PropTypes.func,
-  searchFieldMuiProps: _react2.default.PropTypes.object,
-  searchFieldQflProps: _react2.default.PropTypes.object,
-  searchFieldProps: _react2.default.PropTypes.object,
-  searchValue: _react2.default.PropTypes.string,
-  tableProps: _react2.default.PropTypes.object,
-  data: _react2.default.PropTypes.any,
-  searchKeyDelay: _react2.default.PropTypes.number,
-  controlledHeight: _react2.default.PropTypes.number,
+  onSearch: _react.PropTypes.func,
+  searchFieldMuiProps: _react.PropTypes.object,
+  searchFieldQflProps: _react.PropTypes.object,
+  searchFieldProps: _react.PropTypes.object,
+  searchValue: _react.PropTypes.string,
+  tableProps: _react.PropTypes.object,
+  data: _react.PropTypes.any,
+  searchKeyDelay: _react.PropTypes.number,
+  controlledHeight: _react.PropTypes.number,
 
-  dataClassName: _react2.default.PropTypes.string.required,
+  dataClassName: _react.PropTypes.string.required,
 
-  itemBasedButtonSchema: _react2.default.PropTypes.any,
-  itemBasedButtonMuiProps: _react2.default.PropTypes.object,
-  itemBasedButtonQflProps: _react2.default.PropTypes.object,
-  itemBasedButtonProps: _react2.default.PropTypes.object,
-  itemBasedMoreButtonMuiProps: _react2.default.PropTypes.object,
-  itemBasedMoreButtonQflProps: _react2.default.PropTypes.object,
-  itemBasedMoreButtonProps: _react2.default.PropTypes.object,
+  itemBasedButtonSchema: _react.PropTypes.any,
+  itemBasedButtonMuiProps: _react.PropTypes.object,
+  itemBasedButtonQflProps: _react.PropTypes.object,
+  itemBasedButtonProps: _react.PropTypes.object,
+  itemBasedMoreButtonMuiProps: _react.PropTypes.object,
+  itemBasedMoreButtonQflProps: _react.PropTypes.object,
+  itemBasedMoreButtonProps: _react.PropTypes.object,
 
-  listBasedButtonSchema: _react2.default.PropTypes.any,
-  filterMenuSchema: _react2.default.PropTypes.any,
-  onFilterChange: _react2.default.PropTypes.func,
+  listBasedButtonSchema: _react.PropTypes.any,
+  filterMenuSchema: _react.PropTypes.any,
+  onFilterChange: _react.PropTypes.func,
 
-  baseFilterMenuSchema: _react2.default.PropTypes.any,
+  baseFilterMenuSchema: _react.PropTypes.any,
 
-  onProcessEnded: _react2.default.PropTypes.func,
+  onProcessEnded: _react.PropTypes.func,
 
-  tableOverlayStyles: _react2.default.PropTypes.object,
+  tableOverlayStyles: _react.PropTypes.object,
 
-  tableStyles: _react2.default.PropTypes.object,
+  tableStyles: _react.PropTypes.object,
 
-  theme: _react2.default.PropTypes.object,
-  tableTheme: _react2.default.PropTypes.object,
-  tableSelectorTheme: _react2.default.PropTypes.object
+  theme: _react.PropTypes.object,
+  tableTheme: _react.PropTypes.object,
+  tableSelectorTheme: _react.PropTypes.object
 }, _class.defaultProps = {
   title: null,
   frame: true,
@@ -698,7 +698,7 @@ var ProcessableTable = (_temp = _class = function (_React$Component) {
     menuItemClassName: null
   }
 }, _class.contextTypes = {
-  viewer: _react2.default.PropTypes.object
+  viewer: _react.PropTypes.object
 }, _temp);
 exports.default = ProcessableTable;
 module.exports = exports['default'];
