@@ -9,7 +9,7 @@ import {IMUIProps} from '../../interfaces';
  * Material UI based modal dialog
  */
 class Dialog extends React.Component<IMUIProps, {}> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {}

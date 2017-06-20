@@ -26,17 +26,7 @@ var SelectableList = List_1.makeSelectable(List_1.List);
 var NavigationBar = (function (_super) {
     __extends(NavigationBar, _super);
     function NavigationBar() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            listMuiProps: {},
-            dividerMuiProps: {},
-            listItemMuiProps: {},
-            hideBarFill: false
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     NavigationBar.prototype.handleOnChange = function (e, route) {
         if (this.props.onChange) {
@@ -100,6 +90,15 @@ var NavigationBar = (function (_super) {
     };
     return NavigationBar;
 }(React.Component));
+NavigationBar.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    listMuiProps: {},
+    dividerMuiProps: {},
+    listItemMuiProps: {},
+    hideBarFill: false
+};
 exports.default = NavigationBar;
 
 //# sourceMappingURL=NavigationBar.js.map

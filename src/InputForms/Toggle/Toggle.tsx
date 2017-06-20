@@ -9,7 +9,7 @@ import {IMUIProps} from '../../interfaces';
  * Material UI based toggle
  */
 class Toggle extends React.Component<IMUIProps, {}> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {}

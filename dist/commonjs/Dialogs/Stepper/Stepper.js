@@ -28,21 +28,6 @@ var Stepper = (function (_super) {
     __extends(Stepper, _super);
     function Stepper(props) {
         var _this = _super.call(this, props) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            isLinear: false,
-            isDialog: false,
-            isModal: false,
-            finishedContent: null,
-            onFinish: null,
-            onDialogClose: null,
-            dialogMuiProps: {},
-            dialogQflProps: {},
-            dialogTheme: 'Default',
-            backLabel: null
-        };
         _this.state = {
             finished: false,
             stepIndex: 0,
@@ -124,6 +109,21 @@ var Stepper = (function (_super) {
     };
     return Stepper;
 }(React.Component));
+Stepper.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    isLinear: false,
+    isDialog: false,
+    isModal: false,
+    finishedContent: null,
+    onFinish: null,
+    onDialogClose: null,
+    dialogMuiProps: {},
+    dialogQflProps: {},
+    dialogTheme: 'Default',
+    backLabel: null
+};
 exports.default = Stepper;
 
 //# sourceMappingURL=Stepper.js.map

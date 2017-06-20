@@ -18,7 +18,7 @@ export interface ITimePickerState {
  * Material UI based data picker
  */
 class TimePicker extends React.Component<ITimePickerProps, ITimePickerState> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {},

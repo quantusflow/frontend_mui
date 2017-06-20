@@ -15,7 +15,7 @@ export interface IRadioBoxState {
  * Material UI based radio button
  */
 declare class RadioBox extends React.Component<IRadioBoxProps, IRadioBoxState> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

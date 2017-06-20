@@ -11,7 +11,7 @@ export interface ILinkProps extends IMUIProps {
  * Material UI based link
  */
 declare class Link extends React.Component<ILinkProps, {}> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         qflProps: {};
         muiProps: {};

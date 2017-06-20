@@ -24,13 +24,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var RaisedButton = (function (_super) {
     __extends(RaisedButton, _super);
     function RaisedButton() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {}
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     RaisedButton.prototype.render = function () {
         var _a = themeBuilder_1.buildTheme({
@@ -44,6 +38,11 @@ var RaisedButton = (function (_super) {
     };
     return RaisedButton;
 }(React.Component));
+RaisedButton.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {}
+};
 exports.default = RaisedButton;
 
 //# sourceMappingURL=RaisedButton.js.map

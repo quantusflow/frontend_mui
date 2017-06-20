@@ -29,16 +29,6 @@ var getSelectable = function (theme, muiProps, qflProps) {
         __extends(SelectableCheckBox, _super);
         function SelectableCheckBox(props) {
             var _this = _super.call(this, props) || this;
-            _this.defaultProps = {
-                type: '',
-                checked: false,
-                disabled: false,
-                rowIndex: -1,
-                indeterminate: false,
-                onChange: null,
-                selectRowProp: false,
-                value: false
-            };
             _this.state = {
                 currentValue: props.value
             };
@@ -68,24 +58,22 @@ var getSelectable = function (theme, muiProps, qflProps) {
         };
         return SelectableCheckBox;
     }(React.Component));
+    SelectableCheckBox.defaultProps = {
+        type: '',
+        checked: false,
+        disabled: false,
+        rowIndex: -1,
+        indeterminate: false,
+        onChange: null,
+        selectRowProp: false,
+        value: false
+    };
     return SelectableCheckBox;
 };
 var Table = (function (_super) {
     __extends(Table, _super);
     function Table() {
         var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            selectorTheme: null,
-            selectorMuiProps: null,
-            selectorQflProps: null,
-            dataSource: [],
-            rbtProps: null,
-            stylingProps: null,
-            onSelectedRowsChanged: null
-        };
         _this.state = {
             selectedRows: {}
         };
@@ -186,6 +174,18 @@ var Table = (function (_super) {
     };
     return Table;
 }(React.Component));
+Table.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    selectorTheme: null,
+    selectorMuiProps: null,
+    selectorQflProps: null,
+    dataSource: [],
+    rbtProps: null,
+    stylingProps: null,
+    onSelectedRowsChanged: null
+};
 exports.default = Table;
 
 //# sourceMappingURL=Table.js.map

@@ -25,13 +25,6 @@ var CheckBox = (function (_super) {
     __extends(CheckBox, _super);
     function CheckBox(props) {
         var _this = _super.call(this, props) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            value: false,
-            onChange: null
-        };
         _this.state = {
             currentValue: props.value
         };
@@ -65,6 +58,13 @@ var CheckBox = (function (_super) {
     };
     return CheckBox;
 }(React.Component));
+CheckBox.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    value: false,
+    onChange: null
+};
 exports.default = CheckBox;
 
 //# sourceMappingURL=CheckBox.js.map

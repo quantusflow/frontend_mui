@@ -24,16 +24,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var IconButton = (function (_super) {
     __extends(IconButton, _super);
     function IconButton() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            badged: false,
-            badgeProps: {},
-            icon: null
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     IconButton.prototype.renderIcon = function (muiProps) {
         return (React.createElement(material_ui_1.IconButton, __assign({}, muiProps), this.props.icon));
@@ -56,6 +47,14 @@ var IconButton = (function (_super) {
     };
     return IconButton;
 }(React.Component));
+IconButton.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    badged: false,
+    badgeProps: {},
+    icon: null
+};
 exports.default = IconButton;
 
 //# sourceMappingURL=IconButton.js.map

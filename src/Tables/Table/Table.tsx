@@ -26,7 +26,7 @@ export interface ISelectableCheckBoxState {
 
 const getSelectable = (theme: string, muiProps, qflProps) => {
   class SelectableCheckBox extends React.Component<ISelectableCheckBoxProps, ISelectableCheckBoxState> {
-    public defaultProps = {
+    public static defaultProps = {
       type: '',
       checked: false,
       disabled: false,
@@ -111,7 +111,7 @@ export interface ITableState {
  * Material UI based boostrap table
  */
 class Table extends React.Component<ITableProps, ITableState> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {},

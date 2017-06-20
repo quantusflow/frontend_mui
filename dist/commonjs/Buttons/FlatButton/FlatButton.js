@@ -24,13 +24,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var FlatButton = (function (_super) {
     __extends(FlatButton, _super);
     function FlatButton() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {}
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     FlatButton.prototype.render = function () {
         var _a = themeBuilder_1.buildTheme({
@@ -44,6 +38,11 @@ var FlatButton = (function (_super) {
     };
     return FlatButton;
 }(React.Component));
+FlatButton.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {}
+};
 exports.default = FlatButton;
 
 //# sourceMappingURL=FlatButton.js.map

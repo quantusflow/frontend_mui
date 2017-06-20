@@ -29,7 +29,7 @@ export interface IStepperState {
  * Material UI based stepper
  */
 declare class Stepper extends React.Component<IStepperProps, IStepperState> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

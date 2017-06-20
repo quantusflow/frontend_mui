@@ -12,7 +12,7 @@ export interface ICheckBoxState {
  * Material UI based check box
  */
 declare class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

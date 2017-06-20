@@ -24,14 +24,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var ToolBar = (function (_super) {
     __extends(ToolBar, _super);
     function ToolBar() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            items: null
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     ToolBar.prototype.render = function () {
         var _a = themeBuilder_1.buildTheme({
@@ -49,6 +42,12 @@ var ToolBar = (function (_super) {
     };
     return ToolBar;
 }(React.Component));
+ToolBar.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    items: null
+};
 exports.default = ToolBar;
 
 //# sourceMappingURL=ToolBar.js.map

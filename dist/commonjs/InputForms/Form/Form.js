@@ -33,14 +33,6 @@ var Form = (function (_super) {
     __extends(Form, _super);
     function Form(props) {
         var _this = _super.call(this, props) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            keyAttributeName: 'id',
-            dataProvider: null,
-            onChange: null
-        };
         var item = (props.item || {});
         _this.state = {
             formData: item
@@ -389,6 +381,14 @@ var Form = (function (_super) {
     };
     return Form;
 }(React.Component));
+Form.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    keyAttributeName: 'id',
+    dataProvider: null,
+    onChange: null
+};
 exports.default = Form;
 
 //# sourceMappingURL=Form.js.map

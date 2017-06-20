@@ -19,7 +19,7 @@ export interface IDropDownState {
  * Material UI based drop down menu
  */
 class DropDown extends React.Component<IDropDownProps, IDropDownState> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {},

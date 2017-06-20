@@ -25,13 +25,6 @@ var Confirm = (function (_super) {
     __extends(Confirm, _super);
     function Confirm() {
         var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            message: null,
-            onChoose: null
-        };
         _this.state = {
             confirmData: {}
         };
@@ -60,6 +53,13 @@ var Confirm = (function (_super) {
     };
     return Confirm;
 }(React.Component));
+Confirm.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    message: null,
+    onChoose: null
+};
 exports.default = Confirm;
 
 //# sourceMappingURL=Confirm.js.map

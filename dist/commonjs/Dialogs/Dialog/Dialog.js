@@ -24,13 +24,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var Dialog = (function (_super) {
     __extends(Dialog, _super);
     function Dialog() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {}
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     Dialog.prototype.render = function () {
         var children = this.props.children;
@@ -45,6 +39,11 @@ var Dialog = (function (_super) {
     };
     return Dialog;
 }(React.Component));
+Dialog.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {}
+};
 exports.default = Dialog;
 
 //# sourceMappingURL=Dialog.js.map

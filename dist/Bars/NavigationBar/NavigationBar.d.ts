@@ -27,7 +27,7 @@ export interface INavigationBarProps extends IMUIProps {
  * Material UI based tool bar
  */
 declare class NavigationBar extends React.Component<INavigationBarProps, {}> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

@@ -25,15 +25,6 @@ var RadioBox = (function (_super) {
     __extends(RadioBox, _super);
     function RadioBox(props) {
         var _this = _super.call(this, props) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            items: null,
-            value: null,
-            label: null,
-            onChange: null
-        };
         _this.state = {
             currentValue: props.value
         };
@@ -67,6 +58,15 @@ var RadioBox = (function (_super) {
     };
     return RadioBox;
 }(React.Component));
+RadioBox.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    items: null,
+    value: null,
+    label: null,
+    onChange: null
+};
 exports.default = RadioBox;
 
 //# sourceMappingURL=RadioBox.js.map

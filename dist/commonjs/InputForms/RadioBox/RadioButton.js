@@ -24,13 +24,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var RadioButton = (function (_super) {
     __extends(RadioButton, _super);
     function RadioButton() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {}
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     RadioButton.prototype.render = function () {
         var _a = themeBuilder_1.buildTheme({
@@ -44,6 +38,11 @@ var RadioButton = (function (_super) {
     };
     return RadioButton;
 }(React.Component));
+RadioButton.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {}
+};
 exports.default = RadioButton;
 
 //# sourceMappingURL=RadioButton.js.map

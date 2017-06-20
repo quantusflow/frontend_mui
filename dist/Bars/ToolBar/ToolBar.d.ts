@@ -7,7 +7,7 @@ export interface IToolBarProps extends IMUIProps {
  * Material UI based tool bar
  */
 declare class ToolBar extends React.Component<IToolBarProps, {}> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

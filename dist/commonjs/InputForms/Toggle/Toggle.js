@@ -24,13 +24,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var Toggle = (function (_super) {
     __extends(Toggle, _super);
     function Toggle() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {}
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     Toggle.prototype.render = function () {
         var _a = themeBuilder_1.buildTheme({
@@ -44,6 +38,11 @@ var Toggle = (function (_super) {
     };
     return Toggle;
 }(React.Component));
+Toggle.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {}
+};
 exports.default = Toggle;
 
 //# sourceMappingURL=Toggle.js.map

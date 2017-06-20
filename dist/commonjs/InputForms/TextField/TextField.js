@@ -25,14 +25,6 @@ var TextField = (function (_super) {
     __extends(TextField, _super);
     function TextField(props) {
         var _this = _super.call(this, props) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            value: null,
-            watch: false,
-            onChange: null
-        };
         _this.state = {
             currentValue: props.value
         };
@@ -61,6 +53,14 @@ var TextField = (function (_super) {
     };
     return TextField;
 }(React.Component));
+TextField.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    value: null,
+    watch: false,
+    onChange: null
+};
 exports.default = TextField;
 
 //# sourceMappingURL=TextField.js.map

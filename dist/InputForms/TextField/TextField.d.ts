@@ -12,7 +12,7 @@ export interface ITextFieldState {
  * Material UI based text field
  */
 declare class TextField extends React.Component<ITextFieldProps, ITextFieldState> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

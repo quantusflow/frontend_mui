@@ -24,13 +24,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var SnackBar = (function (_super) {
     __extends(SnackBar, _super);
     function SnackBar() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {}
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     SnackBar.prototype.render = function () {
         var _a = themeBuilder_1.buildTheme({
@@ -44,6 +38,11 @@ var SnackBar = (function (_super) {
     };
     return SnackBar;
 }(React.Component));
+SnackBar.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {}
+};
 exports.default = SnackBar;
 
 //# sourceMappingURL=SnackBar.js.map

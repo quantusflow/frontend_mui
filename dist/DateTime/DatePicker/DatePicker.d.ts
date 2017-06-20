@@ -11,7 +11,7 @@ export interface IDatePickerState {
  * Material UI based data picker
  */
 declare class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

@@ -25,13 +25,6 @@ var DatePicker = (function (_super) {
     __extends(DatePicker, _super);
     function DatePicker(props) {
         var _this = _super.call(this, props) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            value: new Date(),
-            onChange: null
-        };
         _this.state = {
             currentValue: (props.value && typeof props.value === 'string' ? new Date(props.value) : null)
         };
@@ -62,6 +55,13 @@ var DatePicker = (function (_super) {
     };
     return DatePicker;
 }(React.Component));
+DatePicker.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    value: new Date(),
+    onChange: null
+};
 exports.default = DatePicker;
 
 //# sourceMappingURL=DatePicker.js.map

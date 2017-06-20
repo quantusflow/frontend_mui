@@ -13,7 +13,7 @@ export interface IAutoCompleteState {
  * Material UI based auto complete drop down menu
  */
 declare class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteState> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

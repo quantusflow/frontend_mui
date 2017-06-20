@@ -14,7 +14,7 @@ export interface IFloatingButtonProps extends IMUIProps {
  * Material UI based floating action button
  */
 class FloatingButton extends React.Component<IFloatingButtonProps, {}> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {},

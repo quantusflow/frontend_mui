@@ -34,7 +34,7 @@ export interface ITableState {
  * Material UI based boostrap table
  */
 declare class Table extends React.Component<ITableProps, ITableState> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

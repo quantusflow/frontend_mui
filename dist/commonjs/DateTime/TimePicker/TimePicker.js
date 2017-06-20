@@ -25,13 +25,6 @@ var TimePicker = (function (_super) {
     __extends(TimePicker, _super);
     function TimePicker(props) {
         var _this = _super.call(this, props) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            value: new Date(),
-            onChange: null
-        };
         _this.state = {
             currentValue: props.value
         };
@@ -62,6 +55,13 @@ var TimePicker = (function (_super) {
     };
     return TimePicker;
 }(React.Component));
+TimePicker.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    value: new Date(),
+    onChange: null
+};
 exports.default = TimePicker;
 
 //# sourceMappingURL=TimePicker.js.map

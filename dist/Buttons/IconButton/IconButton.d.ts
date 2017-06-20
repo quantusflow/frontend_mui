@@ -9,7 +9,7 @@ export interface IIconButtonProps extends IMUIProps {
  * Material UI based icon button
  */
 declare class IconButton extends React.Component<IIconButtonProps, {}> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

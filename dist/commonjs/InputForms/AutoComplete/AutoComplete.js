@@ -25,14 +25,6 @@ var AutoComplete = (function (_super) {
     __extends(AutoComplete, _super);
     function AutoComplete(props) {
         var _this = _super.call(this, props) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            label: null,
-            value: null,
-            onChange: null
-        };
         _this.state = {
             currentValue: (props.value ? props.value.toString() : null)
         };
@@ -65,6 +57,14 @@ var AutoComplete = (function (_super) {
     };
     return AutoComplete;
 }(React.Component));
+AutoComplete.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    label: null,
+    value: null,
+    onChange: null
+};
 exports.default = AutoComplete;
 
 //# sourceMappingURL=AutoComplete.js.map

@@ -25,15 +25,6 @@ var DropDown = (function (_super) {
     __extends(DropDown, _super);
     function DropDown(props) {
         var _this = _super.call(this, props) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            items: null,
-            value: null,
-            label: null,
-            onChange: null
-        };
         _this.state = {
             currentValue: props.value
         };
@@ -67,6 +58,15 @@ var DropDown = (function (_super) {
     };
     return DropDown;
 }(React.Component));
+DropDown.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    items: null,
+    value: null,
+    label: null,
+    onChange: null
+};
 exports.default = DropDown;
 
 //# sourceMappingURL=DropDown.js.map

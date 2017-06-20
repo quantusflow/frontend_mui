@@ -19,7 +19,7 @@ export interface IConfirmState {
  * Material UI based confirm component
  */
 declare class Confirm extends React.Component<IConfirmProps, IConfirmState> {
-    defaultProps: {
+    static defaultProps: {
         theme: string;
         muiProps: {};
         qflProps: {};

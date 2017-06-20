@@ -20,7 +20,7 @@ export interface ICheckBoxState {
  * Material UI based check box
  */
 class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {},

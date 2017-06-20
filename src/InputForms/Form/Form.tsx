@@ -48,7 +48,7 @@ export interface IFormState {
  * Material UI based Form rendering Material UI based form items
  */
 class Form extends React.Component<IFormProps, IFormState> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {},

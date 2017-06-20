@@ -9,7 +9,7 @@ import {IMUIProps} from '../../interfaces';
  * Material UI based radio button
  */
 class RadioButton extends React.Component<IMUIProps, {}> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {}

@@ -24,14 +24,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var FloatingButton = (function (_super) {
     __extends(FloatingButton, _super);
     function FloatingButton() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            muiProps: {},
-            qflProps: {},
-            icon: null
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     FloatingButton.prototype.render = function () {
         var _a = themeBuilder_1.buildTheme({
@@ -45,6 +38,12 @@ var FloatingButton = (function (_super) {
     };
     return FloatingButton;
 }(React.Component));
+FloatingButton.defaultProps = {
+    theme: 'Default',
+    muiProps: {},
+    qflProps: {},
+    icon: null
+};
 exports.default = FloatingButton;
 
 //# sourceMappingURL=FloatingButton.js.map

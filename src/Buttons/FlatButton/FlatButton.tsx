@@ -10,7 +10,7 @@ import {IMUIProps} from '../../interfaces';
  * Material UI based flat button
  */
 class FlatButton extends React.Component<IMUIProps, {}> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {}

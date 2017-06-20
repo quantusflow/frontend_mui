@@ -26,18 +26,7 @@ var themeBuilder_1 = require("../../themeBuilder");
 var Link = (function (_super) {
     __extends(Link, _super);
     function Link() {
-        var _this = _super.call(this) || this;
-        _this.defaultProps = {
-            theme: 'Default',
-            qflProps: {},
-            muiProps: {},
-            linkStyle: {},
-            labelStyle: {},
-            label: '',
-            to: null,
-            href: '#'
-        };
-        return _this;
+        return _super.call(this) || this;
     }
     Link.prototype.render = function () {
         var _a = themeBuilder_1.buildTheme({
@@ -59,6 +48,16 @@ var Link = (function (_super) {
     };
     return Link;
 }(React.Component));
+Link.defaultProps = {
+    theme: 'Default',
+    qflProps: {},
+    muiProps: {},
+    linkStyle: {},
+    labelStyle: {},
+    label: '',
+    to: null,
+    href: '#'
+};
 exports.default = Link;
 
 //# sourceMappingURL=Link.js.map

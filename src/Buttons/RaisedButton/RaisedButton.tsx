@@ -9,7 +9,7 @@ import {IMUIProps} from '../../interfaces';
  * Material UI based raised button
  */
 class RaisedButton extends React.Component<IMUIProps, {}> {
-  public defaultProps = {
+  public static defaultProps = {
     theme: 'Default',
     muiProps: {},
     qflProps: {}
