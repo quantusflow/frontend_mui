@@ -49,6 +49,10 @@ class TextField extends React.Component<ITextFieldProps, ITextFieldState> {
     }
   }
 
+  public getCurrentValue() {
+    return this.state.currentValue;
+  }
+
   public render() {
     const {muiProps, qflProps} = buildTheme({
       theme: this.props.theme,
@@ -59,7 +63,7 @@ class TextField extends React.Component<ITextFieldProps, ITextFieldState> {
 
     return (
       <div {...qflProps}>
-        <MUITextField ref='muiTextField' {...muiProps} value={this.state.currentValue}
+        <MUITextField {...muiProps} value={this.state.currentValue}
                       onChange={(e) => this.handleChange(e)} onBlur={(e) => this.handleChange(e, true)}/>
       </div>
     );

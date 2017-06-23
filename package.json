@@ -27,15 +27,17 @@
     "extend": "^3.0.1",
     "jquery": "^3.2.1",
     "material-ui": "^0.18.3",
-    "react": "^15.6.1",
     "react-bootstrap-table": "ssh://github.com/zimoony/react-bootstrap-table.git#master",
-    "react-dom": "^15.6.1",
-    "react-router": "^4.1.1",
+    "react-router": "^2.4.1",
     "react-tap-event-plugin": "^2.0.1"
   },
   "devDependencies": {
     "@process-engine-js/gulptraum": "^1.2.5",
     "gulp": "^3.9.1",
     "tsconfig": "^6.0.0"
+  },
+  "peerDependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }

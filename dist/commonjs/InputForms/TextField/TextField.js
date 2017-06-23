@@ -40,6 +40,9 @@ var TextField = (function (_super) {
             this.props.onChange(oldValue, newValue, e);
         }
     };
+    TextField.prototype.getCurrentValue = function () {
+        return this.state.currentValue;
+    };
     TextField.prototype.render = function () {
         var _this = this;
         var _a = themeBuilder_1.buildTheme({
@@ -49,7 +52,7 @@ var TextField = (function (_super) {
             componentName: 'TextField'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.TextField, __assign({ ref: 'muiTextField' }, muiProps, { value: this.state.currentValue, onChange: function (e) { return _this.handleChange(e); }, onBlur: function (e) { return _this.handleChange(e, true); } }))));
+            React.createElement(material_ui_1.TextField, __assign({}, muiProps, { value: this.state.currentValue, onChange: function (e) { return _this.handleChange(e); }, onBlur: function (e) { return _this.handleChange(e, true); } }))));
     };
     TextField.defaultProps = {
         theme: 'Default',
