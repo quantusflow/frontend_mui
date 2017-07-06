@@ -19,7 +19,7 @@ export interface IDatePickerState {
  */
 class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

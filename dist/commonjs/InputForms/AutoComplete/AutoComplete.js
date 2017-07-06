@@ -56,7 +56,7 @@ var AutoComplete = (function (_super) {
             React.createElement(material_ui_1.AutoComplete, __assign({}, muiProps, { openOnFocus: true, dataSource: items, searchText: this.state.currentValue, onNewRequest: function (chosenRequest, index) { return _this.handleChange(chosenRequest, index); } }))));
     };
     AutoComplete.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         label: null,

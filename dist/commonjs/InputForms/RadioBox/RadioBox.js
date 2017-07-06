@@ -57,7 +57,7 @@ var RadioBox = (function (_super) {
             React.createElement(material_ui_1.RadioButtonGroup, __assign({}, muiProps, { valueSelected: this.state.currentValue, onChange: function (event, value) { return _this.handleChange(event, value); } }), items)));
     };
     RadioBox.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         items: null,

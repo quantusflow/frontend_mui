@@ -37,7 +37,7 @@ var SnackBar = (function (_super) {
             React.createElement(Snackbar_1.default, __assign({}, muiProps))));
     };
     SnackBar.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {}
     };

@@ -54,7 +54,7 @@ var DatePicker = (function (_super) {
             React.createElement(material_ui_1.DatePicker, __assign({ ref: 'muiDateField' }, muiProps, { value: this.state.currentValue, onChange: function (e, date) { return _this.handleChange(e, date); } }))));
     };
     DatePicker.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         value: new Date(),

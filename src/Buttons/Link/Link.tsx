@@ -20,7 +20,7 @@ export interface ILinkProps extends IMUIProps {
  */
 class Link extends React.Component<ILinkProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     qflProps: {},
     muiProps: {},
 

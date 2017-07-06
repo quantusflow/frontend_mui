@@ -37,7 +37,7 @@ var RaisedButton = (function (_super) {
             React.createElement(material_ui_1.RaisedButton, __assign({}, muiProps))));
     };
     RaisedButton.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {}
     };

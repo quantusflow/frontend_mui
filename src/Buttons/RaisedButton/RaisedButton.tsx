@@ -10,7 +10,7 @@ import {IMUIProps} from '../../interfaces';
  */
 class RaisedButton extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {}
   };

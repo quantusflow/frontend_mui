@@ -22,7 +22,7 @@ export interface IAutoCompleteState {
  */
 class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

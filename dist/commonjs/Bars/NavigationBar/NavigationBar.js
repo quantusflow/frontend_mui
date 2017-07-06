@@ -19,10 +19,13 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var MUIDrawer = require("material-ui/Drawer/Drawer.js");
+var Divider = require("material-ui/Divider/Divider.js");
 var themeBuilder_1 = require("../../themeBuilder");
-var List_1 = require("material-ui/List");
-var SelectableList = List_1.makeSelectable(List_1.List);
+var List = require("material-ui/List/List.js");
+var ListItem = require("material-ui/List/ListItem.js");
+var makeSelectable = require("material-ui/List/makeSelectable.js");
+var SelectableList = makeSelectable(List);
 var NavigationBar = (function (_super) {
     __extends(NavigationBar, _super);
     function NavigationBar() {
@@ -71,13 +74,13 @@ var NavigationBar = (function (_super) {
                         return (React.createElement(SelectableList, __assign({ key: idx, className: item.className, value: location.pathname, onChange: function (e, route) { return _this.handleOnChange(e, route); } }, listMuiProps), nestedElements.map(function (nestedElement, nestedIdx) {
                             switch (nestedElement.type) {
                                 case 'ListItem':
-                                    return React.createElement(List_1.ListItem, __assign({ key: nestedIdx }, listItemMuiProps, { className: nestedElement.className, primaryText: nestedElement.label, value: nestedElement.path, leftIcon: nestedElement.icon }));
+                                    return React.createElement(ListItem, __assign({ key: nestedIdx }, listItemMuiProps, { className: nestedElement.className, primaryText: nestedElement.label, value: nestedElement.path, leftIcon: nestedElement.icon }));
                                 default:
                                     return null;
                             }
                         }).filter(function (itemToFilter) { return (itemToFilter !== null); })));
                     case 'Divider':
-                        return React.createElement(material_ui_1.Divider, __assign({ key: idx }, dividerMuiProps));
+                        return React.createElement(Divider, __assign({ key: idx }, dividerMuiProps));
                     case 'fillBar':
                         return React.createElement("div", { key: idx, style: qflProps.barFillStyle });
                     default:
@@ -86,10 +89,10 @@ var NavigationBar = (function (_super) {
             }).filter(function (item) { return (item !== null); });
         }
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.Drawer, __assign({}, muiProps, { open: true, docked: true }), renderedMenu)));
+            React.createElement(MUIDrawer, __assign({}, muiProps, { open: true, docked: true }), renderedMenu)));
     };
     NavigationBar.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         listMuiProps: {},

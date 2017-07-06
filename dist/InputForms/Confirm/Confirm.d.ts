@@ -20,7 +20,7 @@ export interface IConfirmState {
  */
 declare class Confirm extends React.Component<IConfirmProps, IConfirmState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         message: any;

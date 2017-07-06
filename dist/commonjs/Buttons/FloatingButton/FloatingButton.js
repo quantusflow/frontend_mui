@@ -37,7 +37,7 @@ var FloatingButton = (function (_super) {
             React.createElement(material_ui_1.FloatingActionButton, __assign({}, muiProps), this.props.icon)));
     };
     FloatingButton.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         icon: null

@@ -54,7 +54,7 @@ var TimePicker = (function (_super) {
             React.createElement(material_ui_1.TimePicker, __assign({ ref: 'muiTimeField' }, muiProps, { value: this.state.currentValue, onChange: function (e, date) { return _this.handleChange(e, date); } }))));
     };
     TimePicker.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         value: new Date(),

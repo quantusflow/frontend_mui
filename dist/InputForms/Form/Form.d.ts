@@ -28,7 +28,7 @@ export interface IFormState {
  */
 declare class Form extends React.Component<IFormProps, IFormState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         keyAttributeName: string;

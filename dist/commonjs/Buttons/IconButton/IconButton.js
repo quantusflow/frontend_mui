@@ -46,7 +46,7 @@ var IconButton = (function (_super) {
         return (React.createElement("div", __assign({}, qflProps), renderedContent));
     };
     IconButton.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         badged: false,

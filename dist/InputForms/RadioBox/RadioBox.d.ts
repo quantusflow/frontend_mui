@@ -16,7 +16,7 @@ export interface IRadioBoxState {
  */
 declare class RadioBox extends React.Component<IRadioBoxProps, IRadioBoxState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         items: any;

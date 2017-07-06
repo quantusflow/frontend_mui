@@ -49,7 +49,7 @@ export interface IFormState {
  */
 class Form extends React.Component<IFormProps, IFormState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

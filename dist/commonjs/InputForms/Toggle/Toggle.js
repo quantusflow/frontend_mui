@@ -37,7 +37,7 @@ var Toggle = (function (_super) {
             React.createElement(material_ui_1.Toggle, __assign({}, muiProps))));
     };
     Toggle.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {}
     };

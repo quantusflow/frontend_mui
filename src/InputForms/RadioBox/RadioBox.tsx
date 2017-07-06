@@ -24,7 +24,7 @@ export interface IRadioBoxState {
  */
 class RadioBox extends React.Component<IRadioBoxProps, IRadioBoxState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

@@ -14,7 +14,7 @@ export interface IDropDownState {
  */
 declare class DropDown extends React.Component<IDropDownProps, IDropDownState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         items: any;

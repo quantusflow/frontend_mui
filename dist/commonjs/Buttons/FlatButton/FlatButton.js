@@ -37,7 +37,7 @@ var FlatButton = (function (_super) {
             React.createElement(material_ui_1.FlatButton, __assign({}, muiProps))));
     };
     FlatButton.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {}
     };

@@ -19,7 +19,7 @@ export interface ITimePickerState {
  */
 class TimePicker extends React.Component<ITimePickerProps, ITimePickerState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

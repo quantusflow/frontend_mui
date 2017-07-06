@@ -1,11 +1,16 @@
 import * as React from 'react';
 
-import {Drawer as MUIDrawer, Divider} from 'material-ui';
+import * as MUIDrawer from 'material-ui/Drawer/Drawer.js';
+import * as Divider from 'material-ui/Divider/Divider.js';
 
 import {buildTheme} from '../../themeBuilder';
 
-import {List, ListItem, makeSelectable} from 'material-ui/List';
+import * as List from 'material-ui/List/List.js';
+import * as ListItem from 'material-ui/List/ListItem.js';
+import * as makeSelectable from 'material-ui/List/makeSelectable.js';
+
 import {IMUIProps} from '../../interfaces';
+
 const SelectableList = makeSelectable(List); // tslint:disable-line variable-name
 
 export interface INestedMenuItem {
@@ -38,7 +43,7 @@ export interface INavigationBarProps extends IMUIProps {
  */
 class NavigationBar extends React.Component<INavigationBarProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

@@ -20,7 +20,7 @@ export interface IIconButtonProps extends IMUIProps {
  */
 class IconButton extends React.Component<IIconButtonProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

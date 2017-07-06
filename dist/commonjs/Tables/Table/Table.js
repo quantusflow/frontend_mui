@@ -173,7 +173,7 @@ var Table = (function (_super) {
             React.createElement(react_bootstrap_table_1.BootstrapTable, __assign({ ref: 'reactBootstrapTable', data: dataSource, selectRow: selectRowProp }, rbtProps), this.props.thcSchema.map(function (thcItem) { return React.createElement(react_bootstrap_table_1.TableHeaderColumn, __assign({ key: thcItem.name }, thcItem.thcProps), thcItem.name); }))));
     };
     Table.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         selectorTheme: null,

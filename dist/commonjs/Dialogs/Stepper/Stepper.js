@@ -108,7 +108,7 @@ var Stepper = (function (_super) {
         return (React.createElement("div", __assign({}, qflProps, { style: { width: '100%', height: '100%', maxWidth: 400 } }), currentStepper));
     };
     Stepper.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         isLinear: false,
@@ -119,7 +119,7 @@ var Stepper = (function (_super) {
         onDialogClose: null,
         dialogMuiProps: {},
         dialogQflProps: {},
-        dialogTheme: 'Default',
+        dialogTheme: null,
         backLabel: null
     };
     return Stepper;

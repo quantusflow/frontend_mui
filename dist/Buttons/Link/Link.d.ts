@@ -12,7 +12,7 @@ export interface ILinkProps extends IMUIProps {
  */
 declare class Link extends React.Component<ILinkProps, {}> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         qflProps: {};
         muiProps: {};
         linkStyle: {};

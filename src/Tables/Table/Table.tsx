@@ -24,7 +24,7 @@ export interface ISelectableCheckBoxState {
   currentValue?: boolean;
 }
 
-const getSelectable = (theme: string, muiProps, qflProps) => {
+const getSelectable = (theme: {}, muiProps, qflProps) => {
   class SelectableCheckBox extends React.Component<ISelectableCheckBoxProps, ISelectableCheckBoxState> {
     public static defaultProps = {
       type: '',
@@ -93,7 +93,7 @@ const getSelectable = (theme: string, muiProps, qflProps) => {
 export interface ITableProps extends IMUIProps {
   thcSchema: any;
 
-  selectorTheme?: string;
+  selectorTheme?: {};
   selectorMuiProps?: {};
   selectorQflProps?: {};
   dataSource?: Array<{}>;
@@ -112,7 +112,7 @@ export interface ITableState {
  */
 class Table extends React.Component<ITableProps, ITableState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

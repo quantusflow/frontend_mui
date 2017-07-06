@@ -380,7 +380,7 @@ var Form = (function (_super) {
         return (React.createElement("div", __assign({ key: key }, qflProps), resultingElement));
     };
     Form.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         keyAttributeName: 'id',

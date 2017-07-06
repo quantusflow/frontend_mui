@@ -5,7 +5,7 @@ import { IMUIProps } from '../../interfaces';
  */
 declare class SnackBar extends React.Component<IMUIProps, {}> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
     };

@@ -19,7 +19,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var Toolbar_1 = require("material-ui/Toolbar");
+var MUIToolBar = require("material-ui/Toolbar/Toolbar.js");
 var themeBuilder_1 = require("../../themeBuilder");
 var ToolBar = (function (_super) {
     __extends(ToolBar, _super);
@@ -38,10 +38,10 @@ var ToolBar = (function (_super) {
             items = this.props.items;
         }
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(Toolbar_1.Toolbar, __assign({}, muiProps), items)));
+            React.createElement(MUIToolBar, __assign({}, muiProps), items)));
     };
     ToolBar.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         items: null

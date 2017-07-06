@@ -57,7 +57,7 @@ var CheckBox = (function (_super) {
             React.createElement(material_ui_1.Checkbox, __assign({}, muiProps, { checked: this.state.currentValue, onCheck: function (e) { return _this.handleChange(e); } }))));
     };
     CheckBox.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         value: false,

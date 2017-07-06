@@ -55,7 +55,7 @@ var TextField = (function (_super) {
             React.createElement(material_ui_1.TextField, __assign({}, muiProps, { value: this.state.currentValue, onChange: function (e) { return _this.handleChange(e); }, onBlur: function (e) { return _this.handleChange(e, true); } }))));
     };
     TextField.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         value: null,

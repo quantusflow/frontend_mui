@@ -47,7 +47,7 @@ var Link = (function (_super) {
         return (React.createElement("div", __assign({}, qflProps), linkComponent));
     };
     Link.defaultProps = {
-        theme: 'Default',
+        theme: null,
         qflProps: {},
         muiProps: {},
         linkStyle: {},

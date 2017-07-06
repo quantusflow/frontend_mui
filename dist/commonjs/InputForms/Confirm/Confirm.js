@@ -52,7 +52,7 @@ var Confirm = (function (_super) {
             resultingButtons));
     };
     Confirm.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         message: null,
