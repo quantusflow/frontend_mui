@@ -10,6 +10,6 @@ declare class SnackBar extends React.Component<IMUIProps, {}> {
         qflProps: {};
     };
     constructor();
-    render(): JSX.Element;
+    render(): any;
 }
 export default SnackBar;

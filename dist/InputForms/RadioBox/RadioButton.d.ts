@@ -10,6 +10,6 @@ declare class RadioButton extends React.Component<IMUIProps, {}> {
         qflProps: {};
     };
     constructor();
-    render(): JSX.Element;
+    render(): any;
 }
 export default RadioButton;

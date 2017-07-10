@@ -21,9 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/RadioButton/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based radio button
- */
 var RadioButton = (function (_super) {
     __extends(RadioButton, _super);
     function RadioButton() {

@@ -22,7 +22,7 @@ declare class TextField extends React.Component<ITextFieldProps, ITextFieldState
     };
     constructor(props: any);
     private handleChange(e, fireUp?);
-    getCurrentValue(): string;
-    render(): JSX.Element;
+    getCurrentValue(): any;
+    render(): any;
 }
 export default TextField;

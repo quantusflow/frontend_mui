@@ -69,9 +69,6 @@ var getSelectable = function (theme, muiProps, qflProps) {
     }(React.Component));
     return SelectableCheckBox;
 };
-/**
- * Material UI based boostrap table
- */
 var Table = (function (_super) {
     __extends(Table, _super);
     function Table() {
@@ -83,7 +80,6 @@ var Table = (function (_super) {
     }
     Table.prototype.componentDidMount = function () {
         var _this = this;
-        // Hack for render table in Grid
         setTimeout(function () {
             window.dispatchEvent(new Event('resize'));
         }, 0);

@@ -21,9 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var RaisedButton_1 = require("../../Buttons/RaisedButton/RaisedButton");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based confirm component
- */
 var Confirm = (function (_super) {
     __extends(Confirm, _super);
     function Confirm() {

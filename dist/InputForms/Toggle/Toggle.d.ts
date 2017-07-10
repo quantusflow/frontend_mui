@@ -10,6 +10,6 @@ declare class Toggle extends React.Component<IMUIProps, {}> {
         qflProps: {};
     };
     constructor();
-    render(): JSX.Element;
+    render(): any;
 }
 export default Toggle;

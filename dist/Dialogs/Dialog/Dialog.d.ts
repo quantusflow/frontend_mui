@@ -10,6 +10,6 @@ declare class Dialog extends React.Component<IMUIProps, {}> {
         qflProps: {};
     };
     constructor();
-    render(): JSX.Element;
+    render(): any;
 }
 export default Dialog;

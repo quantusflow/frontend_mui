@@ -23,9 +23,6 @@ var IndexLink_js_1 = require("react-router/lib/IndexLink.js");
 var clone_1 = require("clone");
 var extend_1 = require("extend");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based link
- */
 var Link = (function (_super) {
     __extends(Link, _super);
     function Link() {

@@ -10,6 +10,6 @@ declare class RaisedButton extends React.Component<IMUIProps, {}> {
         qflProps: {};
     };
     constructor();
-    render(): JSX.Element;
+    render(): any;
 }
 export default RaisedButton;

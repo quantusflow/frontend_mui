@@ -20,6 +20,6 @@ declare class TimePicker extends React.Component<ITimePickerProps, ITimePickerSt
     };
     constructor(props: ITimePickerProps);
     private handleChange(e, time);
-    render(): JSX.Element;
+    render(): any;
 }
 export default TimePicker;

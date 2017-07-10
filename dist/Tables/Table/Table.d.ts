@@ -50,6 +50,6 @@ declare class Table extends React.Component<ITableProps, ITableState> {
     private cleanSelected();
     private handleRowSelect(row, isSelected, event);
     private handleRowSelectAll(isSelected, rows?);
-    render(): JSX.Element;
+    render(): any;
 }
 export default Table;

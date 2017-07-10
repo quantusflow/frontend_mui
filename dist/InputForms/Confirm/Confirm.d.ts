@@ -28,6 +28,6 @@ declare class Confirm extends React.Component<IConfirmProps, IConfirmState> {
     };
     constructor();
     private handleConfirm(key);
-    render(): JSX.Element;
+    render(): any;
 }
 export default Confirm;

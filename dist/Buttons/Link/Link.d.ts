@@ -22,6 +22,6 @@ declare class Link extends React.Component<ILinkProps, {}> {
         href: string;
     };
     constructor();
-    render(): JSX.Element;
+    render(): any;
 }
 export default Link;

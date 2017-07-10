@@ -26,6 +26,6 @@ declare class RadioBox extends React.Component<IRadioBoxProps, IRadioBoxState> {
     };
     constructor(props: any);
     private handleChange(event, value);
-    render(): JSX.Element;
+    render(): any;
 }
 export default RadioBox;
