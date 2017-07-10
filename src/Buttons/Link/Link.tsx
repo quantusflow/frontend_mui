@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import {IndexLink} from 'react-router';
+import IndexLink from 'react-router/lib/IndexLink.js';
+
 import clone from 'clone';
 import extend from 'extend';
 

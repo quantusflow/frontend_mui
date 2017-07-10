@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/AutoComplete/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based auto complete drop down menu
+ */
 var AutoComplete = (function (_super) {
     __extends(AutoComplete, _super);
     function AutoComplete(props) {
@@ -53,7 +56,7 @@ var AutoComplete = (function (_super) {
             componentName: 'AutoComplete'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.AutoComplete, __assign({}, muiProps, { openOnFocus: true, dataSource: items, searchText: this.state.currentValue, onNewRequest: function (chosenRequest, index) { return _this.handleChange(chosenRequest, index); } }))));
+            React.createElement(index_js_1.default, __assign({}, muiProps, { openOnFocus: true, dataSource: items, searchText: this.state.currentValue, onNewRequest: function (chosenRequest, index) { return _this.handleChange(chosenRequest, index); } }))));
     };
     AutoComplete.defaultProps = {
         theme: null,

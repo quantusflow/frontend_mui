@@ -1,9 +1,7 @@
 import * as React from 'react';
 
-import {
-  IconButton as MUIIconButton,
-  Badge as MUIBadge
-} from 'material-ui';
+import MUIIconButton from 'material-ui/IconButton/index.js';
+import MUIBadge from 'material-ui/Badge/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 

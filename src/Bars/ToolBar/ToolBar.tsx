@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import * as MUIToolBar from 'material-ui/Toolbar/Toolbar.js';
+import * as MUIToolBar from 'material-ui/Toolbar/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';

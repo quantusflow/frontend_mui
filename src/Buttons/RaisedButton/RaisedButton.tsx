@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {RaisedButton as MUIRaisedButton} from 'material-ui';
+import MUIRaisedButton from 'material-ui/RaisedButton/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';

@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/FloatingActionButton/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based floating action button
+ */
 var FloatingButton = (function (_super) {
     __extends(FloatingButton, _super);
     function FloatingButton() {
@@ -34,7 +37,7 @@ var FloatingButton = (function (_super) {
             componentName: 'FloatingButton'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.FloatingActionButton, __assign({}, muiProps), this.props.icon)));
+            React.createElement(index_js_1.default, __assign({}, muiProps), this.props.icon)));
     };
     FloatingButton.defaultProps = {
         theme: null,

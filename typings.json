@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "react": "registry:dt/react#15.0.0+20170324160437",
+    "react-bootstrap-table": "registry:dt/react-bootstrap-table#2.6.0+20170313135606",
     "react-dom": "registry:dt/react-dom#0.14.0+20170207010524"
   }
 }

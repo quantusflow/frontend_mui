@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import * as MUIDropDownMenu from 'material-ui/DropDownMenu/DropDownMenu.js';
+import {DropDownMenu as MUIDropDownMenu} from 'material-ui/DropDownMenu/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';

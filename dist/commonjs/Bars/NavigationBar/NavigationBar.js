@@ -19,13 +19,14 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var MUIDrawer = require("material-ui/Drawer/Drawer.js");
-var Divider = require("material-ui/Divider/Divider.js");
+var MUIDrawer = require("material-ui/Drawer/index.js");
+var Divider = require("material-ui/Divider/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
-var List = require("material-ui/List/List.js");
-var ListItem = require("material-ui/List/ListItem.js");
-var makeSelectable = require("material-ui/List/makeSelectable.js");
-var SelectableList = makeSelectable(List);
+var index_js_1 = require("material-ui/List/index.js");
+var SelectableList = index_js_1.makeSelectable(index_js_1.List); // tslint:disable-line variable-name
+/**
+ * Material UI based tool bar
+ */
 var NavigationBar = (function (_super) {
     __extends(NavigationBar, _super);
     function NavigationBar() {
@@ -74,7 +75,7 @@ var NavigationBar = (function (_super) {
                         return (React.createElement(SelectableList, __assign({ key: idx, className: item.className, value: location.pathname, onChange: function (e, route) { return _this.handleOnChange(e, route); } }, listMuiProps), nestedElements.map(function (nestedElement, nestedIdx) {
                             switch (nestedElement.type) {
                                 case 'ListItem':
-                                    return React.createElement(ListItem, __assign({ key: nestedIdx }, listItemMuiProps, { className: nestedElement.className, primaryText: nestedElement.label, value: nestedElement.path, leftIcon: nestedElement.icon }));
+                                    return React.createElement(index_js_1.ListItem, __assign({ key: nestedIdx }, listItemMuiProps, { className: nestedElement.className, primaryText: nestedElement.label, value: nestedElement.path, leftIcon: nestedElement.icon }));
                                 default:
                                     return null;
                             }

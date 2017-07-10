@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var Snackbar_1 = require("material-ui/Snackbar");
+var index_js_1 = require("material-ui/Snackbar/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based SnackBar
+ */
 var SnackBar = (function (_super) {
     __extends(SnackBar, _super);
     function SnackBar() {
@@ -34,7 +37,7 @@ var SnackBar = (function (_super) {
             componentName: 'SnackBar'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", null,
-            React.createElement(Snackbar_1.default, __assign({}, muiProps))));
+            React.createElement(index_js_1.default, __assign({}, muiProps))));
     };
     SnackBar.defaultProps = {
         theme: null,

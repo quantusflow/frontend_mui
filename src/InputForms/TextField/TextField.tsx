@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {TextField as MUITextField} from 'material-ui';
+import MUITextField from 'material-ui/TextField/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';

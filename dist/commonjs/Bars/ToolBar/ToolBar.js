@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var MUIToolBar = require("material-ui/Toolbar/Toolbar.js");
+var MUIToolBar = require("material-ui/Toolbar/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based tool bar
+ */
 var ToolBar = (function (_super) {
     __extends(ToolBar, _super);
     function ToolBar() {

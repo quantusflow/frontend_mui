@@ -25,10 +25,14 @@ var DropDown_1 = require("../DropDown/DropDown");
 var CheckBox_1 = require("../CheckBox/CheckBox");
 var DatePicker_1 = require("../../DateTime/DatePicker/DatePicker");
 var AutoComplete_1 = require("../AutoComplete/AutoComplete");
-var material_ui_1 = require("material-ui");
-var radio_button_checked_1 = require("material-ui/svg-icons/toggle/radio-button-checked");
-var radio_button_unchecked_1 = require("material-ui/svg-icons/toggle/radio-button-unchecked");
+var index_js_1 = require("material-ui/DropDownMenu/index.js");
+var RadioButton_1 = require("../RadioBox/RadioButton");
+var radio_button_checked_js_1 = require("material-ui/svg-icons/toggle/radio-button-checked.js");
+var radio_button_unchecked_js_1 = require("material-ui/svg-icons/toggle/radio-button-unchecked.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based Form rendering Material UI based form items
+ */
 var Form = (function (_super) {
     __extends(Form, _super);
     function Form(props) {
@@ -43,6 +47,7 @@ var Form = (function (_super) {
         if (!keyAttributeName && this.props.item && this.props.item.hasOwnProperty(key)) {
             var result = this.props.item[key];
             if (items) {
+                // Try to find result as value in items
                 var foundInItems = false;
                 for (var i = 0; i < items.length; i++) {
                     if (items[i].value === result) {
@@ -73,6 +78,7 @@ var Form = (function (_super) {
         else if (!keyAttributeName && this.state.formData && this.state.formData.hasOwnProperty(key)) {
             var result = this.state.formData[key];
             if (items) {
+                // Try to find result as value in items
                 var foundInItems = false;
                 for (var i = 0; i < items.length; i++) {
                     if (items[i].value === result) {
@@ -197,13 +203,13 @@ var Form = (function (_super) {
                                     resultingFromElement = (React.createElement(RadioBox_1.default, { key: layoutElement.key, value: currentValue, label: layoutElement.label, theme: layoutElement.theme, onChange: handleRadioBoxFormItemChange, muiProps: __assign({ name: layoutElement.key, defaultSelected: initialValue }, layoutElement.muiProps), qflProps: __assign({ style: {
                                                 display: 'inline-block',
                                                 width: itemWidth + '%'
-                                            } }, layoutElement.qflProps) }, layoutElement.items.map(function (radioBoxItem, radioBoxIdx) { return React.createElement(material_ui_1.RadioButton, __assign({ key: layoutElement.key + '-' + radioBoxIdx, style: {
+                                            } }, layoutElement.qflProps) }, layoutElement.items.map(function (radioBoxItem, radioBoxIdx) { return React.createElement(RadioButton_1.default, __assign({ key: layoutElement.key + '-' + radioBoxIdx, style: {
                                             width: '50%',
                                             display: 'inline-block'
                                         }, iconStyle: {
                                             marginRight: '8px',
                                             marginLeft: (isMostLeft ? '0px' : '2px')
-                                        }, value: radioBoxItem.value, label: radioBoxItem.label, checkedIcon: React.createElement(radio_button_checked_1.default, null), uncheckedIcon: React.createElement(radio_button_unchecked_1.default, null) }, layoutElement.radioButtonMuiProps)); })));
+                                        }, value: radioBoxItem.value, label: radioBoxItem.label, checkedIcon: React.createElement(radio_button_checked_js_1.default, null), uncheckedIcon: React.createElement(radio_button_unchecked_js_1.default, null) }, layoutElement.radioButtonMuiProps)); })));
                                 }
                             }
                             break;
@@ -237,12 +243,12 @@ var Form = (function (_super) {
                                         if (_this.props.dataProvider && typeof _this.props.dataProvider === 'function') {
                                             dataProvider = _this.props.dataProvider();
                                             if (dataProvider.hasOwnProperty(layoutElement.key) && dataProvider[layoutElement.key]) {
-                                                items = layoutElement.items(dataProvider[layoutElement.key]).map(function (dropDownItem, dropDownItemIdx) { return (React.createElement(material_ui_1.MenuItem, { key: layoutElement.key + '-' + dropDownItemIdx, value: dropDownItem.value, primaryText: dropDownItem.label })); });
+                                                items = layoutElement.items(dataProvider[layoutElement.key]).map(function (dropDownItem, dropDownItemIdx) { return (React.createElement(index_js_1.MenuItem, { key: layoutElement.key + '-' + dropDownItemIdx, value: dropDownItem.value, primaryText: dropDownItem.label })); });
                                             }
                                         }
                                     }
                                     else {
-                                        items = layoutElement.items.map(function (dropDownItem, dropDownItemIdx) { return (React.createElement(material_ui_1.MenuItem, { key: layoutElement.key + '-' + dropDownItemIdx, value: dropDownItem.value, primaryText: dropDownItem.label })); });
+                                        items = layoutElement.items.map(function (dropDownItem, dropDownItemIdx) { return (React.createElement(index_js_1.MenuItem, { key: layoutElement.key + '-' + dropDownItemIdx, value: dropDownItem.value, primaryText: dropDownItem.label })); });
                                     }
                                     var handleDropDownFormItemChange = function (event, index, oldValue, newValue) {
                                         return _this.handleFormItemChange('DropDown', layoutElement.key, oldValue, newValue, layoutElement.items[index], layoutElement);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Toggle as MUIToggle} from 'material-ui';
+import MUIToggle from 'material-ui/Toggle/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';

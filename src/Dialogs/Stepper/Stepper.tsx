@@ -1,9 +1,8 @@
 import * as React from 'react';
 
-import {Stepper as MUIStepper} from 'material-ui';
+import {Stepper as MUIStepper, Step as MUIStep, StepLabel as MUIStepLabel, StepButton as MUIStepButton} from 'material-ui/Stepper/index.js';
 import Dialog from '../Dialog/Dialog';
-import {Step, StepLabel, StepContent, StepButton} from 'material-ui/Stepper';
-import FlatButton from 'material-ui/FlatButton';
+import FlatButton from '../../Buttons/FlatButton/FlatButton';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -119,17 +118,25 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     if (stepIndex === this.props.steps.length - 1) {
       currentButton = (
         <FlatButton
-          label={'Fertig'}
-          onTouchTap={(buttonClicked) => this.handleClose(buttonClicked)}
-          style={{backgroundColor: '#000000', color: '#ffffff'}}
+          muiProps={{
+            label: 'Fertig',
+            onTouchTap: (buttonClicked) => this.handleClose(buttonClicked),
+            style: {
+              backgroundColor: '#000000',
+              color: '#ffffff'}
+          }}
         />
       );
     } else {
       currentButton = (
         <FlatButton
-          label={'Weiter'}
-          onTouchTap={this.handleNext}
-          style={{backgroundColor: '#000000', color: '#ffffff'}}
+          muiProps={{
+            label: 'Weiter',
+            onTouchTap: this.handleNext,
+            style: {
+              backgroundColor: '#000000',
+              color: '#ffffff'}
+          }}
         />
       );
     }
@@ -137,9 +144,9 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     let stepperContent =
       this.props.steps.map((step: IStep) => {
         return (
-          <Step style={{height: '30px'}} {...step.stepProps}>
-            <StepLabel {...step.slProps}>{step.label}</StepLabel>
-          </Step>
+          <MUIStep style={{height: '30px'}} {...step.stepProps}>
+            <MUIStepLabel {...step.slProps}>{step.label}</MUIStepLabel>
+          </MUIStep>
         );
       });
 
@@ -147,11 +154,11 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
       stepperContent =
         this.props.steps.map((step: IStep) => {
           return (
-            <Step style={{height: '30px'}}>
-              <StepButton {...step.sbProps}>
-                <StepLabel {...step.slProps}>{step.label}</StepLabel>
-              </StepButton>
-            </Step>
+            <MUIStep style={{height: '30px'}}>
+              <MUIStepButton {...step.sbProps}>
+                <MUIStepLabel {...step.slProps}>{step.label}</MUIStepLabel>
+              </MUIStepButton>
+            </MUIStep>
           );
         });
     }
@@ -172,10 +179,15 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
               }
               <div style={{marginTop: 12, textAlign: 'right'}}>
                 <FlatButton
-                  label={this.props.backLabel}
-                  disabled={stepIndex === 0}
-                  onTouchTap={this.handlePrev}
-                  style={{marginRight: 9, backgroundColor: '#000000', color: '#ffffff'}}
+                  muiProps={{
+                    label: this.props.backLabel,
+                    disabled: (stepIndex === 0),
+                    onTouchTap: this.handlePrev,
+                    style: {
+                      marginRight: 9,
+                      backgroundColor: '#000000',
+                      color: '#ffffff'}
+                  }}
                 />
                 {currentButton}
               </div>

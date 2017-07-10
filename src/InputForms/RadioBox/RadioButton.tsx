@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {RadioButton as MUIRadioButton} from 'material-ui';
+import {RadioButton as MUIRadioButton} from 'material-ui/RadioButton/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';

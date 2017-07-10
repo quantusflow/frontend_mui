@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/RadioButton/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based radio button
+ */
 var RadioButton = (function (_super) {
     __extends(RadioButton, _super);
     function RadioButton() {
@@ -34,7 +37,7 @@ var RadioButton = (function (_super) {
             componentName: 'RadioButton'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.RadioButton, __assign({}, muiProps))));
+            React.createElement(index_js_1.RadioButton, __assign({}, muiProps))));
     };
     RadioButton.defaultProps = {
         theme: null,

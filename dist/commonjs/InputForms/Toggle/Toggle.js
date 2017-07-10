@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/Toggle/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based toggle
+ */
 var Toggle = (function (_super) {
     __extends(Toggle, _super);
     function Toggle() {
@@ -34,7 +37,7 @@ var Toggle = (function (_super) {
             componentName: 'Toggle'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.Toggle, __assign({}, muiProps))));
+            React.createElement(index_js_1.default, __assign({}, muiProps))));
     };
     Toggle.defaultProps = {
         theme: null,

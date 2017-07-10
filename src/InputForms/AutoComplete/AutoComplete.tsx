@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {AutoComplete as MUIAutoComplete} from 'material-ui';
+import MUIAutoComplete from 'material-ui/AutoComplete/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';

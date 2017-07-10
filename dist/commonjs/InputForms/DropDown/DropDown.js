@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var MUIDropDownMenu = require("material-ui/DropDownMenu/DropDownMenu.js");
+var index_js_1 = require("material-ui/DropDownMenu/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based drop down menu
+ */
 var DropDown = (function (_super) {
     __extends(DropDown, _super);
     function DropDown(props) {
@@ -54,7 +57,7 @@ var DropDown = (function (_super) {
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
             React.createElement("span", { style: qflProps.labelStyle }, this.props.label),
-            React.createElement(MUIDropDownMenu, __assign({}, muiProps, { value: this.state.currentValue, onChange: function (event, index, value) { return _this.handleChange(event, index, value); } }), items)));
+            React.createElement(index_js_1.DropDownMenu, __assign({}, muiProps, { value: this.state.currentValue, onChange: function (event, index, value) { return _this.handleChange(event, index, value); } }), items)));
     };
     DropDown.defaultProps = {
         theme: null,

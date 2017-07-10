@@ -7,10 +7,11 @@ import CheckBox from '../CheckBox/CheckBox';
 import DatePicker from '../../DateTime/DatePicker/DatePicker';
 import AutoComplete from '../AutoComplete/AutoComplete';
 
-import {RadioButton, MenuItem} from 'material-ui';
+import {MenuItem as MUIMenuItem} from 'material-ui/DropDownMenu/index.js';
+import RadioButton from '../RadioBox/RadioButton';
 
-import CheckedIcon from 'material-ui/svg-icons/toggle/radio-button-checked';
-import UncheckedIcon from 'material-ui/svg-icons/toggle/radio-button-unchecked';
+import CheckedIcon from 'material-ui/svg-icons/toggle/radio-button-checked.js';
+import UncheckedIcon from 'material-ui/svg-icons/toggle/radio-button-unchecked.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -333,7 +334,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     dataProvider = this.props.dataProvider();
                     if (dataProvider.hasOwnProperty(layoutElement.key) && dataProvider[layoutElement.key]) {
                       items = layoutElement.items(dataProvider[layoutElement.key]).map((dropDownItem, dropDownItemIdx) => (
-                        <MenuItem key={layoutElement.key + '-' + dropDownItemIdx}
+                        <MUIMenuItem key={layoutElement.key + '-' + dropDownItemIdx}
                                   value={dropDownItem.value}
                                   primaryText={dropDownItem.label}
                         />
@@ -342,7 +343,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                   }
                 } else {
                   items = layoutElement.items.map((dropDownItem, dropDownItemIdx) => (
-                    <MenuItem
+                    <MUIMenuItem
                       key={layoutElement.key + '-' + dropDownItemIdx}
                       value={dropDownItem.value}
                       primaryText={dropDownItem.label}

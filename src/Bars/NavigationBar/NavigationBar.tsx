@@ -1,13 +1,11 @@
 import * as React from 'react';
 
-import * as MUIDrawer from 'material-ui/Drawer/Drawer.js';
-import * as Divider from 'material-ui/Divider/Divider.js';
+import * as MUIDrawer from 'material-ui/Drawer/index.js';
+import * as Divider from 'material-ui/Divider/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 
-import * as List from 'material-ui/List/List.js';
-import * as ListItem from 'material-ui/List/ListItem.js';
-import * as makeSelectable from 'material-ui/List/makeSelectable.js';
+import {List, ListItem, makeSelectable} from 'material-ui/List/index.js';
 
 import {IMUIProps} from '../../interfaces';
 

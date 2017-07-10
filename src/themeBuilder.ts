@@ -5,7 +5,7 @@ export const buildTheme = (options) => {
 
   const baseTheme = {};
 
-  const theme = options.theme;
+  const theme: any = options.theme || {};
   const componentName = options.componentName;
 
   const section = theme.themeSection;

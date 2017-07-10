@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/Checkbox/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based check box
+ */
 var CheckBox = (function (_super) {
     __extends(CheckBox, _super);
     function CheckBox(props) {
@@ -54,7 +57,7 @@ var CheckBox = (function (_super) {
             componentName: 'CheckBox'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.Checkbox, __assign({}, muiProps, { checked: this.state.currentValue, onCheck: function (e) { return _this.handleChange(e); } }))));
+            React.createElement(index_js_1.default, __assign({}, muiProps, { checked: this.state.currentValue, onCheck: function (e) { return _this.handleChange(e); } }))));
     };
     CheckBox.defaultProps = {
         theme: null,

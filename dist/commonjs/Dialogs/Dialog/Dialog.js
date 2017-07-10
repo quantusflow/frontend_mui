@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/Dialog/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based modal dialog
+ */
 var Dialog = (function (_super) {
     __extends(Dialog, _super);
     function Dialog() {
@@ -35,7 +38,7 @@ var Dialog = (function (_super) {
             componentName: 'Dialog'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.Dialog, __assign({}, muiProps), children)));
+            React.createElement(index_js_1.default, __assign({}, muiProps), children)));
     };
     Dialog.defaultProps = {
         theme: null,

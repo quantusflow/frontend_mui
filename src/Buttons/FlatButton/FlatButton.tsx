@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {FlatButton as MUIFlatButton} from 'material-ui';
+import MUIFlatButton from 'material-ui/FlatButton/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 

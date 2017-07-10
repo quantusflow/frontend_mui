@@ -19,18 +19,22 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/IconButton/index.js");
+var index_js_2 = require("material-ui/Badge/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based icon button
+ */
 var IconButton = (function (_super) {
     __extends(IconButton, _super);
     function IconButton() {
         return _super.call(this) || this;
     }
     IconButton.prototype.renderIcon = function (muiProps) {
-        return (React.createElement(material_ui_1.IconButton, __assign({}, muiProps), this.props.icon));
+        return (React.createElement(index_js_1.default, __assign({}, muiProps), this.props.icon));
     };
     IconButton.prototype.renderBadgedIcon = function () {
-        return (React.createElement(material_ui_1.Badge, __assign({}, this.props.badgeProps), this.renderIcon()));
+        return (React.createElement(index_js_2.default, __assign({}, this.props.badgeProps), this.renderIcon()));
     };
     IconButton.prototype.render = function () {
         var _a = themeBuilder_1.buildTheme({

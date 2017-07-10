@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { IMUIProps } from '../../interfaces';
 export interface ISelectableCheckBoxProps {
-    type?: string;
     checked?: boolean;
     disabled?: boolean;
     rowIndex?: number;
@@ -41,7 +40,7 @@ declare class Table extends React.Component<ITableProps, ITableState> {
         selectorTheme: any;
         selectorMuiProps: any;
         selectorQflProps: any;
-        dataSource: any[];
+        dataSource: any;
         rbtProps: any;
         stylingProps: any;
         onSelectedRowsChanged: any;
