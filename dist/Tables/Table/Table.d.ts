@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { IMUIProps } from '../../interfaces';
 export interface ISelectableCheckBoxProps {
-    type?: string;
     checked?: boolean;
     disabled?: boolean;
     rowIndex?: number;
@@ -15,7 +14,7 @@ export interface ISelectableCheckBoxState {
 }
 export interface ITableProps extends IMUIProps {
     thcSchema: any;
-    selectorTheme?: string;
+    selectorTheme?: {};
     selectorMuiProps?: {};
     selectorQflProps?: {};
     dataSource?: Array<{}>;
@@ -35,13 +34,13 @@ export interface ITableState {
  */
 declare class Table extends React.Component<ITableProps, ITableState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         selectorTheme: any;
         selectorMuiProps: any;
         selectorQflProps: any;
-        dataSource: any[];
+        dataSource: any;
         rbtProps: any;
         stylingProps: any;
         onSelectedRowsChanged: any;

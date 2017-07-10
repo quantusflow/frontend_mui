@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import MUISnackbar from 'material-ui/Snackbar';
+import MUISnackbar from 'material-ui/Snackbar/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -10,7 +10,7 @@ import {IMUIProps} from '../../interfaces';
  */
 class SnackBar extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {}
   };

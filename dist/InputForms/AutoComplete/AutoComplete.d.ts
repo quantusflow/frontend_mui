@@ -14,7 +14,7 @@ export interface IAutoCompleteState {
  */
 declare class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         label: any;

@@ -19,11 +19,13 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/Stepper/index.js");
 var Dialog_1 = require("../Dialog/Dialog");
-var Stepper_1 = require("material-ui/Stepper");
-var FlatButton_1 = require("material-ui/FlatButton");
+var FlatButton_1 = require("../../Buttons/FlatButton/FlatButton");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based stepper
+ */
 var Stepper = (function (_super) {
     __extends(Stepper, _super);
     function Stepper(props) {
@@ -74,29 +76,52 @@ var Stepper = (function (_super) {
         }), muiProps = _c.muiProps, qflProps = _c.qflProps;
         var currentButton = null;
         if (stepIndex === this.props.steps.length - 1) {
-            currentButton = (React.createElement(FlatButton_1.default, { label: 'Fertig', onTouchTap: function (buttonClicked) { return _this.handleClose(buttonClicked); }, style: { backgroundColor: '#000000', color: '#ffffff' } }));
+            currentButton = (React.createElement(FlatButton_1.default, { muiProps: {
+                    label: 'Fertig',
+                    onTouchTap: function (buttonClicked) { return _this.handleClose(buttonClicked); },
+                    style: {
+                        backgroundColor: '#000000',
+                        color: '#ffffff'
+                    }
+                } }));
         }
         else {
-            currentButton = (React.createElement(FlatButton_1.default, { label: 'Weiter', onTouchTap: this.handleNext, style: { backgroundColor: '#000000', color: '#ffffff' } }));
+            currentButton = (React.createElement(FlatButton_1.default, { muiProps: {
+                    label: 'Weiter',
+                    onTouchTap: this.handleNext,
+                    style: {
+                        backgroundColor: '#000000',
+                        color: '#ffffff'
+                    }
+                } }));
         }
         var stepperContent = this.props.steps.map(function (step) {
-            return (React.createElement(Stepper_1.Step, __assign({ style: { height: '30px' } }, step.stepProps),
-                React.createElement(Stepper_1.StepLabel, __assign({}, step.slProps), step.label)));
+            return (React.createElement(index_js_1.Step, __assign({ style: { height: '30px' } }, step.stepProps),
+                React.createElement(index_js_1.StepLabel, __assign({}, step.slProps), step.label)));
         });
         if (isLinear) {
             stepperContent =
                 this.props.steps.map(function (step) {
-                    return (React.createElement(Stepper_1.Step, { style: { height: '30px' } },
-                        React.createElement(Stepper_1.StepButton, __assign({}, step.sbProps),
-                            React.createElement(Stepper_1.StepLabel, __assign({}, step.slProps), step.label))));
+                    return (React.createElement(index_js_1.Step, { style: { height: '30px' } },
+                        React.createElement(index_js_1.StepButton, __assign({}, step.sbProps),
+                            React.createElement(index_js_1.StepLabel, __assign({}, step.slProps), step.label))));
                 });
         }
         var stepper = React.createElement("div", __assign({}, qflProps, { style: { width: '100%' } }),
-            React.createElement(material_ui_1.Stepper, __assign({}, muiProps, { activeStep: stepIndex, linear: isLinear }), stepperContent),
+            React.createElement(index_js_1.Stepper, __assign({}, muiProps, { activeStep: stepIndex, linear: isLinear }), stepperContent),
             React.createElement("div", null, finished ? (this.props.finishedContent) : (React.createElement("div", null,
                 this.getStepContent(stepIndex),
                 React.createElement("div", { style: { marginTop: 12, textAlign: 'right' } },
-                    React.createElement(FlatButton_1.default, { label: this.props.backLabel, disabled: stepIndex === 0, onTouchTap: this.handlePrev, style: { marginRight: 9, backgroundColor: '#000000', color: '#ffffff' } }),
+                    React.createElement(FlatButton_1.default, { muiProps: {
+                            label: this.props.backLabel,
+                            disabled: (stepIndex === 0),
+                            onTouchTap: this.handlePrev,
+                            style: {
+                                marginRight: 9,
+                                backgroundColor: '#000000',
+                                color: '#ffffff'
+                            }
+                        } }),
                     currentButton)))));
         var currentStepper = null;
         if (isDialog) {
@@ -108,7 +133,7 @@ var Stepper = (function (_super) {
         return (React.createElement("div", __assign({}, qflProps, { style: { width: '100%', height: '100%', maxWidth: 400 } }), currentStepper));
     };
     Stepper.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         isLinear: false,
@@ -119,7 +144,7 @@ var Stepper = (function (_super) {
         onDialogClose: null,
         dialogMuiProps: {},
         dialogQflProps: {},
-        dialogTheme: 'Default',
+        dialogTheme: null,
         backLabel: null
     };
     return Stepper;

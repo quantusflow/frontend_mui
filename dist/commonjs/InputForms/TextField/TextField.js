@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/TextField/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based text field
+ */
 var TextField = (function (_super) {
     __extends(TextField, _super);
     function TextField(props) {
@@ -52,10 +55,10 @@ var TextField = (function (_super) {
             componentName: 'TextField'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.TextField, __assign({}, muiProps, { value: this.state.currentValue, onChange: function (e) { return _this.handleChange(e); }, onBlur: function (e) { return _this.handleChange(e, true); } }))));
+            React.createElement(index_js_1.default, __assign({}, muiProps, { value: this.state.currentValue, onChange: function (e) { return _this.handleChange(e); }, onBlur: function (e) { return _this.handleChange(e, true); } }))));
     };
     TextField.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         value: null,

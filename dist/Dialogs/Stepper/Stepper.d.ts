@@ -30,7 +30,7 @@ export interface IStepperState {
  */
 declare class Stepper extends React.Component<IStepperProps, IStepperState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         isLinear: boolean;
@@ -41,7 +41,7 @@ declare class Stepper extends React.Component<IStepperProps, IStepperState> {
         onDialogClose: any;
         dialogMuiProps: {};
         dialogQflProps: {};
-        dialogTheme: string;
+        dialogTheme: any;
         backLabel: any;
     };
     constructor(props: IStepperProps);

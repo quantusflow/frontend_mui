@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {RadioButton as MUIRadioButton} from 'material-ui';
+import {RadioButton as MUIRadioButton} from 'material-ui/RadioButton/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -10,7 +10,7 @@ import {IMUIProps} from '../../interfaces';
  */
 class RadioButton extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {}
   };

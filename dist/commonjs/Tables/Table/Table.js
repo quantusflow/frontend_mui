@@ -20,8 +20,9 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_bootstrap_table_1 = require("react-bootstrap-table");
-var remove_1 = require("material-ui/svg-icons/content/remove");
-var jquery_1 = require("jquery");
+var remove_js_1 = require("material-ui/svg-icons/content/remove.js");
+var done_js_1 = require("material-ui/svg-icons/action/done.js");
+var $ = require("jquery");
 var CheckBox_1 = require("../../InputForms/CheckBox/CheckBox");
 var themeBuilder_1 = require("../../themeBuilder");
 var getSelectable = function (theme, muiProps, qflProps) {
@@ -30,7 +31,7 @@ var getSelectable = function (theme, muiProps, qflProps) {
         function SelectableCheckBox(props) {
             var _this = _super.call(this, props) || this;
             _this.state = {
-                currentValue: props.value
+                currentValue: props.checked
             };
             return _this;
         }
@@ -44,11 +45,12 @@ var getSelectable = function (theme, muiProps, qflProps) {
         };
         SelectableCheckBox.prototype.render = function () {
             var _this = this;
-            var toastrCSS = require('react-bootstrap-table/css/toastr.css');
-            var reactBootstrapTableCSS = require('react-bootstrap-table/css/react-bootstrap-table.css');
             var muiPropsObj = __assign({ disabled: this.props.disabled }, muiProps);
             if (this.props.indeterminate) {
-                muiPropsObj.checkedIcon = React.createElement(remove_1.default, null);
+                muiPropsObj.checkedIcon = React.createElement(remove_js_1.default, { style: { width: '20px', height: '20px' } });
+            }
+            else {
+                muiPropsObj.checkedIcon = React.createElement(done_js_1.default, { style: { width: '20px', height: '20px' } });
             }
             return (React.createElement(CheckBox_1.default, { value: this.props.checked, dataKey: (this.props.rowIndex).toString(), theme: theme, muiProps: muiPropsObj, qflProps: __assign({ style: {} }, qflProps), onChange: function (e, oldValue, newValue) {
                     if (oldValue !== newValue) {
@@ -57,19 +59,19 @@ var getSelectable = function (theme, muiProps, qflProps) {
                 } }));
         };
         SelectableCheckBox.defaultProps = {
-            type: '',
             checked: false,
             disabled: false,
             rowIndex: -1,
             indeterminate: false,
-            onChange: null,
-            selectRowProp: false,
-            value: false
+            onChange: null
         };
         return SelectableCheckBox;
     }(React.Component));
     return SelectableCheckBox;
 };
+/**
+ * Material UI based boostrap table
+ */
 var Table = (function (_super) {
     __extends(Table, _super);
     function Table() {
@@ -81,15 +83,17 @@ var Table = (function (_super) {
     }
     Table.prototype.componentDidMount = function () {
         var _this = this;
+        // Hack for render table in Grid
         setTimeout(function () {
             window.dispatchEvent(new Event('resize'));
         }, 0);
-        var elementContainer = ((this.refs.reactBootstrapTable
-            && this.refs.reactBootstrapTable.refs
-            && this.refs.reactBootstrapTable.refs.table)
+        var refs = this.refs;
+        var elementContainer = ((refs.reactBootstrapTable
+            && refs.reactBootstrapTable.refs
+            && refs.reactBootstrapTable.refs.table)
             || null);
-        if (elementContainer && jquery_1.default(elementContainer).children('.react-bs-container-body')) {
-            var scrollable_1 = jquery_1.default(elementContainer).children('.react-bs-container-body');
+        if (elementContainer && $(elementContainer).children('.react-bs-container-body')) {
+            var scrollable_1 = $(elementContainer).children('.react-bs-container-body');
             if (scrollable_1 && scrollable_1.length === 1) {
                 scrollable_1.scroll(function () {
                     var scrollTop = scrollable_1.scrollTop(), innerHeight = scrollable_1.innerHeight(), scrollHeight = scrollable_1[0].scrollHeight;
@@ -104,7 +108,8 @@ var Table = (function (_super) {
     };
     Table.prototype.cleanSelected = function () {
         this.handleRowSelectAll(false);
-        this.refs.reactBootstrapTable.cleanSelected();
+        var refs = this.refs;
+        refs.reactBootstrapTable.cleanSelected();
     };
     Table.prototype.handleRowSelect = function (row, isSelected, event) {
         var currentSelectedRows = this.state.selectedRows;
@@ -137,6 +142,8 @@ var Table = (function (_super) {
     };
     Table.prototype.render = function () {
         var _this = this;
+        var toastrCSS = require('react-bootstrap-table/css/toastr.css');
+        var reactBootstrapTableCSS = require('react-bootstrap-table/css/react-bootstrap-table.css');
         var dataSource = (this.props.dataSource || this.props.rbtProps.data);
         delete this.props.rbtProps.data;
         var _a = themeBuilder_1.buildTheme({
@@ -173,13 +180,13 @@ var Table = (function (_super) {
             React.createElement(react_bootstrap_table_1.BootstrapTable, __assign({ ref: 'reactBootstrapTable', data: dataSource, selectRow: selectRowProp }, rbtProps), this.props.thcSchema.map(function (thcItem) { return React.createElement(react_bootstrap_table_1.TableHeaderColumn, __assign({ key: thcItem.name }, thcItem.thcProps), thcItem.name); }))));
     };
     Table.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         selectorTheme: null,
         selectorMuiProps: null,
         selectorQflProps: null,
-        dataSource: [],
+        dataSource: null,
         rbtProps: null,
         stylingProps: null,
         onSelectedRowsChanged: null

@@ -1,5 +1,5 @@
 export interface IMUIProps {
-  theme?: string;
+  theme?: any;
   muiProps?: {};
   qflProps?: {};
 }

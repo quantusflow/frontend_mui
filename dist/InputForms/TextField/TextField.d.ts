@@ -13,7 +13,7 @@ export interface ITextFieldState {
  */
 declare class TextField extends React.Component<ITextFieldProps, ITextFieldState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         value: any;

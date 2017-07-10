@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {DatePicker as MUIDatePicker} from 'material-ui';
+import MUIDatePicker from 'material-ui/DatePicker/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -19,7 +19,7 @@ export interface IDatePickerState {
  */
 class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

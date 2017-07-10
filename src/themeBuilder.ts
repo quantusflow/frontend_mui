@@ -3,7 +3,9 @@ export const buildTheme = (options) => {
   let qflProps = options.sourceQflProps || {};
   let rbtProps = options.sourceRbtProps || {};
 
-  const theme = options.theme;
+  const baseTheme = {};
+
+  const theme: any = options.theme || {};
   const componentName = options.componentName;
 
   const section = theme.themeSection;
@@ -36,9 +38,16 @@ export const buildTheme = (options) => {
       let base = (context && themedRbtProps[componentName][context] ? themedRbtProps[componentName][context] : themedRbtProps[componentName].default);
       rbtProps = Object.assign(base, options.sourceRbtProps);
     }
+
+    for (let key in themeObj) {
+      if (key !== 'muiProps' && key !== 'qflProps' && key !== 'rbtProps') {
+        baseTheme[key] = themeObj[key];
+      }
+    }
   }
 
   return {
+    theme: baseTheme,
     muiProps,
     qflProps,
     rbtProps

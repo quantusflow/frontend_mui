@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Toolbar as MUIToolBar} from 'material-ui/Toolbar';
+import * as MUIToolBar from 'material-ui/Toolbar/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -14,7 +14,7 @@ export interface IToolBarProps extends IMUIProps {
  */
 class ToolBar extends React.Component<IToolBarProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

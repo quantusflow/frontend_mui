@@ -19,10 +19,13 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var react_router_1 = require("react-router");
+var IndexLink_js_1 = require("react-router/lib/IndexLink.js");
 var clone_1 = require("clone");
 var extend_1 = require("extend");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based link
+ */
 var Link = (function (_super) {
     __extends(Link, _super);
     function Link() {
@@ -41,13 +44,13 @@ var Link = (function (_super) {
         if (this.props.to) {
             delete targetObj.href;
             targetObj.to = this.props.to;
-            linkComponent = (React.createElement(react_router_1.IndexLink, __assign({ style: extend_1.default(clone_1.default(muiProps.linkStyle, false), this.props.linkStyle) }, targetObj),
+            linkComponent = (React.createElement(IndexLink_js_1.default, __assign({ style: extend_1.default(clone_1.default(muiProps.linkStyle, false), this.props.linkStyle) }, targetObj),
                 React.createElement("span", { style: extend_1.default(clone_1.default(muiProps.labelStyle, false), this.props.labelStyle) }, this.props.label)));
         }
         return (React.createElement("div", __assign({}, qflProps), linkComponent));
     };
     Link.defaultProps = {
-        theme: 'Default',
+        theme: null,
         qflProps: {},
         muiProps: {},
         linkStyle: {},

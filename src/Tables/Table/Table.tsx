@@ -1,8 +1,11 @@
 import * as React from 'react';
 
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import IndeterminateCheckbox from 'material-ui/svg-icons/content/remove';
-import $ from 'jquery';
+
+import IndeterminateCheckbox from 'material-ui/svg-icons/content/remove.js';
+import CleanCheckbox from 'material-ui/svg-icons/action/done.js';
+
+import * as $ from 'jquery';
 
 import CheckBox from '../../InputForms/CheckBox/CheckBox';
 
@@ -10,7 +13,6 @@ import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
 
 export interface ISelectableCheckBoxProps {
-  type?: string;
   checked?: boolean;
   disabled?: boolean;
   rowIndex?: number;
@@ -24,24 +26,21 @@ export interface ISelectableCheckBoxState {
   currentValue?: boolean;
 }
 
-const getSelectable = (theme: string, muiProps, qflProps) => {
+const getSelectable = (theme: {}, muiProps, qflProps) => {
   class SelectableCheckBox extends React.Component<ISelectableCheckBoxProps, ISelectableCheckBoxState> {
     public static defaultProps = {
-      type: '',
       checked: false,
       disabled: false,
       rowIndex: -1,
       indeterminate: false,
-      onChange: null,
-      selectRowProp: false,
-      value: false
+      onChange: null
     };
 
     constructor(props: ISelectableCheckBoxProps) {
       super(props);
 
       this.state = {
-        currentValue: props.value
+        currentValue: props.checked
       };
     }
 
@@ -55,16 +54,15 @@ const getSelectable = (theme: string, muiProps, qflProps) => {
     }
 
     public render() {
-      const toastrCSS = require('react-bootstrap-table/css/toastr.css');
-      const reactBootstrapTableCSS = require('react-bootstrap-table/css/react-bootstrap-table.css');
-
-      const muiPropsObj = {
+      const muiPropsObj: any = {
         disabled: this.props.disabled,
         ...muiProps
       };
 
       if (this.props.indeterminate) {
-        muiPropsObj.checkedIcon = <IndeterminateCheckbox />;
+        muiPropsObj.checkedIcon = <IndeterminateCheckbox style={{ width: '20px', height: '20px' }}/>;
+      } else {
+        muiPropsObj.checkedIcon = <CleanCheckbox style={{ width: '20px', height: '20px' }}/>;
       }
 
       return (
@@ -93,7 +91,7 @@ const getSelectable = (theme: string, muiProps, qflProps) => {
 export interface ITableProps extends IMUIProps {
   thcSchema: any;
 
-  selectorTheme?: string;
+  selectorTheme?: {};
   selectorMuiProps?: {};
   selectorQflProps?: {};
   dataSource?: Array<{}>;
@@ -112,14 +110,14 @@ export interface ITableState {
  */
 class Table extends React.Component<ITableProps, ITableState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 
     selectorTheme: null,
     selectorMuiProps: null,
     selectorQflProps: null,
-    dataSource: [],
+    dataSource: null,
     rbtProps: null,
     stylingProps: null,
     onSelectedRowsChanged: null
@@ -140,10 +138,11 @@ class Table extends React.Component<ITableProps, ITableState> {
       },
       0
     );
+    const refs: any = this.refs;
     const elementContainer = ((
-      this.refs.reactBootstrapTable
-      && (this.refs.reactBootstrapTable as React.Component<any, any>).refs
-      && (this.refs.reactBootstrapTable as React.Component<any, any>).refs.table)
+    refs.reactBootstrapTable
+      && (refs.reactBootstrapTable as React.Component<any, any>).refs
+      && ((refs.reactBootstrapTable as React.Component<any, any>).refs as any).table)
       || null);
 
     if (elementContainer && $(elementContainer).children('.react-bs-container-body')) {
@@ -166,7 +165,8 @@ class Table extends React.Component<ITableProps, ITableState> {
 
   private cleanSelected() {
     this.handleRowSelectAll(false);
-    (this.refs.reactBootstrapTable as BootstrapTable).cleanSelected();
+    const refs: any = this.refs;
+    (refs.reactBootstrapTable as BootstrapTable).cleanSelected();
   }
 
   private handleRowSelect(row, isSelected, event) {
@@ -203,6 +203,9 @@ class Table extends React.Component<ITableProps, ITableState> {
   }
 
   public render() {
+    const toastrCSS = require('react-bootstrap-table/css/toastr.css');
+    const reactBootstrapTableCSS = require('react-bootstrap-table/css/react-bootstrap-table.css');
+
     const dataSource = (this.props.dataSource || this.props.rbtProps.data);
     delete this.props.rbtProps.data;
 

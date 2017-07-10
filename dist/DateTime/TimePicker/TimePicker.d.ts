@@ -12,7 +12,7 @@ export interface ITimePickerState {
  */
 declare class TimePicker extends React.Component<ITimePickerProps, ITimePickerState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         value: Date;

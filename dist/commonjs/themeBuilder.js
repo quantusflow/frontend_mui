@@ -4,7 +4,8 @@ exports.buildTheme = function (options) {
     var muiProps = options.sourceMuiProps || {};
     var qflProps = options.sourceQflProps || {};
     var rbtProps = options.sourceRbtProps || {};
-    var theme = options.theme;
+    var baseTheme = {};
+    var theme = options.theme || {};
     var componentName = options.componentName;
     var section = theme.themeSection;
     var context = theme.themeContext;
@@ -34,8 +35,14 @@ exports.buildTheme = function (options) {
             var base = (context && themedRbtProps[componentName][context] ? themedRbtProps[componentName][context] : themedRbtProps[componentName].default);
             rbtProps = Object.assign(base, options.sourceRbtProps);
         }
+        for (var key in themeObj) {
+            if (key !== 'muiProps' && key !== 'qflProps' && key !== 'rbtProps') {
+                baseTheme[key] = themeObj[key];
+            }
+        }
     }
     return {
+        theme: baseTheme,
         muiProps: muiProps,
         qflProps: qflProps,
         rbtProps: rbtProps

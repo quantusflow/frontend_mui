@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import {IndexLink} from 'react-router';
+import IndexLink from 'react-router/lib/IndexLink.js';
+
 import clone from 'clone';
 import extend from 'extend';
 
@@ -20,7 +21,7 @@ export interface ILinkProps extends IMUIProps {
  */
 class Link extends React.Component<ILinkProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     qflProps: {},
     muiProps: {},
 

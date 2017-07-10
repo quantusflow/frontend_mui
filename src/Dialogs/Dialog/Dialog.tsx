@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Dialog as MUIDialog} from 'material-ui';
+import MUIDialog from 'material-ui/Dialog/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -10,7 +10,7 @@ import {IMUIProps} from '../../interfaces';
  */
 class Dialog extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {}
   };

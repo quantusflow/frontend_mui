@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {FlatButton as MUIFlatButton} from 'material-ui';
+import MUIFlatButton from 'material-ui/FlatButton/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 
@@ -11,7 +11,7 @@ import {IMUIProps} from '../../interfaces';
  */
 class FlatButton extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {}
   };

@@ -8,7 +8,7 @@ export interface IFloatingButtonProps extends IMUIProps {
  */
 declare class FloatingButton extends React.Component<IFloatingButtonProps, {}> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         icon: any;

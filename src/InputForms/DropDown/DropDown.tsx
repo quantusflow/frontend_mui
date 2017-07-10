@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {DropDownMenu as MUIDropDownMenu} from 'material-ui';
+import {DropDownMenu as MUIDropDownMenu} from 'material-ui/DropDownMenu/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -20,7 +20,7 @@ export interface IDropDownState {
  */
 class DropDown extends React.Component<IDropDownProps, IDropDownState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

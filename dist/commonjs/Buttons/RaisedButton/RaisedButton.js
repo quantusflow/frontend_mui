@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/RaisedButton/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based raised button
+ */
 var RaisedButton = (function (_super) {
     __extends(RaisedButton, _super);
     function RaisedButton() {
@@ -34,10 +37,10 @@ var RaisedButton = (function (_super) {
             componentName: 'RaisedButton'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(material_ui_1.RaisedButton, __assign({}, muiProps))));
+            React.createElement(index_js_1.default, __assign({}, muiProps))));
     };
     RaisedButton.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {}
     };

@@ -12,7 +12,7 @@ export interface IDatePickerState {
  */
 declare class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         value: Date;

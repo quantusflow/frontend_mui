@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {FloatingActionButton as MUIFloatingActionButton} from 'material-ui';
+import MUIFloatingActionButton from 'material-ui/FloatingActionButton/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 
@@ -15,7 +15,7 @@ export interface IFloatingButtonProps extends IMUIProps {
  */
 class FloatingButton extends React.Component<IFloatingButtonProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

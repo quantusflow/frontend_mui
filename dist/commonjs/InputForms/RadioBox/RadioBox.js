@@ -19,8 +19,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var material_ui_1 = require("material-ui");
+var index_js_1 = require("material-ui/RadioButton/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based radio button
+ */
 var RadioBox = (function (_super) {
     __extends(RadioBox, _super);
     function RadioBox(props) {
@@ -54,10 +57,10 @@ var RadioBox = (function (_super) {
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         return (React.createElement("div", __assign({}, qflProps),
             React.createElement("span", { style: qflProps.labelStyle }, this.props.label),
-            React.createElement(material_ui_1.RadioButtonGroup, __assign({}, muiProps, { valueSelected: this.state.currentValue, onChange: function (event, value) { return _this.handleChange(event, value); } }), items)));
+            React.createElement(index_js_1.RadioButtonGroup, __assign({}, muiProps, { valueSelected: this.state.currentValue, onChange: function (event, value) { return _this.handleChange(event, value); } }), items)));
     };
     RadioBox.defaultProps = {
-        theme: 'Default',
+        theme: null,
         muiProps: {},
         qflProps: {},
         items: null,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Checkbox as MUICheckBox} from 'material-ui';
+import MUICheckBox from 'material-ui/Checkbox/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -21,7 +21,7 @@ export interface ICheckBoxState {
  */
 class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

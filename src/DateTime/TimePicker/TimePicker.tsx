@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {TimePicker as MUITimePicker} from 'material-ui';
+import MUITimePicker from 'material-ui/TimePicker/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -19,7 +19,7 @@ export interface ITimePickerState {
  */
 class TimePicker extends React.Component<ITimePickerProps, ITimePickerState> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {},
 

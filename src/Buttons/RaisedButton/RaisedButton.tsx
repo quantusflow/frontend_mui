@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {RaisedButton as MUIRaisedButton} from 'material-ui';
+import MUIRaisedButton from 'material-ui/RaisedButton/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
@@ -10,7 +10,7 @@ import {IMUIProps} from '../../interfaces';
  */
 class RaisedButton extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
-    theme: 'Default',
+    theme: null,
     muiProps: {},
     qflProps: {}
   };

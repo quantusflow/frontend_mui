@@ -28,7 +28,7 @@ export interface INavigationBarProps extends IMUIProps {
  */
 declare class NavigationBar extends React.Component<INavigationBarProps, {}> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         listMuiProps: {};

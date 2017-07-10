@@ -8,7 +8,7 @@ export interface IToolBarProps extends IMUIProps {
  */
 declare class ToolBar extends React.Component<IToolBarProps, {}> {
     static defaultProps: {
-        theme: string;
+        theme: any;
         muiProps: {};
         qflProps: {};
         items: any;
