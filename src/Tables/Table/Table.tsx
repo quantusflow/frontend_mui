@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table/lib/index.js';
 
 import IndeterminateCheckbox from 'material-ui/svg-icons/content/remove.js';
 import CleanCheckbox from 'material-ui/svg-icons/action/done.js';
@@ -232,14 +232,17 @@ class Table extends React.Component<ITableProps, ITableState> {
 
     const selectRowProp: any = {
       mode: 'checkbox',
-      clickToSelect: this.props.selectRowProp,
+      clickToSelect: !!this.props.selectRowProp,
       onSelect: (row, isSelected, event) => {
         this.handleRowSelect(row, isSelected, event);
       },
       onSelectAll: (isSelected, rows) => {
         this.handleRowSelectAll(isSelected, rows);
-      }
+      },
+      ...rbtProps.selectRow
     };
+
+    rbtProps.selectRow = selectRowProp;
 
     selectRowProp.customComponent = getSelectable(this.props.selectorTheme, this.props.selectorMuiProps, this.props.selectorQflProps);
 
@@ -248,7 +251,6 @@ class Table extends React.Component<ITableProps, ITableState> {
         <BootstrapTable
           ref='reactBootstrapTable'
           data={dataSource}
-          selectRow={selectRowProp}
           {...rbtProps}
         >
           {this.props.thcSchema.map((thcItem) => <TableHeaderColumn

@@ -21,6 +21,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/DatePicker/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based data picker
+ */
 var DatePicker = (function (_super) {
     __extends(DatePicker, _super);
     function DatePicker(props) {

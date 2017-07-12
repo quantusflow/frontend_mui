@@ -19,7 +19,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var react_bootstrap_table_1 = require("react-bootstrap-table");
+var index_js_1 = require("react-bootstrap-table/lib/index.js");
 var remove_js_1 = require("material-ui/svg-icons/content/remove.js");
 var done_js_1 = require("material-ui/svg-icons/action/done.js");
 var $ = require("jquery");
@@ -69,6 +69,9 @@ var getSelectable = function (theme, muiProps, qflProps) {
     }(React.Component));
     return SelectableCheckBox;
 };
+/**
+ * Material UI based boostrap table
+ */
 var Table = (function (_super) {
     __extends(Table, _super);
     function Table() {
@@ -80,6 +83,7 @@ var Table = (function (_super) {
     }
     Table.prototype.componentDidMount = function () {
         var _this = this;
+        // Hack for render table in Grid
         setTimeout(function () {
             window.dispatchEvent(new Event('resize'));
         }, 0);
@@ -161,19 +165,15 @@ var Table = (function (_super) {
         if (rbtProps && rbtProps.headerStyle && stylingProps && stylingProps.headerStyle) {
             rbtProps.headerStyle = Object.assign(rbtProps.headerStyle, stylingProps.headerStyle);
         }
-        var selectRowProp = {
-            mode: 'checkbox',
-            clickToSelect: this.props.selectRowProp,
-            onSelect: function (row, isSelected, event) {
+        var selectRowProp = __assign({ mode: 'checkbox', clickToSelect: !!this.props.selectRowProp, onSelect: function (row, isSelected, event) {
                 _this.handleRowSelect(row, isSelected, event);
-            },
-            onSelectAll: function (isSelected, rows) {
+            }, onSelectAll: function (isSelected, rows) {
                 _this.handleRowSelectAll(isSelected, rows);
-            }
-        };
+            } }, rbtProps.selectRow);
+        rbtProps.selectRow = selectRowProp;
         selectRowProp.customComponent = getSelectable(this.props.selectorTheme, this.props.selectorMuiProps, this.props.selectorQflProps);
         return (React.createElement("div", __assign({}, qflProps),
-            React.createElement(react_bootstrap_table_1.BootstrapTable, __assign({ ref: 'reactBootstrapTable', data: dataSource, selectRow: selectRowProp }, rbtProps), this.props.thcSchema.map(function (thcItem) { return React.createElement(react_bootstrap_table_1.TableHeaderColumn, __assign({ key: thcItem.name }, thcItem.thcProps), thcItem.name); }))));
+            React.createElement(index_js_1.BootstrapTable, __assign({ ref: 'reactBootstrapTable', data: dataSource }, rbtProps), this.props.thcSchema.map(function (thcItem) { return React.createElement(index_js_1.TableHeaderColumn, __assign({ key: thcItem.name }, thcItem.thcProps), thcItem.name); }))));
     };
     Table.defaultProps = {
         theme: null,

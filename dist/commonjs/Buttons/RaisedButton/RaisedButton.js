@@ -21,6 +21,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/RaisedButton/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based raised button
+ */
 var RaisedButton = (function (_super) {
     __extends(RaisedButton, _super);
     function RaisedButton() {
