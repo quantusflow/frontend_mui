@@ -21,9 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/Toggle/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based toggle
- */
 var Toggle = (function (_super) {
     __extends(Toggle, _super);
     function Toggle() {
