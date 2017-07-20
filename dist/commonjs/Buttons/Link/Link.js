@@ -19,10 +19,13 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var IndexLink_js_1 = require("react-router/lib/IndexLink.js");
-var clone_1 = require("clone");
-var extend_1 = require("extend");
+var IndexLink = require("react-router/lib/IndexLink.js");
+var clone = require("clone");
+var extend = require("extend");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based link
+ */
 var Link = (function (_super) {
     __extends(Link, _super);
     function Link() {
@@ -36,13 +39,13 @@ var Link = (function (_super) {
             componentName: 'Link'
         }), muiProps = _a.muiProps, qflProps = _a.qflProps;
         var targetObj = { href: this.props.href };
-        var linkComponent = (React.createElement("a", __assign({ style: extend_1.default(clone_1.default(muiProps.linkStyle, false), this.props.linkStyle) }, targetObj),
-            React.createElement("span", { style: extend_1.default(clone_1.default(muiProps.labelStyle, false), this.props.labelStyle) }, this.props.label)));
+        var linkComponent = (React.createElement("a", __assign({ style: extend(clone(muiProps.linkStyle, false), this.props.linkStyle) }, targetObj),
+            React.createElement("span", { style: extend(clone(muiProps.labelStyle, false), this.props.labelStyle) }, this.props.label)));
         if (this.props.to) {
             delete targetObj.href;
             targetObj.to = this.props.to;
-            linkComponent = (React.createElement(IndexLink_js_1.default, __assign({ style: extend_1.default(clone_1.default(muiProps.linkStyle, false), this.props.linkStyle) }, targetObj),
-                React.createElement("span", { style: extend_1.default(clone_1.default(muiProps.labelStyle, false), this.props.labelStyle) }, this.props.label)));
+            linkComponent = (React.createElement(IndexLink, __assign({ style: extend(clone(muiProps.linkStyle, false), this.props.linkStyle) }, targetObj),
+                React.createElement("span", { style: extend(clone(muiProps.labelStyle, false), this.props.labelStyle) }, this.props.label)));
         }
         return (React.createElement("div", __assign({}, qflProps), linkComponent));
     };

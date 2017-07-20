@@ -20,6 +20,6 @@ declare class IconButton extends React.Component<IIconButtonProps, {}> {
     constructor();
     private renderIcon(muiProps?);
     private renderBadgedIcon();
-    render(): any;
+    render(): JSX.Element;
 }
 export default IconButton;

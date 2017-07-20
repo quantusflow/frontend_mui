@@ -22,6 +22,6 @@ declare class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
     constructor(props: ICheckBoxProps);
     protected componentWillReceiveProps(props: any, b: any, c: any): void;
     private handleChange(e);
-    render(): any;
+    render(): JSX.Element;
 }
 export default CheckBox;

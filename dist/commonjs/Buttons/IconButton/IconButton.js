@@ -22,6 +22,9 @@ var React = require("react");
 var index_js_1 = require("material-ui/IconButton/index.js");
 var index_js_2 = require("material-ui/Badge/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based icon button
+ */
 var IconButton = (function (_super) {
     __extends(IconButton, _super);
     function IconButton() {

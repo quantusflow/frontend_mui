@@ -14,6 +14,6 @@ declare class FloatingButton extends React.Component<IFloatingButtonProps, {}> {
         icon: any;
     };
     constructor();
-    render(): any;
+    render(): JSX.Element;
 }
 export default FloatingButton;

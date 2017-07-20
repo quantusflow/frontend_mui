@@ -49,6 +49,6 @@ declare class Stepper extends React.Component<IStepperProps, IStepperState> {
     private handlePrev();
     private getStepContent(stepIndex);
     private handleClose(buttonClicked);
-    render(): any;
+    render(): JSX.Element;
 }
 export default Stepper;

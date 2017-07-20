@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import IndexLink from 'react-router/lib/IndexLink.js';
+import * as IndexLink from 'react-router/lib/IndexLink.js';
 
-import clone from 'clone';
-import extend from 'extend';
+import * as clone from 'clone';
+import * as extend from 'extend';
 
 import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';

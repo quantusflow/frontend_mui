@@ -10,6 +10,6 @@ declare class FlatButton extends React.Component<IMUIProps, {}> {
         qflProps: {};
     };
     constructor();
-    render(): any;
+    render(): JSX.Element;
 }
 export default FlatButton;

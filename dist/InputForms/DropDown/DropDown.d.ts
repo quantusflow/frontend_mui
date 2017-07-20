@@ -24,6 +24,6 @@ declare class DropDown extends React.Component<IDropDownProps, IDropDownState> {
     };
     constructor(props: IDropDownProps);
     private handleChange(event, index, value);
-    render(): any;
+    render(): JSX.Element;
 }
 export default DropDown;

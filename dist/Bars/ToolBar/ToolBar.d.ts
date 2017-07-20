@@ -14,6 +14,6 @@ declare class ToolBar extends React.Component<IToolBarProps, {}> {
         items: any;
     };
     constructor();
-    render(): any;
+    render(): JSX.Element;
 }
 export default ToolBar;

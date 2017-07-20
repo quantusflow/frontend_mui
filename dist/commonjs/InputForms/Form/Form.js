@@ -30,6 +30,9 @@ var RadioButton_1 = require("../RadioBox/RadioButton");
 var radio_button_checked_js_1 = require("material-ui/svg-icons/toggle/radio-button-checked.js");
 var radio_button_unchecked_js_1 = require("material-ui/svg-icons/toggle/radio-button-unchecked.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based Form rendering Material UI based form items
+ */
 var Form = (function (_super) {
     __extends(Form, _super);
     function Form(props) {
@@ -44,6 +47,7 @@ var Form = (function (_super) {
         if (!keyAttributeName && this.props.item && this.props.item.hasOwnProperty(key)) {
             var result = this.props.item[key];
             if (items) {
+                // Try to find result as value in items
                 var foundInItems = false;
                 for (var i = 0; i < items.length; i++) {
                     if (items[i].value === result) {
@@ -74,6 +78,7 @@ var Form = (function (_super) {
         else if (!keyAttributeName && this.state.formData && this.state.formData.hasOwnProperty(key)) {
             var result = this.state.formData[key];
             if (items) {
+                // Try to find result as value in items
                 var foundInItems = false;
                 for (var i = 0; i < items.length; i++) {
                     if (items[i].value === result) {
@@ -198,13 +203,13 @@ var Form = (function (_super) {
                                     resultingFromElement = (React.createElement(RadioBox_1.default, { key: layoutElement.key, value: currentValue, label: layoutElement.label, theme: layoutElement.theme, onChange: handleRadioBoxFormItemChange, muiProps: __assign({ name: layoutElement.key, defaultSelected: initialValue }, layoutElement.muiProps), qflProps: __assign({ style: {
                                                 display: 'inline-block',
                                                 width: itemWidth + '%'
-                                            } }, layoutElement.qflProps) }, layoutElement.items.map(function (radioBoxItem, radioBoxIdx) { return React.createElement(RadioButton_1.default, __assign({ key: layoutElement.key + '-' + radioBoxIdx, style: {
-                                            width: '50%',
-                                            display: 'inline-block'
-                                        }, iconStyle: {
-                                            marginRight: '8px',
-                                            marginLeft: (isMostLeft ? '0px' : '2px')
-                                        }, value: radioBoxItem.value, label: radioBoxItem.label, checkedIcon: React.createElement(radio_button_checked_js_1.default, null), uncheckedIcon: React.createElement(radio_button_unchecked_js_1.default, null) }, layoutElement.radioButtonMuiProps)); })));
+                                            } }, layoutElement.qflProps) }, layoutElement.items.map(function (radioBoxItem, radioBoxIdx) { return React.createElement(RadioButton_1.default, { key: layoutElement.key + '-' + radioBoxIdx, muiProps: __assign({ style: {
+                                                width: '50%',
+                                                display: 'inline-block'
+                                            }, iconStyle: {
+                                                marginRight: '8px',
+                                                marginLeft: (isMostLeft ? '0px' : '2px')
+                                            }, value: radioBoxItem.value, label: radioBoxItem.label, checkedIcon: React.createElement(radio_button_checked_js_1.default, null), uncheckedIcon: React.createElement(radio_button_unchecked_js_1.default, null) }, layoutElement.radioButtonMuiProps) }); })));
                                 }
                             }
                             break;

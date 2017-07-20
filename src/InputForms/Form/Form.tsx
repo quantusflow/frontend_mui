@@ -277,19 +277,21 @@ class Form extends React.Component<IFormProps, IFormState> {
                   >
                     {layoutElement.items.map((radioBoxItem, radioBoxIdx) => <RadioButton
                       key={layoutElement.key + '-' + radioBoxIdx}
-                      style={{
-                        width: '50%',
-                        display: 'inline-block'
+                      muiProps={{
+                        style: {
+                          width: '50%',
+                          display: 'inline-block'
+                        },
+                        iconStyle: {
+                          marginRight: '8px',
+                          marginLeft: (isMostLeft ? '0px' : '2px')
+                        },
+                        value: radioBoxItem.value,
+                        label: radioBoxItem.label,
+                        checkedIcon: <CheckedIcon/>,
+                        uncheckedIcon: <UncheckedIcon/>,
+                        ...layoutElement.radioButtonMuiProps
                       }}
-                      iconStyle={{
-                        marginRight: '8px',
-                        marginLeft: (isMostLeft ? '0px' : '2px')
-                      }}
-                      value={radioBoxItem.value}
-                      label={radioBoxItem.label}
-                      checkedIcon={<CheckedIcon/>}
-                      uncheckedIcon={<UncheckedIcon/>}
-                      {...layoutElement.radioButtonMuiProps}
                     />)}
                   </RadioBox>
                 );

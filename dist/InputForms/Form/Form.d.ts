@@ -38,6 +38,6 @@ declare class Form extends React.Component<IFormProps, IFormState> {
     constructor(props: IFormProps);
     private getFormItemValue(key, keyAttributeName?, items?);
     private handleFormItemChange(type, key, oldValue, newValue, choosenElement?, element?);
-    render(): any;
+    render(): JSX.Element;
 }
 export default Form;

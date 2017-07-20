@@ -20,6 +20,6 @@ declare class DatePicker extends React.Component<IDatePickerProps, IDatePickerSt
     };
     constructor(props: IDatePickerProps);
     private handleChange(e, date);
-    render(): any;
+    render(): JSX.Element;
 }
 export default DatePicker;

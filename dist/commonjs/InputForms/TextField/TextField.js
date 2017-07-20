@@ -21,6 +21,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/TextField/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based text field
+ */
 var TextField = (function (_super) {
     __extends(TextField, _super);
     function TextField(props) {

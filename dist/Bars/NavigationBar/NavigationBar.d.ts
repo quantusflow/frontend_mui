@@ -38,6 +38,6 @@ declare class NavigationBar extends React.Component<INavigationBarProps, {}> {
     };
     constructor();
     private handleOnChange(e, route);
-    render(): any;
+    render(): JSX.Element;
 }
 export default NavigationBar;

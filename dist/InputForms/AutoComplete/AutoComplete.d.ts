@@ -23,6 +23,6 @@ declare class AutoComplete extends React.Component<IAutoCompleteProps, IAutoComp
     };
     constructor(props: IAutoCompleteProps);
     private handleChange(chosenRequest, index);
-    render(): any;
+    render(): JSX.Element;
 }
 export default AutoComplete;

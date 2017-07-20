@@ -3,6 +3,7 @@
     "enableAutoDiscovery": true
   },
   "compilerOptions": {
+    "skipLibCheck": true,
     "jsx": "react",
     "module": "commonjs",
     "target": "es5",

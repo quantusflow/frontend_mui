@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import * as MUIDrawer from 'material-ui/Drawer/index.js';
-import * as Divider from 'material-ui/Divider/index.js';
+import MUIDrawer from 'material-ui/Drawer/index.js';
+import Divider from 'material-ui/Divider/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 
