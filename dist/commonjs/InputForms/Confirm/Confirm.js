@@ -37,6 +37,7 @@ var Confirm = (function (_super) {
     };
     Confirm.prototype.render = function () {
         var _this = this;
+        var children = this.props.children;
         var qflProps = themeBuilder_1.buildTheme({
             theme: this.props.theme,
             sourceMuiProps: this.props.muiProps,
@@ -49,6 +50,7 @@ var Confirm = (function (_super) {
                 } }, element.qflProps) })); });
         return (React.createElement("div", __assign({}, qflProps),
             React.createElement("p", null, this.props.message),
+            children,
             resultingButtons));
     };
     Confirm.defaultProps = {

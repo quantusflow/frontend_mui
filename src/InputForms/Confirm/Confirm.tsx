@@ -53,6 +53,8 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
   }
 
   public render() {
+    const {children} = this.props;
+
     const {qflProps} = buildTheme({
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
@@ -83,6 +85,7 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
     return (
       <div {...qflProps}>
         <p>{this.props.message}</p>
+        {children}
         {resultingButtons}
       </div>
     );
