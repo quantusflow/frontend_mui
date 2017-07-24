@@ -21,6 +21,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/FloatingActionButton/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based floating action button
+ */
 var FloatingButton = (function (_super) {
     __extends(FloatingButton, _super);
     function FloatingButton() {

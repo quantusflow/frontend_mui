@@ -1,3 +1,5 @@
+import { fromJS } from 'immutable';
+
 export const buildTheme = (options) => {
   let muiProps = options.sourceMuiProps || {};
   let qflProps = options.sourceQflProps || {};
@@ -19,7 +21,9 @@ export const buildTheme = (options) => {
     }
     if (themedMuiProps && themedMuiProps[componentName]) {
       let base = (context && themedMuiProps[componentName][context] ? themedMuiProps[componentName][context] : themedMuiProps[componentName].default);
-      muiProps = Object.assign(base, options.sourceMuiProps);
+      const nestedBase = fromJS(base);
+      muiProps = nestedBase.mergeDeep(options.sourceMuiProps).toJS();
+      // muiProps = Object.assign(base, options.sourceMuiProps);
     }
     let themedQflProps = themeObj.qflProps;
     if (themedQflProps && section) {
@@ -27,7 +31,9 @@ export const buildTheme = (options) => {
     }
     if (themedQflProps && themedQflProps[componentName]) {
       let base = (context && themedQflProps[componentName][context] ? themedQflProps[componentName][context] : themedQflProps[componentName].default);
-      qflProps = Object.assign(base, options.sourceQflProps);
+      const nestedBase = fromJS(base);
+      qflProps = nestedBase.mergeDeep(options.sourceQflProps).toJS();
+      // qflProps = Object.assign(base, options.sourceQflProps);
     }
 
     let themedRbtProps = themeObj.rbtProps;
@@ -36,7 +42,9 @@ export const buildTheme = (options) => {
     }
     if (themedRbtProps && themedRbtProps[componentName]) {
       let base = (context && themedRbtProps[componentName][context] ? themedRbtProps[componentName][context] : themedRbtProps[componentName].default);
-      rbtProps = Object.assign(base, options.sourceRbtProps);
+      const nestedBase = fromJS(base);
+      rbtProps = nestedBase.mergeDeep(options.sourceRbtProps).toJS();
+      // rbtProps = Object.assign(base, options.sourceRbtProps);
     }
 
     for (let key in themeObj) {

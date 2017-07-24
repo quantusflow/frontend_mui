@@ -2547,6 +2547,10 @@ ignore@^3.1.2:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.3.tgz#432352e57accd87ab3110e82d3fea0e47812156d"
 
+immutable@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.npmjs.org/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
+
 import-lazy@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"
@@ -3268,9 +3272,9 @@ marked@^0.3.5:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
 
-material-ui@^0.18.6:
-  version "0.18.6"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.6.tgz#29b8ef78952872c821e8599e5edd9ae276dcdaae"
+material-ui@^0.18.7:
+  version "0.18.7"
+  resolved "https://registry.npmjs.org/material-ui/-/material-ui-0.18.7.tgz#b87af16357e6966b36c23d489eb2ed70746d25f8"
   dependencies:
     babel-runtime "^6.23.0"
     inline-style-prefixer "^3.0.2"
@@ -3280,7 +3284,7 @@ material-ui@^0.18.6:
     prop-types "^15.5.7"
     react-event-listener "^0.4.5"
     react-transition-group "^1.1.2"
-    recompose "0.23.4"
+    recompose "0.24.0"
     simple-assign "^0.1.0"
     warning "^3.0.0"
 
@@ -3939,9 +3943,9 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
-recompose@0.23.4:
-  version "0.23.4"
-  resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.23.4.tgz#af09e4e08424effa449c9b793037166f7b30644a"
+recompose@0.24.0:
+  version "0.24.0"
+  resolved "https://registry.npmjs.org/recompose/-/recompose-0.24.0.tgz#262e93f974439eb17e7779824d88cce90492a5dd"
   dependencies:
     change-emitter "^0.1.2"
     fbjs "^0.8.1"

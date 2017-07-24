@@ -16,8 +16,9 @@
   "dependencies": {
     "clone": "^2.1.1",
     "extend": "^3.0.1",
+    "immutable": "^3.8.1",
     "jquery": "^3.2.1",
-    "material-ui": "^0.18.6",
+    "material-ui": "^0.18.7",
     "react-bootstrap-table": "ssh://github.com/zimoony/react-bootstrap-table.git#master",
     "react-router": "2.4.1",
     "react-tap-event-plugin": "^2.0.1"
