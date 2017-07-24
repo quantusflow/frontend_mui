@@ -21,9 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/Dialog/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based modal dialog
- */
 var Dialog = (function (_super) {
     __extends(Dialog, _super);
     function Dialog() {

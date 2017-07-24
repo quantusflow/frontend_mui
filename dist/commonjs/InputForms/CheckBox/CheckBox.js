@@ -21,9 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/Checkbox/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based check box
- */
 var CheckBox = (function (_super) {
     __extends(CheckBox, _super);
     function CheckBox(props) {
