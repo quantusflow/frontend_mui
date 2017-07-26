@@ -30,9 +30,6 @@ var RadioButton_1 = require("../RadioBox/RadioButton");
 var radio_button_checked_js_1 = require("material-ui/svg-icons/toggle/radio-button-checked.js");
 var radio_button_unchecked_js_1 = require("material-ui/svg-icons/toggle/radio-button-unchecked.js");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based Form rendering Material UI based form items
- */
 var Form = (function (_super) {
     __extends(Form, _super);
     function Form(props) {
@@ -47,7 +44,6 @@ var Form = (function (_super) {
         if (!keyAttributeName && this.props.item && this.props.item.hasOwnProperty(key)) {
             var result = this.props.item[key];
             if (items) {
-                // Try to find result as value in items
                 var foundInItems = false;
                 for (var i = 0; i < items.length; i++) {
                     if (items[i].value === result) {
@@ -77,7 +73,6 @@ var Form = (function (_super) {
         else if (!keyAttributeName && this.state.formData && this.state.formData.hasOwnProperty(key)) {
             var result = this.state.formData[key];
             if (items) {
-                // Try to find result as value in items
                 var foundInItems = false;
                 for (var i = 0; i < items.length; i++) {
                     if (items[i].value === result) {

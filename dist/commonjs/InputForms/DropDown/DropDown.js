@@ -21,9 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/DropDownMenu/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based drop down menu
- */
 var DropDown = (function (_super) {
     __extends(DropDown, _super);
     function DropDown(props) {
