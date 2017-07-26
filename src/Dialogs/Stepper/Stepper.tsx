@@ -28,7 +28,11 @@ export interface IStepperProps extends IMUIProps {
   dialogQflProps?: {};
   dialogTheme?: string;
 
-  backLabel?: string;
+  title?: string;
+
+  prevLabel?: string;
+  nextLabel?: string;
+  doneLabel?: string;
 }
 
 export interface IStepperState {
@@ -57,7 +61,11 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     dialogQflProps: {},
     dialogTheme: null,
 
-    backLabel: null
+    title: '',
+
+    prevLabel: 'Zurück',
+    nextLabel: 'Weiter',
+    doneLabel: 'Fertig'
   };
 
   constructor(props: IStepperProps) {
@@ -106,7 +114,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
   public render() {
     const {finished, stepIndex} = this.state;
 
-    const {children, isLinear, isModal, isDialog} = this.props;
+    const {isLinear, isModal, isDialog} = this.props;
     const {muiProps, qflProps} = buildTheme({
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
@@ -119,7 +127,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
       currentButton = (
         <FlatButton
           muiProps={{
-            label: 'Fertig',
+            label: this.props.doneLabel,
             onTouchTap: (buttonClicked) => this.handleClose(buttonClicked),
             style: {
               backgroundColor: '#000000',
@@ -131,8 +139,8 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
       currentButton = (
         <FlatButton
           muiProps={{
-            label: 'Weiter',
-            onTouchTap: this.handleNext,
+            label: this.props.nextLabel,
+            onTouchTap: () => this.handleNext(),
             style: {
               backgroundColor: '#000000',
               color: '#ffffff'}
@@ -177,12 +185,12 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
               {
                 // TODO style buttons with props
               }
-              <div style={{marginTop: 12, textAlign: 'right'}}>
+              <div style={{marginTop: 12, textAlign: 'right', display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
                 <FlatButton
                   muiProps={{
-                    label: this.props.backLabel,
+                    label: this.props.prevLabel,
                     disabled: (stepIndex === 0),
-                    onTouchTap: this.handlePrev,
+                    onTouchTap: () => this.handlePrev(),
                     style: {
                       marginRight: 9,
                       backgroundColor: '#000000',
@@ -202,7 +210,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
         <Dialog
           theme={this.props.dialogTheme}
           muiProps={{
-            title: 'Registration',
+            title: this.props.title,
             modal: isModal,
             onRequestClose: (buttonClicked) => this.handleClose(buttonClicked),
             open: this.state.open,

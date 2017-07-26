@@ -18,7 +18,10 @@ export interface IStepperProps extends IMUIProps {
     dialogMuiProps?: {};
     dialogQflProps?: {};
     dialogTheme?: string;
-    backLabel?: string;
+    title?: string;
+    prevLabel?: string;
+    nextLabel?: string;
+    doneLabel?: string;
 }
 export interface IStepperState {
     finished?: boolean;
@@ -42,7 +45,10 @@ declare class Stepper extends React.Component<IStepperProps, IStepperState> {
         dialogMuiProps: {};
         dialogQflProps: {};
         dialogTheme: any;
-        backLabel: any;
+        title: string;
+        prevLabel: string;
+        nextLabel: string;
+        doneLabel: string;
     };
     constructor(props: IStepperProps);
     private handleNext();

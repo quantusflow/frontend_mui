@@ -23,6 +23,9 @@ var index_js_1 = require("material-ui/Stepper/index.js");
 var Dialog_1 = require("../Dialog/Dialog");
 var FlatButton_1 = require("../../Buttons/FlatButton/FlatButton");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based stepper
+ */
 var Stepper = (function (_super) {
     __extends(Stepper, _super);
     function Stepper(props) {
@@ -64,7 +67,7 @@ var Stepper = (function (_super) {
     Stepper.prototype.render = function () {
         var _this = this;
         var _a = this.state, finished = _a.finished, stepIndex = _a.stepIndex;
-        var _b = this.props, children = _b.children, isLinear = _b.isLinear, isModal = _b.isModal, isDialog = _b.isDialog;
+        var _b = this.props, isLinear = _b.isLinear, isModal = _b.isModal, isDialog = _b.isDialog;
         var _c = themeBuilder_1.buildTheme({
             theme: this.props.theme,
             sourceMuiProps: this.props.muiProps,
@@ -74,7 +77,7 @@ var Stepper = (function (_super) {
         var currentButton = null;
         if (stepIndex === this.props.steps.length - 1) {
             currentButton = (React.createElement(FlatButton_1.default, { muiProps: {
-                    label: 'Fertig',
+                    label: this.props.doneLabel,
                     onTouchTap: function (buttonClicked) { return _this.handleClose(buttonClicked); },
                     style: {
                         backgroundColor: '#000000',
@@ -84,8 +87,8 @@ var Stepper = (function (_super) {
         }
         else {
             currentButton = (React.createElement(FlatButton_1.default, { muiProps: {
-                    label: 'Weiter',
-                    onTouchTap: this.handleNext,
+                    label: this.props.nextLabel,
+                    onTouchTap: function () { return _this.handleNext(); },
                     style: {
                         backgroundColor: '#000000',
                         color: '#ffffff'
@@ -108,11 +111,11 @@ var Stepper = (function (_super) {
             React.createElement(index_js_1.Stepper, __assign({}, muiProps, { activeStep: stepIndex, linear: isLinear }), stepperContent),
             React.createElement("div", null, finished ? (this.props.finishedContent) : (React.createElement("div", null,
                 this.getStepContent(stepIndex),
-                React.createElement("div", { style: { marginTop: 12, textAlign: 'right' } },
+                React.createElement("div", { style: { marginTop: 12, textAlign: 'right', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' } },
                     React.createElement(FlatButton_1.default, { muiProps: {
-                            label: this.props.backLabel,
+                            label: this.props.prevLabel,
                             disabled: (stepIndex === 0),
-                            onTouchTap: this.handlePrev,
+                            onTouchTap: function () { return _this.handlePrev(); },
                             style: {
                                 marginRight: 9,
                                 backgroundColor: '#000000',
@@ -122,7 +125,7 @@ var Stepper = (function (_super) {
                     currentButton)))));
         var currentStepper = null;
         if (isDialog) {
-            currentStepper = (React.createElement(Dialog_1.default, { theme: this.props.dialogTheme, muiProps: __assign({ title: 'Registration', modal: isModal, onRequestClose: function (buttonClicked) { return _this.handleClose(buttonClicked); }, open: this.state.open }, this.props.dialogMuiProps), qflProps: __assign({}, this.props.dialogQflProps) }, stepper));
+            currentStepper = (React.createElement(Dialog_1.default, { theme: this.props.dialogTheme, muiProps: __assign({ title: this.props.title, modal: isModal, onRequestClose: function (buttonClicked) { return _this.handleClose(buttonClicked); }, open: this.state.open }, this.props.dialogMuiProps), qflProps: __assign({}, this.props.dialogQflProps) }, stepper));
         }
         else {
             currentStepper = stepper;
@@ -142,7 +145,10 @@ var Stepper = (function (_super) {
         dialogMuiProps: {},
         dialogQflProps: {},
         dialogTheme: null,
-        backLabel: null
+        title: '',
+        prevLabel: 'Zurück',
+        nextLabel: 'Weiter',
+        doneLabel: 'Fertig'
     };
     return Stepper;
 }(React.Component));
