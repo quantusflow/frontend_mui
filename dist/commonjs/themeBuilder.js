@@ -20,6 +20,7 @@ exports.buildTheme = function (options) {
             var base = (context && themedMuiProps[componentName][context] ? themedMuiProps[componentName][context] : themedMuiProps[componentName].default);
             var nestedBase = immutable_1.fromJS(base);
             muiProps = nestedBase.mergeDeep(options.sourceMuiProps).toJS();
+            // muiProps = Object.assign(base, options.sourceMuiProps);
         }
         var themedQflProps = themeObj.qflProps;
         if (themedQflProps && section) {
@@ -29,6 +30,7 @@ exports.buildTheme = function (options) {
             var base = (context && themedQflProps[componentName][context] ? themedQflProps[componentName][context] : themedQflProps[componentName].default);
             var nestedBase = immutable_1.fromJS(base);
             qflProps = nestedBase.mergeDeep(options.sourceQflProps).toJS();
+            // qflProps = Object.assign(base, options.sourceQflProps);
         }
         var themedRbtProps = themeObj.rbtProps;
         if (themedRbtProps && section) {
@@ -38,6 +40,7 @@ exports.buildTheme = function (options) {
             var base = (context && themedRbtProps[componentName][context] ? themedRbtProps[componentName][context] : themedRbtProps[componentName].default);
             var nestedBase = immutable_1.fromJS(base);
             rbtProps = nestedBase.mergeDeep(options.sourceRbtProps).toJS();
+            // rbtProps = Object.assign(base, options.sourceRbtProps);
         }
         for (var key in themeObj) {
             if (key !== 'muiProps' && key !== 'qflProps' && key !== 'rbtProps') {
