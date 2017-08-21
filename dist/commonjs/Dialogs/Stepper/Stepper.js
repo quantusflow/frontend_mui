@@ -23,6 +23,9 @@ var index_js_1 = require("material-ui/Stepper/index.js");
 var Dialog_1 = require("../Dialog/Dialog");
 var FlatButton_1 = require("../../Buttons/FlatButton/FlatButton");
 var themeBuilder_1 = require("../../themeBuilder");
+/**
+ * Material UI based stepper
+ */
 var Stepper = (function (_super) {
     __extends(Stepper, _super);
     function Stepper(props) {
