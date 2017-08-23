@@ -23,10 +23,7 @@ var index_js_1 = require("material-ui/Drawer/index.js");
 var index_js_2 = require("material-ui/Divider/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
 var index_js_3 = require("material-ui/List/index.js");
-var SelectableList = index_js_3.makeSelectable(index_js_3.List); // tslint:disable-line variable-name
-/**
- * Material UI based tool bar
- */
+var SelectableList = index_js_3.makeSelectable(index_js_3.List);
 var NavigationBar = (function (_super) {
     __extends(NavigationBar, _super);
     function NavigationBar() {

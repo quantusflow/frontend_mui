@@ -21,9 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/Snackbar/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based SnackBar
- */
 var SnackBar = (function (_super) {
     __extends(SnackBar, _super);
     function SnackBar() {

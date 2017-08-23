@@ -21,9 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/AutoComplete/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based auto complete drop down menu
- */
 var AutoComplete = (function (_super) {
     __extends(AutoComplete, _super);
     function AutoComplete(props) {
