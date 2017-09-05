@@ -585,7 +585,7 @@ class Form extends React.Component<IFormProps, IFormState> {
               key={idx}
               style={{
                 width: '100%',
-                paddingTop: ((layoutItem as ILayoutItem).type === 'DropDown' || (layoutItem as ILayoutItem).type === 'AutoComplete' ? '14px' : '0px')
+                //paddingTop: ((layoutItem as ILayoutItem).type === 'DropDown' || (layoutItem as ILayoutItem).type === 'AutoComplete' ? '0.4vw' : '0vw'),
               }}
             >
               {getElement((layoutItem as ILayoutItem), itemWidth, (30 + (idx * 10)), true, true)}
