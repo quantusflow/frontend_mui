@@ -10,6 +10,10 @@ exports.buildTheme = function (options) {
     var componentName = options.componentName;
     var section = theme.themeSection;
     var context = theme.themeContext;
+    if (componentName && componentName.indexOf(':') !== -1) {
+        context = componentName.split(':')[1];
+        componentName = componentName.split(':')[0];
+    }
     var themeObj = theme;
     if (themeObj) {
         var themedMuiProps = themeObj.muiProps;

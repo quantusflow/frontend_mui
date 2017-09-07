@@ -74,6 +74,12 @@ var Stepper = (function (_super) {
             sourceQflProps: this.props.qflProps,
             componentName: 'Stepper'
         }), muiProps = _c.muiProps, qflProps = _c.qflProps;
+        var stepperDialogProps = themeBuilder_1.buildTheme({
+            theme: this.props.theme,
+            sourceMuiProps: this.props.dialogMuiProps,
+            sourceQflProps: this.props.dialogQflProps,
+            componentName: 'StepperDialog'
+        });
         var currentButton = null;
         if (stepIndex === this.props.steps.length - 1) {
             currentButton = (React.createElement(FlatButton_1.default, { muiProps: {
@@ -81,7 +87,14 @@ var Stepper = (function (_super) {
                     onTouchTap: function (buttonClicked) { return _this.handleClose(buttonClicked); },
                     style: {
                         backgroundColor: '#000000',
-                        color: '#ffffff'
+                        color: '#ffffff',
+                        width: '8vw',
+                        fontFamily: 'Open Sans Condensed Bold',
+                        minWidth: '4.4vw',
+                        height: '1.6vw',
+                        lineHeight: '1.6vw',
+                        border: '0.5vw',
+                        borderRadius: '0vw'
                     }
                 } }));
         }
@@ -91,20 +104,57 @@ var Stepper = (function (_super) {
                     onTouchTap: function () { return _this.handleNext(); },
                     style: {
                         backgroundColor: '#000000',
-                        color: '#ffffff'
+                        color: '#ffffff',
+                        width: '8vw',
+                        fontFamily: 'Open Sans Condensed Bold',
+                        minWidth: '4.4vw',
+                        height: '1.6vw',
+                        lineHeight: '1.6vw',
+                        border: '0.5vw',
+                        borderRadius: '0vw'
                     }
                 } }));
         }
-        var stepperContent = this.props.steps.map(function (step) {
-            return (React.createElement(index_js_1.Step, __assign({ style: { height: '30px' } }, step.stepProps),
-                React.createElement(index_js_1.StepLabel, __assign({}, step.slProps), step.label)));
+        var stepperContent = this.props.steps.map(function (step, idx) {
+            var slProps = themeBuilder_1.buildTheme({
+                theme: _this.props.theme,
+                sourceMuiProps: step.slProps.muiProps,
+                sourceQflProps: {},
+                componentName: 'StepLabel' + (_this.state.stepIndex === idx ? (step.slProps.activeContext ? ':' + step.slProps.activeContext : ':active') : '')
+            });
+            var stepProps = themeBuilder_1.buildTheme({
+                theme: _this.props.theme,
+                sourceMuiProps: step.stepProps.muiProps,
+                sourceQflProps: {},
+                componentName: 'Step' + (_this.state.stepIndex === idx ? (step.stepProps.activeContext ? ':' + step.stepProps.activeContext : ':active') : '')
+            });
+            return (React.createElement(index_js_1.Step, __assign({}, step.stepProps, stepProps.muiProps),
+                React.createElement(index_js_1.StepLabel, __assign({}, step.slProps, slProps.muiProps), step.label)));
         });
         if (isLinear) {
             stepperContent =
-                this.props.steps.map(function (step) {
-                    return (React.createElement(index_js_1.Step, { style: { height: '30px' } },
-                        React.createElement(index_js_1.StepButton, __assign({}, step.sbProps),
-                            React.createElement(index_js_1.StepLabel, __assign({}, step.slProps), step.label))));
+                this.props.steps.map(function (step, idx) {
+                    var slProps = themeBuilder_1.buildTheme({
+                        theme: _this.props.theme,
+                        sourceMuiProps: step.slProps.muiProps,
+                        sourceQflProps: {},
+                        componentName: 'StepLabel' + (_this.state.stepIndex === idx ? (step.slProps.activeContext ? ':' + step.slProps.activeContext : ':active') : '')
+                    });
+                    var stepProps = themeBuilder_1.buildTheme({
+                        theme: _this.props.theme,
+                        sourceMuiProps: step.stepProps.muiProps,
+                        sourceQflProps: {},
+                        componentName: 'Step' + (_this.state.stepIndex === idx ? (step.stepProps.activeContext ? ':' + step.stepProps.activeContext : ':active') : '')
+                    });
+                    var sbProps = themeBuilder_1.buildTheme({
+                        theme: _this.props.theme,
+                        sourceMuiProps: step.sbProps.muiProps,
+                        sourceQflProps: {},
+                        componentName: 'StepButton' + (_this.state.stepIndex === idx ? (step.sbProps.activeContext ? ':' + step.sbProps.activeContext : ':active') : '')
+                    });
+                    return (React.createElement(index_js_1.Step, __assign({}, step.stepProps, stepProps.muiProps),
+                        React.createElement(index_js_1.StepButton, __assign({}, step.sbProps, sbProps.muiProps),
+                            React.createElement(index_js_1.StepLabel, __assign({}, step.slProps, slProps.muiProps), step.label))));
                 });
         }
         var stepper = React.createElement("div", __assign({}, qflProps, { style: { width: '100%' } }),
@@ -117,15 +167,22 @@ var Stepper = (function (_super) {
                             disabled: (stepIndex === 0),
                             onTouchTap: function () { return _this.handlePrev(); },
                             style: {
-                                marginRight: 9,
+                                marginRight: '0.45vw',
                                 backgroundColor: '#000000',
-                                color: '#ffffff'
+                                color: '#ffffff',
+                                width: '8vw',
+                                fontFamily: 'Open Sans Condensed Bold',
+                                minWidth: '4.4vw',
+                                height: '1.6vw',
+                                lineHeight: '1.6vw',
+                                border: '0.5vw',
+                                borderRadius: '0vw'
                             }
                         } }),
                     currentButton)))));
         var currentStepper = null;
         if (isDialog) {
-            currentStepper = (React.createElement(Dialog_1.default, { theme: this.props.dialogTheme, muiProps: __assign({ title: this.props.title, modal: isModal, onRequestClose: function (buttonClicked) { return _this.handleClose(buttonClicked); }, open: this.state.open }, this.props.dialogMuiProps), qflProps: __assign({}, this.props.dialogQflProps) }, stepper));
+            currentStepper = (React.createElement(Dialog_1.default, { theme: this.props.dialogTheme, muiProps: __assign({}, stepperDialogProps.muiProps, { title: this.props.title, modal: isModal, onRequestClose: function (buttonClicked) { return _this.handleClose(buttonClicked); }, open: this.state.open }), qflProps: __assign({}, stepperDialogProps.qflProps) }, stepper));
         }
         else {
             currentStepper = stepper;

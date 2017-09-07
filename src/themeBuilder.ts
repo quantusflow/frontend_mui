@@ -8,10 +8,15 @@ export const buildTheme = (options) => {
   const baseTheme = {};
 
   const theme: any = options.theme || {};
-  const componentName = options.componentName;
+  let componentName = options.componentName;
 
   const section = theme.themeSection;
-  const context = theme.themeContext;
+  let context = theme.themeContext;
+
+  if (componentName && componentName.indexOf(':') !== -1) {
+      context = componentName.split(':')[1];
+      componentName = componentName.split(':')[0];
+  }
 
   const themeObj = theme;
   if (themeObj) {
