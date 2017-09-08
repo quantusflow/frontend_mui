@@ -21,9 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var index_js_1 = require("material-ui/FlatButton/index.js");
 var themeBuilder_1 = require("../../themeBuilder");
-/**
- * Material UI based flat button
- */
 var FlatButton = (function (_super) {
     __extends(FlatButton, _super);
     function FlatButton() {

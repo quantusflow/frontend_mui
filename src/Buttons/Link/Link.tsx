@@ -55,6 +55,7 @@ class Link extends React.Component<ILinkProps, {}> {
     );
 
     if (this.props.to) {
+
       delete targetObj.href;
       targetObj.to = this.props.to;
       linkComponent = (
