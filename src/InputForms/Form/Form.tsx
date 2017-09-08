@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import TextField from '../TextField/TextField';
-import RadioBox from '../RadioBox/RadioBox';
-import DropDown from '../DropDown/DropDown';
-import CheckBox from '../CheckBox/CheckBox';
 import DatePicker from '../../DateTime/DatePicker/DatePicker';
 import AutoComplete from '../AutoComplete/AutoComplete';
+import CheckBox from '../CheckBox/CheckBox';
+import DropDown from '../DropDown/DropDown';
+import RadioBox from '../RadioBox/RadioBox';
+import TextField from '../TextField/TextField';
 
 import {MenuItem as MUIMenuItem} from 'material-ui/DropDownMenu/index.js';
 import RadioButton from '../RadioBox/RadioButton';
@@ -13,8 +13,8 @@ import RadioButton from '../RadioBox/RadioButton';
 import CheckedIcon from 'material-ui/svg-icons/toggle/radio-button-checked.js';
 import UncheckedIcon from 'material-ui/svg-icons/toggle/radio-button-unchecked.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface ILayoutItem {
   key: string;
@@ -56,7 +56,7 @@ class Form extends React.Component<IFormProps, IFormState> {
 
     keyAttributeName: 'id',
     dataProvider: null,
-    onChange: null
+    onChange: null,
   };
 
   constructor(props: IFormProps) {
@@ -64,7 +64,7 @@ class Form extends React.Component<IFormProps, IFormState> {
 
     const item = (props.item || {});
     this.state = {
-      formData: item
+      formData: item,
     };
   }
 
@@ -110,7 +110,7 @@ class Form extends React.Component<IFormProps, IFormState> {
         }
         if (!foundInItems) {
           for (let i = 0; i < items.length; i++) {
-            let match = items[i].compareValue(result);
+            const match = items[i].compareValue(result);
             if (items[i].compareValue && match) {
               result = items[i].value;
               break;
@@ -135,14 +135,14 @@ class Form extends React.Component<IFormProps, IFormState> {
     }
 
     this.setState({
-      formData: curFormData
+      formData: curFormData,
     });
     if (this.props.onChange) {
       this.props.onChange(this.state.formData, {
         type,
         key,
         oldValue,
-        newValue
+        newValue,
       });
     }
   }
@@ -152,14 +152,14 @@ class Form extends React.Component<IFormProps, IFormState> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'Form'
+      componentName: 'Form',
     });
 
     const {layout, item, keyAttributeName} = this.props;
 
     let resultingElement = null;
     if (layout && layout.length > 0) {
-      let dropDownCount = 0;
+      const dropDownCount = 0;
       resultingElement = layout.map((layoutItem: (ILayoutItem | Array<ILayoutItem>), idx) => {
         const getElement = (layoutElement: ILayoutItem, itemWidth, tabIndex, isMostLeft, isMostRight) => {
           let resultingFromElement = <div/>;
@@ -182,16 +182,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                                       () => {
                                           this.setState(
                                               {
-                                                  formData: curFormData
+                                                  formData: curFormData,
                                               },
                                               () => {
                                                   if (this.props.onChange) {
                                                       this.props.onChange(this.state.formData);
                                                   }
-                                              }
+                                              },
                                           );
                                       },
-                                      0
+                                      0,
                                   );
                               }
                           }
@@ -208,19 +208,19 @@ class Form extends React.Component<IFormProps, IFormState> {
                               onChange={handleCheckBoxFormItemChange}
                               muiProps={{
                                   label: layoutElement.label,
-                                  ...layoutElement.muiProps
+                                  ...layoutElement.muiProps,
                               }}
                               qflProps={{
                                   style: {
                                       display: 'inline-block',
-                                      width: itemWidth + '%'
+                                      width: itemWidth + '%',
                                   },
-                                  ...layoutElement.qflProps
+                                  ...layoutElement.qflProps,
                               }}
                           />
                       );
                   }
-                      break;
+                                   break;
                   case 'RadioBox': {
                       if (layoutElement.items && layoutElement.items.length > 0) {
                           const initialValue = (layoutElement.hasOwnProperty('initialValue') && layoutElement.initialValue !== null
@@ -238,16 +238,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                                           () => {
                                               this.setState(
                                                   {
-                                                      formData: curFormData
+                                                      formData: curFormData,
                                                   },
                                                   () => {
                                                       if (this.props.onChange) {
                                                           this.props.onChange(this.state.formData);
                                                       }
-                                                  }
+                                                  },
                                               );
                                           },
-                                          0
+                                          0,
                                       );
                                   }
                               }
@@ -266,14 +266,14 @@ class Form extends React.Component<IFormProps, IFormState> {
                                   muiProps={{
                                       name: layoutElement.key,
                                       defaultSelected: initialValue,
-                                      ...layoutElement.muiProps
+                                      ...layoutElement.muiProps,
                                   }}
                                   qflProps={{
                                       style: {
                                           display: 'inline-block',
-                                          width: itemWidth + '%'
+                                          width: itemWidth + '%',
                                       },
-                                      ...layoutElement.qflProps
+                                      ...layoutElement.qflProps,
                                   }}
                               >
                                   {layoutElement.items.map((radioBoxItem, radioBoxIdx) => <RadioButton
@@ -281,24 +281,24 @@ class Form extends React.Component<IFormProps, IFormState> {
                                       muiProps={{
                                           style: {
                                               width: '50%',
-                                              display: 'inline-block'
+                                              display: 'inline-block',
                                           },
                                           iconStyle: {
                                               marginRight: '8px',
-                                              marginLeft: (isMostLeft ? '0px' : '2px')
+                                              marginLeft: (isMostLeft ? '0px' : '2px'),
                                           },
                                           value: radioBoxItem.value,
                                           label: radioBoxItem.label,
                                           checkedIcon: <CheckedIcon/>,
                                           uncheckedIcon: <UncheckedIcon/>,
-                                          ...layoutElement.radioButtonMuiProps
+                                          ...layoutElement.radioButtonMuiProps,
                                       }}
                                   />)}
                               </RadioBox>
                           );
                       }
                   }
-                      break;
+                                   break;
                   case 'DropDown': {
                       if (layoutElement.items && layoutElement.items.length > 0) {
                           const initialValue = layoutElement.initialValue;
@@ -314,16 +314,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                                           () => {
                                               this.setState(
                                                   {
-                                                      formData: curFormData
+                                                      formData: curFormData,
                                                   },
                                                   () => {
                                                       if (this.props.onChange) {
                                                           this.props.onChange(this.state.formData);
                                                       }
-                                                  }
+                                                  },
                                               );
                                           },
-                                          0
+                                          0,
                                       );
                                   }
                               }
@@ -364,7 +364,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                                   theme={layoutElement.theme}
                                   value={currentValue}
                                   muiProps={{
-                                      ...layoutElement.muiProps
+                                      ...layoutElement.muiProps,
                                   }}
                                   onChange={handleDropDownFormItemChange}
                                   qflProps={{
@@ -372,9 +372,9 @@ class Form extends React.Component<IFormProps, IFormState> {
                                           display: 'inline-block',
                                           width: itemWidth + '%',
                                           paddingRight: (isMostRight ? '0px' : '4px'),
-                                          paddingLeft: (isMostLeft ? '0px' : '4px')
+                                          paddingLeft: (isMostLeft ? '0px' : '4px'),
                                       },
-                                      ...layoutElement.qflProps
+                                      ...layoutElement.qflProps,
                                   }}
                               >
                                   {items}
@@ -382,7 +382,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                           );
                       }
                   }
-                      break;
+                                   break;
                   case 'DatePicker': {
                       const initialValue = layoutElement.initialValue;
                       let currentValue = this.getFormItemValue(layoutElement.key);
@@ -396,16 +396,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                                       () => {
                                           this.setState(
                                               {
-                                                  formData: curFormData
+                                                  formData: curFormData,
                                               },
                                               () => {
                                                   if (this.props.onChange) {
                                                       this.props.onChange(this.state.formData);
                                                   }
-                                              }
+                                              },
                                           );
                                       },
-                                      0
+                                      0,
                                   );
                               }
                           }
@@ -423,7 +423,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                                   tabIndex,
                                   floatingLabelText: layoutElement.label,
                                   width: '100%',
-                                  ...layoutElement.muiProps
+                                  ...layoutElement.muiProps,
                               }}
                               onChange={handleDatePickerFormItemChange}
                               qflProps={{
@@ -431,14 +431,14 @@ class Form extends React.Component<IFormProps, IFormState> {
                                       display: 'inline-block',
                                       width: itemWidth + '%',
                                       paddingRight: (isMostRight ? '0px' : '4px'),
-                                      paddingLeft: (isMostLeft ? '0px' : '4px')
+                                      paddingLeft: (isMostLeft ? '0px' : '4px'),
                                   },
-                                  ...layoutElement.qflProps
+                                  ...layoutElement.qflProps,
                               }}
                           />
                       );
                   }
-                      break;
+                                     break;
 
                   case 'AutoComplete': {
                       if (layoutElement.items && layoutElement.items.length > 0) {
@@ -455,16 +455,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                                           () => {
                                               this.setState(
                                                   {
-                                                      formData: curFormData
+                                                      formData: curFormData,
                                                   },
                                                   () => {
                                                       if (this.props.onChange) {
                                                           this.props.onChange(this.state.formData);
                                                       }
-                                                  }
+                                                  },
                                               );
                                           },
-                                          0
+                                          0,
                                       );
                                   }
                               }
@@ -482,7 +482,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                                   items={layoutElement.items}
                                   muiProps={{
                                       floatingLabelText: layoutElement.label,
-                                      ...layoutElement.muiProps
+                                      ...layoutElement.muiProps,
                                   }}
                                   onChange={handleAutoCompleteFormItemChange}
                                   qflProps={{
@@ -490,16 +490,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                                           display: 'inline-block',
                                           width: itemWidth + '%',
                                           paddingRight: (isMostRight ? '0px' : '4px'),
-                                          paddingLeft: (isMostLeft ? '0px' : '4px')
+                                          paddingLeft: (isMostLeft ? '0px' : '4px'),
                                       },
-                                      ...layoutElement.qflProps
+                                      ...layoutElement.qflProps,
                                   }}
                               >
                               </AutoComplete>
                           );
                       }
                   }
-                      break;
+                                       break;
                   case 'TextField':
                   default: { // tslint:disable-line no-switch-case-fall-through
                       const initialValue = layoutElement.initialValue;
@@ -514,16 +514,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                                       () => {
                                           this.setState(
                                               {
-                                                  formData: curFormData
+                                                  formData: curFormData,
                                               },
                                               () => {
                                                   if (this.props.onChange) {
                                                       this.props.onChange(this.state.formData);
                                                   }
-                                              }
+                                              },
                                           );
                                       },
-                                      0
+                                      0,
                                   );
                               }
                           }
@@ -541,7 +541,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                                   tabindex: tabIndex,
                                   floatingLabelText: layoutElement.label,
                                   width: '100%',
-                                  ...layoutElement.muiProps
+                                  ...layoutElement.muiProps,
                               }}
                               onChange={handleTextFieldFormItemChange}
                               qflProps={{
@@ -549,9 +549,9 @@ class Form extends React.Component<IFormProps, IFormState> {
                                       display: 'inline-block',
                                       width: itemWidth + '%',
                                       paddingRight: (isMostRight ? '0px' : '4px'),
-                                      paddingLeft: (isMostLeft ? '0px' : '4px')
+                                      paddingLeft: (isMostLeft ? '0px' : '4px'),
                                   },
-                                  ...layoutElement.qflProps
+                                  ...layoutElement.qflProps,
                               }}
                           />
                       );
@@ -571,7 +571,7 @@ class Form extends React.Component<IFormProps, IFormState> {
               <div
                 key={idx}
                 style={{
-                    width: '100%'
+                    width: '100%',
                 }}
               >
                 {(layoutItem as Array<ILayoutItem>).map((subItem, subIdx) =>

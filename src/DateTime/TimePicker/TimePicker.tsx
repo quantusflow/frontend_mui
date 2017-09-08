@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import MUITimePicker from 'material-ui/TimePicker/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface ITimePickerProps extends IMUIProps {
   value?: Date;
@@ -24,14 +24,14 @@ class TimePicker extends React.Component<ITimePickerProps, ITimePickerState> {
     qflProps: {},
 
     value: new Date(),
-    onChange: null
+    onChange: null,
   };
 
   constructor(props: ITimePickerProps) {
     super(props);
 
     this.state = {
-      currentValue: props.value
+      currentValue: props.value,
     };
   }
 
@@ -40,13 +40,13 @@ class TimePicker extends React.Component<ITimePickerProps, ITimePickerState> {
     const newValue = time;
     this.setState(
       {
-        currentValue: newValue
+        currentValue: newValue,
       },
       () => {
         if (this.props.onChange) {
           this.props.onChange(newValue);
         }
-      }
+      },
     );
   }
 
@@ -55,7 +55,7 @@ class TimePicker extends React.Component<ITimePickerProps, ITimePickerState> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'TimePicker'
+      componentName: 'TimePicker',
     });
 
     return (

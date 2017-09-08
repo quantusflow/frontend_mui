@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import {DropDownMenu as MUIDropDownMenu} from 'material-ui/DropDownMenu/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface IDropDownProps extends IMUIProps {
   items?: React.ReactNode;
@@ -27,14 +27,14 @@ class DropDown extends React.Component<IDropDownProps, IDropDownState> {
     items: null,
     value: null,
     label: null,
-    onChange: null
+    onChange: null,
   };
 
   constructor(props: IDropDownProps) {
     super(props);
 
     this.state = {
-      currentValue: props.value
+      currentValue: props.value,
     };
   }
 
@@ -43,7 +43,7 @@ class DropDown extends React.Component<IDropDownProps, IDropDownState> {
     const newValue = value;
 
     this.setState({
-      currentValue: newValue
+      currentValue: newValue,
     });
     if (this.props.onChange) {
       this.props.onChange(event, index, oldValue, newValue);
@@ -60,7 +60,7 @@ class DropDown extends React.Component<IDropDownProps, IDropDownState> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'DropDown'
+      componentName: 'DropDown',
     });
 
     return (

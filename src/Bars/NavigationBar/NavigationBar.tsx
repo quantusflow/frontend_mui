@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import MUIDrawer from 'material-ui/Drawer/index.js';
 import Divider from 'material-ui/Divider/index.js';
+import MUIDrawer from 'material-ui/Drawer/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 
@@ -48,7 +48,7 @@ class NavigationBar extends React.Component<INavigationBarProps, {}> {
     listMuiProps: {},
     dividerMuiProps: {},
     listItemMuiProps: {},
-    hideBarFill: false
+    hideBarFill: false,
   };
 
   constructor() {
@@ -66,25 +66,25 @@ class NavigationBar extends React.Component<INavigationBarProps, {}> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'NavigationBar'
+      componentName: 'NavigationBar',
     });
 
     const listMuiProps = buildTheme({
       theme: this.props.theme,
       sourceMuiProps: this.props.listMuiProps || {},
-      componentName: 'List'
+      componentName: 'List',
     }).muiProps;
 
     const dividerMuiProps = buildTheme({
       theme: this.props.theme,
       sourceMuiProps: this.props.dividerMuiProps || {},
-      componentName: 'Divider'
+      componentName: 'Divider',
     }).muiProps;
 
     const listItemMuiProps = buildTheme({
       theme: this.props.theme,
       sourceMuiProps: this.props.listItemMuiProps || {},
-      componentName: 'ListItem'
+      componentName: 'ListItem',
     }).muiProps;
 
     const {location} = this.props;
@@ -93,7 +93,7 @@ class NavigationBar extends React.Component<INavigationBarProps, {}> {
     if (this.props.menuItems) {
       if (!this.props.hideBarFill) {
         this.props.menuItems.push({
-          type: 'fillBar'
+          type: 'fillBar',
         });
       }
       renderedMenu = this.props.menuItems.map((item: IMenuItem, idx) => {

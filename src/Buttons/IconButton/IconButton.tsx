@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import MUIIconButton from 'material-ui/IconButton/index.js';
 import MUIBadge from 'material-ui/Badge/index.js';
+import MUIIconButton from 'material-ui/IconButton/index.js';
 
 import {buildTheme} from '../../themeBuilder';
 
@@ -24,7 +24,7 @@ class IconButton extends React.Component<IIconButtonProps, {}> {
 
     badged: false,
     badgeProps: {},
-    icon: null
+    icon: null,
   };
 
   constructor() {
@@ -53,7 +53,7 @@ class IconButton extends React.Component<IIconButtonProps, {}> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'IconButton'
+      componentName: 'IconButton',
     });
 
     let renderedContent = this.renderIcon(muiProps);

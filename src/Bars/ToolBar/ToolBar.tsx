@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import {Toolbar as MUIToolBar} from 'material-ui/Toolbar/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface IToolBarProps extends IMUIProps {
   items?: React.ReactNode;
@@ -18,7 +18,7 @@ class ToolBar extends React.Component<IToolBarProps, {}> {
     muiProps: {},
     qflProps: {},
 
-    items: null
+    items: null,
   };
 
   constructor() {
@@ -30,7 +30,7 @@ class ToolBar extends React.Component<IToolBarProps, {}> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'ToolBar'
+      componentName: 'ToolBar',
     });
 
     let items = this.props.children;

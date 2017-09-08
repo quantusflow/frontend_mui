@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import MUICheckBox from 'material-ui/Checkbox/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface ICheckBoxProps extends IMUIProps {
   dataKey: string;
@@ -26,20 +26,20 @@ class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
     qflProps: {},
 
     value: false,
-    onChange: null
+    onChange: null,
   };
 
   constructor(props: ICheckBoxProps) {
     super(props);
 
     this.state = {
-      currentValue: props.value
+      currentValue: props.value,
     };
   }
 
   protected componentWillReceiveProps(props, b, c) {
     this.setState({
-      currentValue: props.value
+      currentValue: props.value,
     });
   }
 
@@ -47,7 +47,7 @@ class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
     const oldValue = this.state.currentValue;
     const newValue = !this.state.currentValue;
     this.setState({
-      currentValue: newValue
+      currentValue: newValue,
     });
     if (this.props.onChange) {
       this.props.onChange(e, oldValue, newValue, this.props.dataKey);
@@ -59,7 +59,7 @@ class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'CheckBox'
+      componentName: 'CheckBox',
     });
 
     return (

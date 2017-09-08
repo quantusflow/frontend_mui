@@ -5,8 +5,8 @@ import * as IndexLink from 'react-router/lib/IndexLink.js';
 import * as clone from 'clone';
 import * as extend from 'extend';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface ILinkProps extends IMUIProps {
   linkStyle?: {};
@@ -29,7 +29,7 @@ class Link extends React.Component<ILinkProps, {}> {
     labelStyle: {},
     label: '',
     to: null,
-    href: '#'
+    href: '#',
   };
 
   constructor() {
@@ -41,7 +41,7 @@ class Link extends React.Component<ILinkProps, {}> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'Link'
+      componentName: 'Link',
     });
 
     const targetObj: { href?: string, to?: string } = {href: this.props.href};

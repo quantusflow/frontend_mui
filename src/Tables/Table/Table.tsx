@@ -2,15 +2,15 @@ import * as React from 'react';
 
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table/lib/index.js';
 
-import IndeterminateCheckbox from 'material-ui/svg-icons/content/remove.js';
 import CleanCheckbox from 'material-ui/svg-icons/action/done.js';
+import IndeterminateCheckbox from 'material-ui/svg-icons/content/remove.js';
 
 import * as $ from 'jquery';
 
 import CheckBox from '../../InputForms/CheckBox/CheckBox';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface ISelectableCheckBoxProps {
   checked?: boolean;
@@ -33,20 +33,20 @@ const getSelectable = (theme: {}, muiProps, qflProps) => {
       disabled: false,
       rowIndex: -1,
       indeterminate: false,
-      onChange: null
+      onChange: null,
     };
 
     constructor(props: ISelectableCheckBoxProps) {
       super(props);
 
       this.state = {
-        currentValue: props.checked
+        currentValue: props.checked,
       };
     }
 
     private handleChange(e, oldValue, newValue) {
       this.setState({
-        currentValue: newValue
+        currentValue: newValue,
       });
       if (this.props.onChange) {
         this.props.onChange(e);
@@ -56,7 +56,7 @@ const getSelectable = (theme: {}, muiProps, qflProps) => {
     public render() {
       const muiPropsObj: any = {
         disabled: this.props.disabled,
-        ...muiProps
+        ...muiProps,
       };
 
       if (this.props.indeterminate) {
@@ -73,7 +73,7 @@ const getSelectable = (theme: {}, muiProps, qflProps) => {
           muiProps={muiPropsObj}
           qflProps={{
             style: {},
-            ...qflProps
+            ...qflProps,
           }}
           onChange={(e, oldValue, newValue) => {
             if (oldValue !== newValue) {
@@ -120,13 +120,13 @@ class Table extends React.Component<ITableProps, ITableState> {
     dataSource: null,
     rbtProps: null,
     stylingProps: null,
-    onSelectedRowsChanged: null
+    onSelectedRowsChanged: null,
   };
 
   constructor() {
     super();
     this.state = {
-      selectedRows: {}
+      selectedRows: {},
     };
   }
 
@@ -136,7 +136,7 @@ class Table extends React.Component<ITableProps, ITableState> {
       () => {
         window.dispatchEvent(new Event('resize'));
       },
-      0
+      0,
     );
     const refs: any = this.refs;
     const elementContainer = ((
@@ -178,7 +178,7 @@ class Table extends React.Component<ITableProps, ITableState> {
     }
 
     this.setState({
-      selectedRows: currentSelectedRows
+      selectedRows: currentSelectedRows,
     });
 
     if (this.props.onSelectedRowsChanged) {
@@ -194,7 +194,7 @@ class Table extends React.Component<ITableProps, ITableState> {
       }
     }
     this.setState({
-      selectedRows: currentSelectedRows
+      selectedRows: currentSelectedRows,
     });
 
     if (this.props.onSelectedRowsChanged) {
@@ -213,7 +213,7 @@ class Table extends React.Component<ITableProps, ITableState> {
       theme: this.props.theme,
       sourceRbtProps: this.props.rbtProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'Table'
+      componentName: 'Table',
     });
 
     const {stylingProps} = this.props;
@@ -239,7 +239,7 @@ class Table extends React.Component<ITableProps, ITableState> {
       onSelectAll: (isSelected, rows) => {
         this.handleRowSelectAll(isSelected, rows);
       },
-      ...rbtProps.selectRow
+      ...rbtProps.selectRow,
     };
 
     rbtProps.selectRow = selectRowProp;
