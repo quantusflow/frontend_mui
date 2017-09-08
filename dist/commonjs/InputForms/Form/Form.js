@@ -374,7 +374,6 @@ var Form = (function (_super) {
                     }
                     return (React.createElement("div", { key: idx, style: {
                             width: '100%',
-                            paddingTop: (layoutItem.type === 'DropDown' || layoutItem.type === 'AutoComplete' ? '14px' : '0px')
                         } }, getElement(layoutItem, itemWidth_1, (30 + (idx * 10)), true, true)));
                 }
                 return null;

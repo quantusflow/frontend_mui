@@ -2,10 +2,19 @@ import * as React from 'react';
 import { IMUIProps } from '../../interfaces';
 export interface IStep {
     stepContent?: React.ReactNode;
-    stepProps?: {};
-    slProps?: {};
+    stepProps?: {
+        activeContext?: string;
+        muiProps?: {};
+    };
+    slProps?: {
+        activeContext?: string;
+        muiProps?: {};
+    };
     label?: React.ReactNode;
-    sbProps?: {};
+    sbProps?: {
+        activeContext?: string;
+        muiProps?: {};
+    };
 }
 export interface IStepperProps extends IMUIProps {
     steps: Array<IStep>;

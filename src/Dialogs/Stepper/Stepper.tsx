@@ -9,10 +9,19 @@ import {IMUIProps} from '../../interfaces';
 
 export interface IStep {
   stepContent?: React.ReactNode;
-  stepProps?: {};
-  slProps?: {};
+  stepProps?: {
+      activeContext?: string;
+      muiProps?: {}
+  };
+  slProps?: {
+    activeContext?: string;
+    muiProps?: {}
+  };
   label?: React.ReactNode;
-  sbProps?: {};
+  sbProps?: {
+      activeContext?: string;
+      muiProps?: {}
+  };
 }
 
 export interface IStepperProps extends IMUIProps {
@@ -122,6 +131,13 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
       componentName: 'Stepper'
     });
 
+    const stepperDialogProps = buildTheme({
+        theme: this.props.theme,
+        sourceMuiProps: this.props.dialogMuiProps,
+        sourceQflProps: this.props.dialogQflProps,
+        componentName: 'StepperDialog'
+    });
+
     let currentButton = null;
     if (stepIndex === this.props.steps.length - 1) {
       currentButton = (
@@ -131,7 +147,15 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
             onTouchTap: (buttonClicked) => this.handleClose(buttonClicked),
             style: {
               backgroundColor: '#000000',
-              color: '#ffffff'}
+              color: '#ffffff',
+              width: '8vw',
+              fontFamily: 'Open Sans Condensed Bold',
+              minWidth: '4.4vw',
+              height: '1.6vw',
+              lineHeight: '1.6vw',
+              border: '0.5vw',
+              borderRadius: '0vw'
+            }
           }}
         />
       );
@@ -143,28 +167,71 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
             onTouchTap: () => this.handleNext(),
             style: {
               backgroundColor: '#000000',
-              color: '#ffffff'}
+              color: '#ffffff',
+              width: '8vw',
+              fontFamily: 'Open Sans Condensed Bold',
+              minWidth: '4.4vw',
+              height: '1.6vw',
+              lineHeight: '1.6vw',
+              border: '0.5vw',
+              borderRadius: '0vw'
+            }
           }}
         />
       );
     }
 
     let stepperContent =
-      this.props.steps.map((step: IStep) => {
-        return (
-          <MUIStep style={{height: '30px'}} {...step.stepProps}>
-            <MUIStepLabel {...step.slProps}>{step.label}</MUIStepLabel>
+      this.props.steps.map((step: IStep, idx: number) => {
+          const slProps = buildTheme({
+              theme: this.props.theme,
+              sourceMuiProps: step.slProps.muiProps,
+              sourceQflProps: {},
+              componentName: 'StepLabel' + (this.state.stepIndex === idx ? (step.slProps.activeContext ? ':' + step.slProps.activeContext : ':active') : '')
+          });
+
+          const stepProps = buildTheme({
+              theme: this.props.theme,
+              sourceMuiProps: step.stepProps.muiProps,
+              sourceQflProps: {},
+              componentName: 'Step' + (this.state.stepIndex === idx ? (step.stepProps.activeContext ? ':' + step.stepProps.activeContext : ':active') : '')
+          });
+
+          return (
+          <MUIStep {...step.stepProps} {...stepProps.muiProps}>
+            <MUIStepLabel {...step.slProps} {...slProps.muiProps}>{step.label}</MUIStepLabel>
           </MUIStep>
         );
       });
 
     if (isLinear) {
       stepperContent =
-        this.props.steps.map((step: IStep) => {
+        this.props.steps.map((step: IStep, idx: number) => {
+            const slProps = buildTheme({
+                theme: this.props.theme,
+                sourceMuiProps: step.slProps.muiProps,
+                sourceQflProps: {},
+                componentName: 'StepLabel' + (this.state.stepIndex === idx ? (step.slProps.activeContext ? ':' + step.slProps.activeContext : ':active') : '')
+            });
+
+            const stepProps = buildTheme({
+                theme: this.props.theme,
+                sourceMuiProps: step.stepProps.muiProps,
+                sourceQflProps: {},
+                componentName: 'Step' + (this.state.stepIndex === idx ? (step.stepProps.activeContext ? ':' + step.stepProps.activeContext : ':active') : '')
+            });
+
+            const sbProps = buildTheme({
+              theme: this.props.theme,
+              sourceMuiProps: step.sbProps.muiProps,
+              sourceQflProps: {},
+              componentName: 'StepButton' + (this.state.stepIndex === idx ? (step.sbProps.activeContext ? ':' + step.sbProps.activeContext : ':active') : '')
+            });
+
           return (
-            <MUIStep style={{height: '30px'}}>
-              <MUIStepButton {...step.sbProps}>
-                <MUIStepLabel {...step.slProps}>{step.label}</MUIStepLabel>
+            <MUIStep {...step.stepProps} {...stepProps.muiProps}>
+              <MUIStepButton {...step.sbProps} {...sbProps.muiProps}>
+                <MUIStepLabel {...step.slProps} {...slProps.muiProps}>{step.label}</MUIStepLabel>
               </MUIStepButton>
             </MUIStep>
           );
@@ -192,9 +259,17 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
                     disabled: (stepIndex === 0),
                     onTouchTap: () => this.handlePrev(),
                     style: {
-                      marginRight: 9,
+                      marginRight: '0.45vw',
                       backgroundColor: '#000000',
-                      color: '#ffffff'}
+                      color: '#ffffff',
+                      width: '8vw',
+                      fontFamily: 'Open Sans Condensed Bold',
+                      minWidth: '4.4vw',
+                      height: '1.6vw',
+                      lineHeight: '1.6vw',
+                      border: '0.5vw',
+                      borderRadius: '0vw'
+                    }
                   }}
                 />
                 {currentButton}
@@ -210,14 +285,14 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
         <Dialog
           theme={this.props.dialogTheme}
           muiProps={{
+            ...stepperDialogProps.muiProps,
             title: this.props.title,
             modal: isModal,
             onRequestClose: (buttonClicked) => this.handleClose(buttonClicked),
-            open: this.state.open,
-            ...this.props.dialogMuiProps
+            open: this.state.open
           }}
           qflProps={{
-            ...this.props.dialogQflProps
+            ...stepperDialogProps.qflProps
           }}
         >
           {stepper}
