@@ -130,7 +130,7 @@ class Table extends React.Component<ITableProps, ITableState> {
     };
   }
 
-  protected componentDidMount() {
+  public componentDidMount() {
     // Hack for render table in Grid
     setTimeout(
       () => {

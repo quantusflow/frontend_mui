@@ -37,9 +37,9 @@ class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
     };
   }
 
-  protected componentWillReceiveProps(props, b, c) {
+  public componentWillReceiveProps(nextProps: Readonly<ICheckBoxProps>, nextContext: any) {
     this.setState({
-      currentValue: props.value,
+      currentValue: nextProps.value,
     });
   }
 
