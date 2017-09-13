@@ -19,7 +19,7 @@ class FloatingButton extends React.Component<IFloatingButtonProps, {}> {
     muiProps: {},
     qflProps: {},
 
-    icon: null
+    icon: null,
   };
 
   constructor() {
@@ -31,7 +31,7 @@ class FloatingButton extends React.Component<IFloatingButtonProps, {}> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'FloatingButton'
+      componentName: 'FloatingButton',
     });
 
     return (

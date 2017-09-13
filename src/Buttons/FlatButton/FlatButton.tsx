@@ -13,7 +13,7 @@ class FlatButton extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
     theme: null,
     muiProps: {},
-    qflProps: {}
+    qflProps: {},
   };
 
   constructor() {
@@ -25,7 +25,7 @@ class FlatButton extends React.Component<IMUIProps, {}> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'FlatButton'
+      componentName: 'FlatButton',
     });
 
     return (

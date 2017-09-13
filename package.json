@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://www.npmjs.com"
   },
-  "version": "1.0.14",
+  "version": "2.0.0",
   "description": "Collection of optimized MUI React components.",
   "license": "MIT",
   "main": "dist/commonjs/index.js",
@@ -24,13 +24,26 @@
     "react-tap-event-plugin": "^2.0.1"
   },
   "devDependencies": {
+    "@process-engine-js/tslint-config": "^1.0.1",
+    "@types/node": "^8.0.28",
+    "@types/react": "^16.0.5",
+    "@types/react-bootstrap-table": "^2.6.7",
+    "@types/react-dom": "^15.5.4",
     "gulp": "^3.9.1",
     "gulptraum": "^2.2.1",
     "gulptraum-typescript": "^1.3.2",
-    "tsconfig": "^6.0.0"
+    "tsconfig": "^7.0.0",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2"
   },
   "peerDependencies": {
     "react": "^15.4.0",
     "react-dom": "^15.4.0"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "prepublishOnly": "npm run build && npm run build-schemas && npm run build-doc",
+    "build-doc": "gulp doc",
+    "build-schemas": "gulp typescript-schema"
   }
 }

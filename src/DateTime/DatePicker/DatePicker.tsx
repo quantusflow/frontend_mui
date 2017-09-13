@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import MUIDatePicker from 'material-ui/DatePicker/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface IDatePickerProps extends IMUIProps {
   value?: string;
@@ -24,14 +24,14 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
     qflProps: {},
 
     value: new Date(),
-    onChange: null
+    onChange: null,
   };
 
   constructor(props: IDatePickerProps) {
     super(props);
 
     this.state = {
-      currentValue: (props.value && typeof props.value === 'string' ? new Date(props.value) : null)
+      currentValue: (props.value && typeof props.value === 'string' ? new Date(props.value) : null),
     };
   }
 
@@ -40,13 +40,13 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
     const newValue = date;
     this.setState(
       {
-        currentValue: newValue
+        currentValue: newValue,
       },
       () => {
         if (this.props.onChange) {
           this.props.onChange((oldValue ? oldValue.toISOString() : null), (newValue ? newValue.toISOString() : null));
         }
-      }
+      },
     );
   }
 
@@ -55,7 +55,7 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'DatePicker'
+      componentName: 'DatePicker',
     });
 
     return (

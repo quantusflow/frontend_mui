@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import {Stepper as MUIStepper, Step as MUIStep, StepLabel as MUIStepLabel, StepButton as MUIStepButton} from 'material-ui/Stepper/index.js';
-import Dialog from '../Dialog/Dialog';
+import {Step as MUIStep, StepButton as MUIStepButton, StepLabel as MUIStepLabel, Stepper as MUIStepper} from 'material-ui/Stepper/index.js';
 import FlatButton from '../../Buttons/FlatButton/FlatButton';
+import Dialog from '../Dialog/Dialog';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface IStep {
   stepContent?: React.ReactNode;
@@ -74,7 +74,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
 
     prevLabel: 'Zurück',
     nextLabel: 'Weiter',
-    doneLabel: 'Fertig'
+    doneLabel: 'Fertig',
   };
 
   constructor(props: IStepperProps) {
@@ -83,7 +83,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     this.state = {
       finished: false,
       stepIndex: 0,
-      open: props.isDialog
+      open: props.isDialog,
     };
   }
 
@@ -91,7 +91,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     const {stepIndex} = this.state;
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex >= this.props.steps.length - 1
+      finished: stepIndex >= this.props.steps.length - 1,
     });
   }
 
@@ -128,14 +128,14 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'Stepper'
+      componentName: 'Stepper',
     });
 
     const stepperDialogProps = buildTheme({
         theme: this.props.theme,
         sourceMuiProps: this.props.dialogMuiProps,
         sourceQflProps: this.props.dialogQflProps,
-        componentName: 'StepperDialog'
+        componentName: 'StepperDialog',
     });
 
     let currentButton = null;
@@ -154,8 +154,8 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
               height: '1.6vw',
               lineHeight: '1.6vw',
               border: '0.5vw',
-              borderRadius: '0vw'
-            }
+              borderRadius: '0vw',
+            },
           }}
         />
       );
@@ -174,8 +174,8 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
               height: '1.6vw',
               lineHeight: '1.6vw',
               border: '0.5vw',
-              borderRadius: '0vw'
-            }
+              borderRadius: '0vw',
+            },
           }}
         />
       );
@@ -187,14 +187,14 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
               theme: this.props.theme,
               sourceMuiProps: step.slProps.muiProps,
               sourceQflProps: {},
-              componentName: 'StepLabel' + (this.state.stepIndex === idx ? (step.slProps.activeContext ? ':' + step.slProps.activeContext : ':active') : '')
+              componentName: 'StepLabel' + (this.state.stepIndex === idx ? (step.slProps.activeContext ? ':' + step.slProps.activeContext : ':active') : ''),
           });
 
           const stepProps = buildTheme({
               theme: this.props.theme,
               sourceMuiProps: step.stepProps.muiProps,
               sourceQflProps: {},
-              componentName: 'Step' + (this.state.stepIndex === idx ? (step.stepProps.activeContext ? ':' + step.stepProps.activeContext : ':active') : '')
+              componentName: 'Step' + (this.state.stepIndex === idx ? (step.stepProps.activeContext ? ':' + step.stepProps.activeContext : ':active') : ''),
           });
 
           return (
@@ -211,24 +211,24 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
                 theme: this.props.theme,
                 sourceMuiProps: step.slProps.muiProps,
                 sourceQflProps: {},
-                componentName: 'StepLabel' + (this.state.stepIndex === idx ? (step.slProps.activeContext ? ':' + step.slProps.activeContext : ':active') : '')
+                componentName: 'StepLabel' + (this.state.stepIndex === idx ? (step.slProps.activeContext ? ':' + step.slProps.activeContext : ':active') : ''),
             });
 
             const stepProps = buildTheme({
                 theme: this.props.theme,
                 sourceMuiProps: step.stepProps.muiProps,
                 sourceQflProps: {},
-                componentName: 'Step' + (this.state.stepIndex === idx ? (step.stepProps.activeContext ? ':' + step.stepProps.activeContext : ':active') : '')
+                componentName: 'Step' + (this.state.stepIndex === idx ? (step.stepProps.activeContext ? ':' + step.stepProps.activeContext : ':active') : ''),
             });
 
             const sbProps = buildTheme({
               theme: this.props.theme,
               sourceMuiProps: step.sbProps.muiProps,
               sourceQflProps: {},
-              componentName: 'StepButton' + (this.state.stepIndex === idx ? (step.sbProps.activeContext ? ':' + step.sbProps.activeContext : ':active') : '')
+              componentName: 'StepButton' + (this.state.stepIndex === idx ? (step.sbProps.activeContext ? ':' + step.sbProps.activeContext : ':active') : ''),
             });
 
-          return (
+            return (
             <MUIStep {...step.stepProps} {...stepProps.muiProps}>
               <MUIStepButton {...step.sbProps} {...sbProps.muiProps}>
                 <MUIStepLabel {...step.slProps} {...slProps.muiProps}>{step.label}</MUIStepLabel>
@@ -268,8 +268,8 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
                       height: '1.6vw',
                       lineHeight: '1.6vw',
                       border: '0.5vw',
-                      borderRadius: '0vw'
-                    }
+                      borderRadius: '0vw',
+                    },
                   }}
                 />
                 {currentButton}
@@ -289,10 +289,10 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
             title: this.props.title,
             modal: isModal,
             onRequestClose: (buttonClicked) => this.handleClose(buttonClicked),
-            open: this.state.open
+            open: this.state.open,
           }}
           qflProps={{
-            ...stepperDialogProps.qflProps
+            ...stepperDialogProps.qflProps,
           }}
         >
           {stepper}

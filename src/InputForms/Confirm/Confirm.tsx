@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import RaisedButton from '../../Buttons/RaisedButton/RaisedButton';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface IConfirmLayout {
   key: string;
@@ -35,14 +35,14 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
     qflProps: {},
 
     message: null,
-    onChoose: null
+    onChoose: null,
   };
 
   constructor() {
     super();
 
     this.state = {
-      confirmData: {}
+      confirmData: {},
     };
   }
 
@@ -59,7 +59,7 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'Confirm'
+      componentName: 'Confirm',
     });
 
     const {layout} = this.props;
@@ -71,13 +71,13 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
         muiProps={{
           label: element.label,
           primary: true,
-          ...element.muiProps
+          ...element.muiProps,
         }}
         qflProps={{
           onClick: (e) => {
             this.handleConfirm(element.key);
           },
-          ...element.qflProps
+          ...element.qflProps,
         }}
       />
     ));

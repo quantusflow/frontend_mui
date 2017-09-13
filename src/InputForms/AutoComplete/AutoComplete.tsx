@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import MUIAutoComplete from 'material-ui/AutoComplete/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface IAutoCompleteProps extends IMUIProps {
   items: Array<{}>;
@@ -28,14 +28,14 @@ class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteStat
 
     label: null,
     value: null,
-    onChange: null
+    onChange: null,
   };
 
   constructor(props: IAutoCompleteProps) {
     super(props);
 
     this.state = {
-      currentValue: (props.value ? props.value.toString() : null)
+      currentValue: (props.value ? props.value.toString() : null),
     };
   }
 
@@ -44,7 +44,7 @@ class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteStat
     const newValue = this.props.items[index];
 
     this.setState({
-      currentValue: (newValue ? newValue.toString() : null)
+      currentValue: (newValue ? newValue.toString() : null),
     });
     if (this.props.onChange) {
       this.props.onChange(chosenRequest, index, oldValue, newValue);
@@ -61,7 +61,7 @@ class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteStat
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'AutoComplete'
+      componentName: 'AutoComplete',
     });
 
     return (

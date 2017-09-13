@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import MUISnackbar from 'material-ui/Snackbar/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 /**
  * Material UI based SnackBar
@@ -12,7 +12,7 @@ class SnackBar extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
     theme: null,
     muiProps: {},
-    qflProps: {}
+    qflProps: {},
   };
 
   constructor() {
@@ -24,7 +24,7 @@ class SnackBar extends React.Component<IMUIProps, {}> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'SnackBar'
+      componentName: 'SnackBar',
     });
 
     return (

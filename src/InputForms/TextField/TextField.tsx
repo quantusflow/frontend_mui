@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import MUITextField from 'material-ui/TextField/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface ITextFieldProps extends IMUIProps {
   value?: string;
@@ -26,14 +26,14 @@ class TextField extends React.Component<ITextFieldProps, ITextFieldState> {
 
     value: null,
     watch: false,
-    onChange: null
+    onChange: null,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      currentValue: props.value
+      currentValue: props.value,
     };
   }
 
@@ -41,7 +41,7 @@ class TextField extends React.Component<ITextFieldProps, ITextFieldState> {
     const oldValue = this.state.currentValue;
     const newValue = e.currentTarget.value;
     this.setState({
-      currentValue: newValue
+      currentValue: newValue,
     });
 
     if (this.props.onChange && ((fireUp && !this.props.watch) || (!fireUp && this.props.watch))) {
@@ -58,7 +58,7 @@ class TextField extends React.Component<ITextFieldProps, ITextFieldState> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'TextField'
+      componentName: 'TextField',
     });
 
     return (

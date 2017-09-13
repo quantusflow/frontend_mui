@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import MUIToggle from 'material-ui/Toggle/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 /**
  * Material UI based toggle
@@ -12,7 +12,7 @@ class Toggle extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
     theme: null,
     muiProps: {},
-    qflProps: {}
+    qflProps: {},
   };
 
   constructor() {
@@ -24,7 +24,7 @@ class Toggle extends React.Component<IMUIProps, {}> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'Toggle'
+      componentName: 'Toggle',
     });
 
     return (

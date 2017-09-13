@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import MUIDialog from 'material-ui/Dialog/index.js';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 /**
  * Material UI based modal dialog
@@ -12,7 +12,7 @@ class Dialog extends React.Component<IMUIProps, {}> {
   public static defaultProps = {
     theme: null,
     muiProps: {},
-    qflProps: {}
+    qflProps: {},
   };
 
   constructor() {
@@ -26,7 +26,7 @@ class Dialog extends React.Component<IMUIProps, {}> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'Dialog'
+      componentName: 'Dialog',
     });
 
     return (

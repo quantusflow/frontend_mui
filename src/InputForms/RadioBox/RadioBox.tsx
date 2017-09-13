@@ -3,8 +3,8 @@ import * as React from 'react';
 import {RadioButtonGroup as MUIRadioButtonGroup} from 'material-ui/RadioButton/index.js';
 import RadioButton from './RadioButton';
 
-import {buildTheme} from '../../themeBuilder';
 import {IMUIProps} from '../../interfaces';
+import {buildTheme} from '../../themeBuilder';
 
 export interface IRadioBoxProps extends IMUIProps {
   key: string;
@@ -31,14 +31,14 @@ class RadioBox extends React.Component<IRadioBoxProps, IRadioBoxState> {
     items: null,
     value: null,
     label: null,
-    onChange: null
+    onChange: null,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      currentValue: props.value
+      currentValue: props.value,
     };
   }
 
@@ -47,7 +47,7 @@ class RadioBox extends React.Component<IRadioBoxProps, IRadioBoxState> {
     const newValue = value;
 
     this.setState({
-      currentValue: newValue
+      currentValue: newValue,
     });
     if (this.props.onChange) {
       this.props.onChange(event, oldValue, newValue);
@@ -64,7 +64,7 @@ class RadioBox extends React.Component<IRadioBoxProps, IRadioBoxState> {
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
       sourceQflProps: this.props.qflProps,
-      componentName: 'RadioBox'
+      componentName: 'RadioBox',
     });
 
     return (
