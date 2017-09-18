@@ -5,6 +5,22 @@ import MUIDatePicker from 'material-ui/DatePicker/index.js';
 import {IMUIProps} from '../../interfaces';
 import {buildTheme} from '../../themeBuilder';
 
+import * as areIntlLocalesSupported from 'intl-locales-supported';
+
+let DateTimeFormat;
+
+/**
+ * Use the native Intl.DateTimeFormat if available, or a polyfill if not.
+ */
+if (areIntlLocalesSupported(['de', 'de-DE'])) {
+    DateTimeFormat = global.Intl.DateTimeFormat;
+} else {
+    const IntlPolyfill = require('intl');
+    DateTimeFormat = IntlPolyfill.DateTimeFormat;
+    require('intl/locale-data/jsonp/de');
+    require('intl/locale-data/jsonp/de-DE');
+}
+
 export interface IDatePickerProps extends IMUIProps {
   value?: string;
   onChange?: Function;
@@ -60,7 +76,7 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
 
     return (
       <div {...qflProps}>
-        <MUIDatePicker ref='muiDateField' {...muiProps} value={this.state.currentValue}
+        <MUIDatePicker ref='muiDateField' DateTimeFormat={DateTimeFormat} {...muiProps} value={this.state.currentValue}
                        onChange={(e, date) => this.handleChange(e, date)}/>
       </div>
     );
