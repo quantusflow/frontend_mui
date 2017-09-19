@@ -6,25 +6,26 @@ import {IMUIProps} from '../../interfaces';
 import {buildTheme} from '../../themeBuilder';
 
 export interface IAutoCompleteProps extends IMUIProps {
-  items?: Array<{}> | Array<React.ReactNode> | React.ReactNode;
+  items?: Array<{}>;
   label?: string;
   value?: any;
   searchText?: string;
-  dataFetcher?(searchText: string): Promise<Array<{}>>;
-
   onChange?: Function;
+  inputDelay?: number;
+
+  dataFetcher?(searchText: string): Promise<Array<{}>>;
 }
 
 export interface IAutoCompleteState {
-  items?: Array<{}> | Array<React.ReactNode> | React.ReactNode;
+  delayTimer: NodeJS.Timer;
   searchText?: string;
 }
 
 /**
  * Material UI based auto complete drop down menu
  */
-class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteState> {
-  public static defaultProps = {
+export default class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteState> {
+  public static defaultProps: {} = {
     theme: null,
     muiProps: {},
     qflProps: {},
@@ -32,48 +33,57 @@ class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteStat
     label: null,
     value: null,
     onChange: null,
+    inputDelay: 500,
 
   };
 
   constructor(props: IAutoCompleteProps) {
     super(props);
 
-    let items = props.children;
-    if (!props.dataFetcher && props.items) {
-      items = props.items;
-    } else if (this.props.dataFetcher) {
-      items = [];
-    }
-
     this.state = {
-      items: items,
-      searchText: (props.value ? props.value.toString() : null)
+      delayTimer: null,
+      searchText: (props.value ? props.value.toString() : null),
     };
   }
 
-  componentDidMount() {
-    if (this.props.dataFetcher) {
-      this.props.dataFetcher(null).then((items: Array<{}>) => {
-        this.setState({
-          items: items
-        })
-      });
-    }
+  public componentDidMount(): void {
+    this.handleDataFetch((this.props.value ? this.props.value.toString() : null));
   }
 
-  private handleUpdateInput(searchText: string, dataSource: Array<{}>, params: {}) {
+  private handleUpdateInput(searchText: string, dataSource: Array<{}>, params: {}): void {
+    let delayTimer: NodeJS.Timer = null;
     if (this.props.dataFetcher) {
-      this.handleDataFetch(searchText);
-    } else {
-      this.setState({
-        searchText: searchText,
-      });
+      if (this.state.delayTimer) {
+        clearTimeout(this.state.delayTimer);
+      }
+      delayTimer = setTimeout(
+        () => {
+          this.handleDataFetch(searchText);
+        },
+        this.props.inputDelay,
+      );
     }
-  };
 
-  private handleChange(chosenRequest, index) {
-    const oldSearchText = this.state.searchText;
-    const newSearchText = this.props.items[index];
+    this.setState({
+      delayTimer: delayTimer,
+      searchText: searchText,
+    });
+  }
+
+  private handleChange(chosenRequest: any, index: number): void {
+    const oldSearchText: string = this.state.searchText;
+    let newSearchText: string;
+
+    if (typeof chosenRequest === 'object') {
+      let choosenValueKey: string = 'text';
+      const muiProps: any = this.props.muiProps;
+      if (muiProps && muiProps.dataSourceConfig && muiProps.dataSourceConfig.text) {
+        choosenValueKey = muiProps.dataSourceConfig.text;
+      }
+      newSearchText = chosenRequest[choosenValueKey];
+    } else {
+      newSearchText = chosenRequest;
+    }
 
     this.setState({
       searchText: (newSearchText ? newSearchText.toString() : null),
@@ -83,17 +93,13 @@ class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteStat
     }
   }
 
-  private handleDataFetch(searchText: string) {
+  private handleDataFetch(searchText: string): void {
     if (this.props.dataFetcher) {
-      this.props.dataFetcher(searchText).then((items) => {
-        this.setState({
-          items
-        });
-      });
+      this.props.dataFetcher(searchText);
     }
-  };
+  }
 
-  public render() {
+  public render(): JSX.Element | null | false {
     const {muiProps, qflProps} = buildTheme({
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
@@ -101,14 +107,19 @@ class AutoComplete extends React.Component<IAutoCompleteProps, IAutoCompleteStat
       componentName: 'AutoComplete',
     });
 
+    let items: Array<React.ReactNode> = this.props.children as Array<React.ReactNode>;
+    if (this.props.items) {
+      items = this.props.items;
+    }
+
     return (
       <div {...qflProps}>
-        <MUIAutoComplete  {...muiProps} openOnFocus={true} dataSource={this.state.items} searchText={this.state.searchText}
-                          onNewRequest={(chosenRequest, index) => this.handleChange(chosenRequest, index)}
-                          onUpdateInput={(searchText: string, dataSource: Array<{}>, params: {}) => this.handleUpdateInput(searchText, dataSource, params)}/>
+        <MUIAutoComplete
+          {...muiProps} dataSource={items} searchText={this.state.searchText}
+          onNewRequest={(chosenRequest: string, index: number): void => this.handleChange(chosenRequest, index)}
+          onUpdateInput={(searchText: string, dataSource: Array<{}>, params: {}): void => this.handleUpdateInput(searchText, dataSource, params)}
+        />
       </div>
     );
   }
 }
-
-export default AutoComplete;
