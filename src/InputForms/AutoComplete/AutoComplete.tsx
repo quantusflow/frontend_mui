@@ -6,14 +6,14 @@ import {IMUIProps} from '../../interfaces';
 import {buildTheme} from '../../themeBuilder';
 
 export interface IAutoCompleteProps extends IMUIProps {
-  items?: Array<{}>;
+  items?: Array<{} | string>;
   label?: string;
-  value?: any;
+  value?: string;
   searchText?: string;
-  onChange?: Function;
   inputDelay?: number;
 
-  dataFetcher?(searchText: string): Promise<Array<{}>>;
+  onChange(choosenRequest: {} | string, index: number, oldValue: string, newValue: string): void;
+  dataFetcher?(searchText: string): Promise<Array<{} | string>>;
 }
 
 export interface IAutoCompleteState {
@@ -42,7 +42,7 @@ export default class AutoComplete extends React.Component<IAutoCompleteProps, IA
 
     this.state = {
       delayTimer: null,
-      searchText: (props.value ? props.value.toString() : null),
+      searchText: props.value,
     };
   }
 
@@ -50,7 +50,7 @@ export default class AutoComplete extends React.Component<IAutoCompleteProps, IA
     this.handleDataFetch((this.props.value ? this.props.value.toString() : null));
   }
 
-  private handleUpdateInput(searchText: string, dataSource: Array<{}>, params: {}): void {
+  private handleUpdateInput(searchText: string, dataSource: Array<{} | string>, params: {}): void {
     let delayTimer: NodeJS.Timer = null;
     if (this.props.dataFetcher) {
       if (this.state.delayTimer) {
@@ -70,7 +70,7 @@ export default class AutoComplete extends React.Component<IAutoCompleteProps, IA
     });
   }
 
-  private handleChange(chosenRequest: any, index: number): void {
+  private handleChange(chosenRequest: {} | string, index: number): void {
     const oldSearchText: string = this.state.searchText;
     let newSearchText: string;
 
@@ -117,7 +117,9 @@ export default class AutoComplete extends React.Component<IAutoCompleteProps, IA
         <MUIAutoComplete
           {...muiProps} dataSource={items} searchText={this.state.searchText}
           onNewRequest={(chosenRequest: string, index: number): void => this.handleChange(chosenRequest, index)}
-          onUpdateInput={(searchText: string, dataSource: Array<{}>, params: {}): void => this.handleUpdateInput(searchText, dataSource, params)}
+          onUpdateInput={(searchText: string, dataSource: Array<{} | string>, params: {}): void =>
+              this.handleUpdateInput(searchText, dataSource, params)
+          }
         />
       </div>
     );

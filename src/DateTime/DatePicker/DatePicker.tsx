@@ -5,15 +5,22 @@ import MUIDatePicker from 'material-ui/DatePicker/index.js';
 import {IMUIProps} from '../../interfaces';
 import {buildTheme} from '../../themeBuilder';
 
-import * as areIntlLocalesSupported from 'intl-locales-supported';
 import * as IntlPolyfill from 'intl';
+import * as areIntlLocalesSupported from 'intl-locales-supported';
+import DateTimeFormat = Intl.DateTimeFormat;
 
-const supportedDateTimeFormats = ['en-GB', 'en-US', 'de-AT', 'de-CH', 'de-DE'];
+export enum SupportedLocales {
+  GB = 'en-GB',
+  US = 'en-US',
+  AT = 'de-AT',
+  CH = 'de-CH',
+  DE = 'de-DE',
+}
 
 export interface IDatePickerProps extends IMUIProps {
   value?: string;
-  locale?: string;
-  onChange?: Function;
+  locale?: SupportedLocales;
+  onChange?(oldValue: string, newValue: string): void;
 }
 
 export interface IDatePickerState {
@@ -25,13 +32,13 @@ export interface IDatePickerState {
  * Material UI based data picker
  */
 class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
-  public static defaultProps = {
+  public static defaultProps: any = {
     theme: null,
     muiProps: {},
     qflProps: {},
 
     value: new Date(),
-    locale: 'de-DE',
+    locale: SupportedLocales.DE,
     onChange: null,
   };
 
@@ -39,17 +46,19 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
     super(props);
 
     let currentDateTimeFormat;
-    if (areIntlLocalesSupported([this.props.locale.split('-')[0], this.props.locale])) {
+    const datepickerLocaleString: string = this.props.locale;
+    const datepickerLanguage: string = datepickerLocaleString.split('-')[0];
+    if (areIntlLocalesSupported([datepickerLanguage, datepickerLocaleString])) {
       currentDateTimeFormat = global.Intl.DateTimeFormat;
     } else {
 
       currentDateTimeFormat = IntlPolyfill.DateTimeFormat;
 
-      // Check if supported
-      if (supportedDateTimeFormats.indexOf(this.props.locale) !== -1) {
-        switch(this.props.locale) {
+      const localeIsSupported: boolean = Object.values(SupportedLocales).includes(datepickerLocaleString);
+      if (localeIsSupported) {
+        switch (this.props.locale) {
           case 'en-GB': {
-            require('intl/locale-data/jsonp/en.js');
+            require('intl/locale-data/jsonp/en');
             require('intl/locale-data/jsonp/en-GB');
             break;
           }
@@ -77,19 +86,20 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
       }
     }
 
+    let datepickerValue: Date = null;
+    if (props.value && typeof props.value === 'string') {
+      datepickerValue = new Date(props.value);
+    }
+
     this.state = {
       currentDateTimeFormat: currentDateTimeFormat,
-      currentValue: (props.value && typeof props.value === 'string' ? new Date(props.value) : null),
+      currentValue: datepickerValue,
     };
   }
 
-  public componentDidMount() {
-
-  }
-
-  private handleChange(e, date) {
-    const oldValue = this.state.currentValue;
-    const newValue = date;
+  private handleChange(event: Event, date: Date): void {
+    const oldValue: Date = this.state.currentValue;
+    const newValue: Date = date;
     this.setState(
       {
         currentValue: newValue,
@@ -102,7 +112,7 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
     );
   }
 
-  public render() {
+  public render(): JSX.Element | null | false {
     const {muiProps, qflProps} = buildTheme({
       theme: this.props.theme,
       sourceMuiProps: this.props.muiProps,
@@ -113,7 +123,7 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
     return (
       <div {...qflProps}>
         <MUIDatePicker ref='muiDateField' DateTimeFormat={this.state.currentDateTimeFormat} {...muiProps} value={this.state.currentValue}
-                       onChange={(e, date) => this.handleChange(e, date)}/>
+                       onChange={(event: Event, date: Date) => this.handleChange(event, date)}/>
       </div>
     );
   }
