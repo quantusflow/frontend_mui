@@ -118,10 +118,12 @@ class Form extends React.Component<IFormProps, IFormState> {
         }
         if (!foundInItems) {
           for (let i = 0; i < items.length; i++) {
-            const match = items[i].compareValue(result);
-            if (items[i].compareValue && match) {
-              result = items[i].value;
-              break;
+            if (items[i].compareValue) {
+              const match = items[i].compareValue(result);
+              if (match) {
+                result = items[i].value;
+                break;
+              }
             }
           }
         }
