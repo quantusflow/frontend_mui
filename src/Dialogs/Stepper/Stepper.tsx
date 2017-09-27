@@ -252,7 +252,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
               {
                 // TODO style buttons with props
               }
-              <div style={{marginTop: 12, textAlign: 'right', display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
+                <div style={{ paddingLeft: '0.225vw', paddingRight: '0.225vw', marginTop: 12, textAlign: 'right', display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
                 <FlatButton
                   muiProps={{
                     label: this.props.prevLabel,
