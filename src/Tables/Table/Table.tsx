@@ -26,14 +26,14 @@ export interface ISelectableCheckBoxState {
   currentValue?: boolean;
 }
 
-const getSelectable = (theme: {}, muiProps, qflProps) => {
+const getSelectable = (theme: {}, muiProps, qflProps, checkBoxClassName) => {
   class SelectableCheckBox extends React.Component<ISelectableCheckBoxProps, ISelectableCheckBoxState> {
     public static defaultProps = {
       checked: false,
       disabled: false,
       rowIndex: -1,
       indeterminate: false,
-      onChange: null,
+      onChange: null
     };
 
     constructor(props: ISelectableCheckBoxProps) {
@@ -59,10 +59,12 @@ const getSelectable = (theme: {}, muiProps, qflProps) => {
         ...muiProps,
       };
 
+      debugger;
+
       if (this.props.indeterminate) {
-        muiPropsObj.checkedIcon = <IndeterminateCheckbox style={{ width: '20px', height: '20px' }}/>;
+        muiPropsObj.checkedIcon = <IndeterminateCheckbox className={checkBoxClassName}/>;
       } else {
-        muiPropsObj.checkedIcon = <CleanCheckbox style={{ width: '20px', height: '20px' }}/>;
+        muiPropsObj.checkedIcon = <CleanCheckbox className={checkBoxClassName}/>;
       }
 
       return (
@@ -99,6 +101,7 @@ export interface ITableProps extends IMUIProps {
   stylingProps?: any;
   onSelectedRowsChanged?: Function;
   selectRowProp?: any;
+  checkBoxClassName?: string;
 }
 
 export interface ITableState {
@@ -121,6 +124,7 @@ class Table extends React.Component<ITableProps, ITableState> {
     rbtProps: null,
     stylingProps: null,
     onSelectedRowsChanged: null,
+    checkBoxClassName: null,
   };
 
   constructor() {
@@ -244,7 +248,7 @@ class Table extends React.Component<ITableProps, ITableState> {
 
     rbtProps.selectRow = selectRowProp;
 
-    selectRowProp.customComponent = getSelectable(this.props.selectorTheme, this.props.selectorMuiProps, this.props.selectorQflProps);
+    selectRowProp.customComponent = getSelectable(this.props.selectorTheme, this.props.selectorMuiProps, this.props.selectorQflProps, this.props.checkBoxClassName);
 
     return (
       <div {...qflProps}>
