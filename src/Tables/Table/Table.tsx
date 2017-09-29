@@ -59,8 +59,6 @@ const getSelectable = (theme: {}, muiProps, qflProps, checkBoxClassName) => {
         ...muiProps,
       };
 
-      debugger;
-
       if (this.props.indeterminate) {
         muiPropsObj.checkedIcon = <IndeterminateCheckbox className={checkBoxClassName}/>;
       } else {
