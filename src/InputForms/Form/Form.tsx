@@ -680,7 +680,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     items={items}
                     dataFetcher={layoutElement.dataFetcher}
                     muiProps={{
-                      tabindex: tabIndex,
+                      tabIndex: tabIndex,
                       floatingLabelText: layoutElement.label,
                       width: '100%',
                       ...layoutElement.muiProps,
@@ -754,7 +754,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     value={currentValue}
                     theme={layoutElement.theme}
                     muiProps={{
-                      tabindex: tabIndex,
+                      tabIndex: tabIndex,
                       floatingLabelText: layoutElement.label,
                       width: '100%',
                       ...layoutElement.muiProps,
