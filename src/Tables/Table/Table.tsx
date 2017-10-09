@@ -244,7 +244,11 @@ class Table extends React.Component<ITableProps, ITableState> {
       ...rbtProps.selectRow,
     };
 
-    rbtProps.selectRow = selectRowProp;
+    if (rbtProps.selectRow === null) {
+      delete rbtProps.selectRow;
+    } else {
+      rbtProps.selectRow = selectRowProp;
+    }
 
     selectRowProp.customComponent = getSelectable(this.props.selectorTheme, this.props.selectorMuiProps, this.props.selectorQflProps, this.props.checkBoxClassName);
 
