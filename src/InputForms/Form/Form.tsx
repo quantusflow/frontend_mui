@@ -379,9 +379,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     qflProps={{
                       style: {
                         display: 'inline-block',
-                        width: itemWidth + '%',
-                        paddingRight: (isMostRight ? '0px' : '4px'),
-                        paddingLeft: (isMostLeft ? '0px' : '4px'),
+                        width: itemWidth + '%'
                       },
                       ...layoutElement.qflProps,
                     }}
