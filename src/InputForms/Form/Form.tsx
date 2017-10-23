@@ -417,8 +417,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                             display: 'inline-block',
                           },
                           iconStyle: {
-                            marginRight: '8px',
-                            marginLeft: (isMostLeft ? '0px' : '2px'),
+                            marginRight: '8px'
                           },
                           value: radioBoxItem.value,
                           label: radioBoxItem.label,
@@ -444,6 +443,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     dataProvider = this.props.dataProvider();
                     if (dataProvider.hasOwnProperty(layoutElement.key) && dataProvider[layoutElement.key]) {
                       items = layoutElement.itemMapper(dataProvider[layoutElement.key]);
+
                       layoutItems = items.map((dropDownItem, dropDownItemIdx) => (
                         <MUIMenuItem key={layoutElement.key + '-' + dropDownItemIdx}
                                      value={dropDownItem.value}
@@ -592,9 +592,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     qflProps={{
                       style: {
                         display: 'inline-block',
-                        width: itemWidth + '%',
-                        paddingRight: (isMostRight ? '0px' : '4px'),
-                        paddingLeft: (isMostLeft ? '0px' : '4px'),
+                        width: itemWidth + '%'
                       },
                       ...layoutElement.qflProps,
                     }}
@@ -688,9 +686,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     qflProps={{
                       style: {
                         display: 'inline-block',
-                        width: itemWidth + '%',
-                        paddingRight: (isMostRight ? '0px' : '4px'),
-                        paddingLeft: (isMostLeft ? '0px' : '4px'),
+                        width: itemWidth + '%'
                       },
                       ...layoutElement.qflProps,
                     }}
@@ -762,9 +758,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     qflProps={{
                       style: {
                         display: 'inline-block',
-                        width: itemWidth + '%',
-                        paddingRight: (isMostRight ? '0px' : '4px'),
-                        paddingLeft: (isMostLeft ? '0px' : '4px'),
+                        width: itemWidth + '%'
                       },
                       ...layoutElement.qflProps,
                     }}

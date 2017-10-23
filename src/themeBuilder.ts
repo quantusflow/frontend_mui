@@ -25,20 +25,26 @@ export const buildTheme = (options) => {
       themedMuiProps = themedMuiProps[section];
     }
     if (themedMuiProps && themedMuiProps[componentName]) {
-      const base = (context && themedMuiProps[componentName][context] ? themedMuiProps[componentName][context] : themedMuiProps[componentName].default);
+      let base = themedMuiProps[componentName].default;
+      if (context && themedMuiProps[componentName][context]) {
+        const contextBase = fromJS(base);
+        base = contextBase.mergeDeep(themedMuiProps[componentName][context]).toJS();
+      }
       const nestedBase = fromJS(base);
       muiProps = nestedBase.mergeDeep(options.sourceMuiProps).toJS();
-      // muiProps = Object.assign(base, options.sourceMuiProps);
     }
     let themedQflProps = themeObj.qflProps;
     if (themedQflProps && section) {
       themedQflProps = themedQflProps[section];
     }
     if (themedQflProps && themedQflProps[componentName]) {
-      const base = (context && themedQflProps[componentName][context] ? themedQflProps[componentName][context] : themedQflProps[componentName].default);
+      let base = themedQflProps[componentName].default;
+      if (context && themedQflProps[componentName][context]) {
+        const contextBase = fromJS(base);
+        base = contextBase.mergeDeep(themedQflProps[componentName][context]).toJS();
+      }
       const nestedBase = fromJS(base);
       qflProps = nestedBase.mergeDeep(options.sourceQflProps).toJS();
-      // qflProps = Object.assign(base, options.sourceQflProps);
     }
 
     let themedRbtProps = themeObj.rbtProps;
@@ -46,10 +52,13 @@ export const buildTheme = (options) => {
       themedRbtProps = themedRbtProps[section];
     }
     if (themedRbtProps && themedRbtProps[componentName]) {
-      const base = (context && themedRbtProps[componentName][context] ? themedRbtProps[componentName][context] : themedRbtProps[componentName].default);
+      let base = themedRbtProps[componentName].default;
+      if (context && themedRbtProps[componentName][context]) {
+        const contextBase = fromJS(base);
+        base = contextBase.mergeDeep(themedRbtProps[componentName][context]).toJS();
+      }
       const nestedBase = fromJS(base);
       rbtProps = nestedBase.mergeDeep(options.sourceRbtProps).toJS();
-      // rbtProps = Object.assign(base, options.sourceRbtProps);
     }
 
     for (const key in themeObj) {
