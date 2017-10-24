@@ -1,9 +1,9 @@
 {
-  "name": "@process-engine-js/frontend_mui",
+  "name": "@quantusflow/frontend_mui",
   "publishConfig": {
     "registry": "https://www.npmjs.com"
   },
-  "version": "2.0.5",
+  "version": "0.1.0",
   "description": "Collection of optimized MUI React components.",
   "license": "MIT",
   "main": "dist/commonjs/index.js",
@@ -26,7 +26,7 @@
     "react-tap-event-plugin": "^2.0.1"
   },
   "devDependencies": {
-    "@process-engine-js/tslint-config": "^1.0.1",
+    "@essential-projects/tslint-config": "^0.1.0",
     "@types/intl": "^1.2.0",
     "@types/node": "^8.0.28",
     "@types/react": "^16.0.5",
