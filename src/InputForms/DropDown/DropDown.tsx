@@ -9,6 +9,7 @@ export interface IDropDownProps extends IMUIProps {
   items?: React.ReactNode;
   value?: any;
   label?: string;
+  errorText?: string;
   onChange?: Function;
 }
 
@@ -27,6 +28,7 @@ class DropDown extends React.Component<IDropDownProps, IDropDownState> {
     items: null,
     value: null,
     label: null,
+    errorText: null,
     onChange: null,
   };
 
@@ -65,9 +67,17 @@ class DropDown extends React.Component<IDropDownProps, IDropDownState> {
 
     return (
       <div {...qflProps}>
-        <span style={qflProps.labelStyle}>{this.props.label}</span>
-        <MUIDropDownMenu  {...muiProps} value={this.state.currentValue}
-                          onChange={(event, index, value) => this.handleChange(event, index, value)}>
+        <span style={qflProps.labelStyle}>
+          {this.props.label}
+        </span>
+        <span style={{
+          float: 'right',
+          ...qflProps.errorStyle
+        }}>
+          {this.props.errorText}
+        </span>
+        <MUIDropDownMenu {...muiProps} value={this.state.currentValue}
+                         onChange={(event, index, value) => this.handleChange(event, index, value)}>
           {items}
         </MUIDropDownMenu>
       </div>

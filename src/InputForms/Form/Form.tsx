@@ -41,6 +41,7 @@ export interface IFormProps extends IMUIProps {
   item: {};
   layout: Array<ILayoutItem | Array<ILayoutItem>>;
 
+  doValidate?: boolean;
   keyAttributeName?: string;
   dataProvider?: Function;
   onChange?: Function;
@@ -60,6 +61,7 @@ class Form extends React.Component<IFormProps, IFormState> {
     muiProps: {},
     qflProps: {},
 
+    doValidate: false,
     keyAttributeName: 'id',
     dataProvider: null,
     onChange: null,
@@ -70,15 +72,61 @@ class Form extends React.Component<IFormProps, IFormState> {
 
     const item = (props.item || {});
 
-    this.state = {
+    const state: IFormState = {
       formData: item,
       errorData: {}
     };
+
+    const errorData = Form.validateFormData(props, state);
+    state.errorData = errorData;
+
+    this.state = state;
   }
 
-  private getFormItemValue(key, keyAttributeName?: string, items?: Array<{ value: any, compareValue?: Function }>) {
-    if (!keyAttributeName && this.props.item && this.props.item.hasOwnProperty(key)) {
-      let result = this.props.item[key];
+  public static validateFormData(props: IFormProps, state: IFormState) {
+    const formErrorData = {};
+    if (props.doValidate && props.layout && props.layout.length > 0 && props.item) {
+      for (let f = 0; f < props.layout.length; f++) {
+        let formElement = props.layout[f];
+        if (Object.prototype.toString.call(formElement) === '[object Array]' ) {
+          const formElementItemArray = formElement as Array<ILayoutItem>;
+          for (let i = 0; i < formElementItemArray.length; i++) {
+            const formElementItem = formElementItemArray[i] as ILayoutItem;
+            Form.validateItem(props, state, formElementItem, formErrorData);
+          }
+        } else {
+          const formElementItem = formElement as ILayoutItem;
+          Form.validateItem(props, state, formElementItem, formErrorData);
+        }
+      }
+    }
+    if (formErrorData && typeof formErrorData === 'object' && Object.keys(formErrorData).length > 0) {
+      return formErrorData;
+    } else {
+      return {};
+    }
+  }
+
+  private static validateItem(props: IFormProps, state: IFormState, formElement, errorData) {
+    if (formElement && formElement.validate && typeof formElement.validate === 'function') {
+      let items = formElement.items;
+      if (!items && props.dataProvider && typeof props.dataProvider === 'function' && formElement.itemMapper && typeof formElement.itemMapper === 'function') {
+        items = formElement.itemMapper(props.dataProvider()[formElement.key]);
+      }
+
+      const actualValue = Form.getFormItemValue(props, state, formElement.key, formElement.keyAttributeName, items);
+      const elementResult = formElement.validate(actualValue, state.formData);
+      if (elementResult && typeof elementResult === 'object') {
+        const elementErrorData = {};
+        elementErrorData[formElement.key] = elementResult.errorMessage;
+        Object.assign(errorData, elementErrorData);
+      }
+    }
+  }
+
+  private static getFormItemValue(props: IFormProps, state: IFormState, key, keyAttributeName?: string, items?: Array<{ value: any, compareValue?: Function }>) {
+    if (!keyAttributeName && props.item && props.item.hasOwnProperty(key)) {
+      let result = props.item[key];
       if (items) {
         // Try to find result as value in items
         let foundInItems = false;
@@ -99,14 +147,14 @@ class Form extends React.Component<IFormProps, IFormState> {
       }
 
       return result;
-    } else if (keyAttributeName && this.props.item && this.props.item.hasOwnProperty(key)) {
-      if (this.props.item[key] && this.props.item[key][keyAttributeName]) {
-        return this.props.item[key][keyAttributeName];
+    } else if (keyAttributeName && props.item && props.item.hasOwnProperty(key)) {
+      if (props.item[key] && props.item[key][keyAttributeName]) {
+        return props.item[key][keyAttributeName];
       } else {
         return 'not_choosen';
       }
-    } else if (!keyAttributeName && this.state.formData && this.state.formData.hasOwnProperty(key)) {
-      let result = this.state.formData[key];
+    } else if (!keyAttributeName && state.formData && state.formData.hasOwnProperty(key)) {
+      let result = state.formData[key];
       if (items) {
         // Try to find result as value in items
         let foundInItems = false;
@@ -130,18 +178,24 @@ class Form extends React.Component<IFormProps, IFormState> {
       }
 
       return result;
-    } else if (keyAttributeName && this.state.formData && this.state.formData.hasOwnProperty(key)) {
-      return this.state.formData[key][keyAttributeName];
+    } else if (keyAttributeName && state.formData && state.formData.hasOwnProperty(key)) {
+      return state.formData[key][keyAttributeName];
     }
   }
 
   private handleFormItemChange(type, key, oldValue, newValue, choosenElement?: any, element?: any) {
     const curFormData = this.state.formData;
-    if (element && element.hasOwnProperty('keyAttributeName')) {
-      curFormData[key] = {};
-      curFormData[key][element.keyAttributeName] = newValue;
+
+    if (choosenElement && choosenElement.mapValue && typeof choosenElement.mapValue === 'function') {
+      newValue = choosenElement.mapValue(Object.assign({}, choosenElement));
+      curFormData[key] = newValue;
     } else {
-      curFormData[key] = (choosenElement && choosenElement.mapValue && typeof choosenElement.mapValue === 'function' ? choosenElement.mapValue() : newValue);
+      if (element && element.hasOwnProperty('keyAttributeName')) {
+        curFormData[key] = {};
+        curFormData[key][choosenElement.keyAttributeName] = newValue;
+      } else {
+        curFormData[key] = newValue;
+      }
     }
 
     this.setState({
@@ -155,6 +209,75 @@ class Form extends React.Component<IFormProps, IFormState> {
         newValue,
       });
     }
+  }
+
+  private validateFormElement(layoutElement, newValue) {
+    let isValid: boolean = true;
+    if (layoutElement.validate && typeof layoutElement.validate === 'function') {
+      const validationResult: { errorMessage: string, relatedFormElements?: Array<string> } | boolean = layoutElement.validate(newValue, this.state.formData);
+      if (validationResult && typeof validationResult === 'object' && validationResult.hasOwnProperty('errorMessage')) {
+        const errorObj = {};
+        errorObj[layoutElement.key] = validationResult.errorMessage;
+        const currentErrorData = this.state.errorData;
+        Object.assign(currentErrorData, errorObj);
+        isValid = false;
+
+        this.setState({
+          errorData: currentErrorData
+        });
+      } else if (!validationResult) {
+        isValid = false;
+      }
+
+      if (validationResult && typeof validationResult === 'object' && validationResult.hasOwnProperty('relatedFormElements')) {
+        const relatedFormElements = validationResult.relatedFormElements;
+        for (let r = 0; r < relatedFormElements.length; r++) {
+          const relatedFormElementKey = relatedFormElements[r];
+          let foundLayoutElement = null;
+          for (let f = 0; f < this.props.layout.length; f++) {
+            let formElement = this.props.layout[f];
+            if (Object.prototype.toString.call(formElement) === '[object Array]' ) {
+              const formElementItemArray = formElement as Array<ILayoutItem>;
+              for (let i = 0; i < formElementItemArray.length; i++) {
+                if (formElementItemArray[i].key === relatedFormElementKey) {
+                  foundLayoutElement = formElementItemArray[i];
+                  break;
+                }
+              }
+
+              if (foundLayoutElement) {
+                break;
+              }
+            } else {
+              const formElementItem = formElement as ILayoutItem;
+              if (formElementItem.key === relatedFormElementKey) {
+                foundLayoutElement = formElementItem;
+                break;
+              }
+            }
+          }
+
+          if (foundLayoutElement) {
+            setTimeout(() => {
+              const currentErrorData = this.state.errorData;
+              delete currentErrorData[foundLayoutElement.key];
+              this.setState({
+                errorData: currentErrorData
+              }, () => {
+                let items = foundLayoutElement.items;
+                if (!items && this.props.dataProvider && typeof this.props.dataProvider === 'function' && foundLayoutElement.itemMapper && typeof foundLayoutElement.itemMapper === 'function') {
+                  items = foundLayoutElement.itemMapper(this.props.dataProvider()[foundLayoutElement.key]);
+                }
+                const actualValue = Form.getFormItemValue(this.props, this.state, foundLayoutElement.key, foundLayoutElement.keyAttributeName, items);
+                this.validateFormElement(foundLayoutElement, actualValue);
+              });
+            }, 0);
+          }
+        }
+      }
+    }
+
+    return isValid;
   }
 
   public render() {
@@ -179,9 +302,9 @@ class Form extends React.Component<IFormProps, IFormState> {
               case 'CheckBox': {
                 const initialValue = (layoutElement.hasOwnProperty('initialValue') && layoutElement.initialValue !== null
                   ? layoutElement.initialValue
-                  : this.getFormItemValue(layoutElement.key));
+                  : Form.getFormItemValue(this.props, this.state, layoutElement.key));
 
-                let currentValue = this.getFormItemValue(layoutElement.key);
+                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
                 if (currentValue === undefined) {
                   currentValue = initialValue;
                   if (!this.props.item) {
@@ -237,7 +360,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     ? layoutElement.initialValue
                     : (!layoutElement.nullable ? layoutElement.items[0].value : null));
 
-                  let currentValue = this.getFormItemValue(layoutElement.key);
+                  let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
                   if (currentValue === undefined) {
                     currentValue = initialValue;
                     if (!this.props.item) {
@@ -294,8 +417,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                             display: 'inline-block',
                           },
                           iconStyle: {
-                            marginRight: '8px',
-                            marginLeft: (isMostLeft ? '0px' : '2px'),
+                            marginRight: '8px'
                           },
                           value: radioBoxItem.value,
                           label: radioBoxItem.label,
@@ -312,14 +434,17 @@ class Form extends React.Component<IFormProps, IFormState> {
               case 'DropDown': {
                 const initialValue = layoutElement.initialValue;
 
-                let items = null;
+                let items = layoutElement.items;
+                let layoutItems = layoutElement.items;
                 if (layoutElement.itemMapper && typeof layoutElement.itemMapper === 'function') {
                   items = [];
                   let dataProvider = {};
                   if (this.props.dataProvider && typeof this.props.dataProvider === 'function') {
                     dataProvider = this.props.dataProvider();
                     if (dataProvider.hasOwnProperty(layoutElement.key) && dataProvider[layoutElement.key]) {
-                      items = layoutElement.itemMapper(dataProvider[layoutElement.key]).map((dropDownItem, dropDownItemIdx) => (
+                      items = layoutElement.itemMapper(dataProvider[layoutElement.key]);
+
+                      layoutItems = items.map((dropDownItem, dropDownItemIdx) => (
                         <MUIMenuItem key={layoutElement.key + '-' + dropDownItemIdx}
                                      value={dropDownItem.value}
                                      primaryText={dropDownItem.label}
@@ -328,7 +453,8 @@ class Form extends React.Component<IFormProps, IFormState> {
                     }
                   }
                 } else {
-                  items = layoutElement.items.map((dropDownItem, dropDownItemIdx) => (
+                  items = layoutElement.items;
+                  layoutItems = items.map((dropDownItem, dropDownItemIdx) => (
                     <MUIMenuItem
                       key={layoutElement.key + '-' + dropDownItemIdx}
                       value={dropDownItem.value}
@@ -337,7 +463,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                   ));
                 }
 
-                let currentValue = this.getFormItemValue(layoutElement.key, layoutElement.keyAttributeName, items);
+                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key, layoutElement.keyAttributeName, items);
                 if (currentValue === undefined) {
                   currentValue = initialValue;
                   if (!this.props.item) {
@@ -363,13 +489,29 @@ class Form extends React.Component<IFormProps, IFormState> {
                   }
                 }
 
-                const handleDropDownFormItemChange = (event, index, oldValue, newValue) =>
-                  this.handleFormItemChange('DropDown', layoutElement.key, oldValue, newValue, items[index], layoutElement);
+                const handleDropDownFormItemChange = (event, index, oldValue, newValue) => {
+                  if (this.validateFormElement(layoutElement, newValue)) {
+                    const currentErrorData = this.state.errorData;
+                    delete currentErrorData[layoutElement.key];
+                    this.setState({
+                      errorData: currentErrorData
+                    }, () => {
+                      this.handleFormItemChange('DropDown', layoutElement.key, oldValue, newValue, items[index], layoutElement);
+                    });
+                  }
+                };
+
+
+                let errorMessage = null;
+                if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
+                  errorMessage = this.state.errorData[layoutElement.key];
+                }
 
                 resultingFromElement = (
                   <DropDown
                     key={layoutElement.key}
                     label={layoutElement.label}
+                    errorText={errorMessage}
                     theme={layoutElement.theme}
                     value={currentValue}
                     muiProps={{
@@ -379,21 +521,19 @@ class Form extends React.Component<IFormProps, IFormState> {
                     qflProps={{
                       style: {
                         display: 'inline-block',
-                        width: itemWidth + '%',
-                        paddingRight: (isMostRight ? '0px' : '4px'),
-                        paddingLeft: (isMostLeft ? '0px' : '4px'),
+                        width: itemWidth + '%'
                       },
                       ...layoutElement.qflProps,
                     }}
                   >
-                    {items}
+                    {layoutItems}
                   </DropDown>
                 );
               }
                 break;
               case 'DatePicker': {
                 const initialValue = layoutElement.initialValue;
-                let currentValue = this.getFormItemValue(layoutElement.key);
+                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
                 if (currentValue === undefined) {
                   currentValue = initialValue;
                   if (!this.props.item) {
@@ -419,8 +559,22 @@ class Form extends React.Component<IFormProps, IFormState> {
                   }
                 }
 
-                const handleDatePickerFormItemChange = (oldValue, newValue) =>
-                  this.handleFormItemChange('DatePicker', layoutElement.key, oldValue, newValue);
+                const handleDatePickerFormItemChange = (oldValue, newValue) => {
+                  if (this.validateFormElement(layoutElement, newValue)) {
+                    const currentErrorData = this.state.errorData;
+                    delete currentErrorData[layoutElement.key];
+                    this.setState({
+                      errorData: currentErrorData
+                    }, () => {
+                      this.handleFormItemChange('DatePicker', layoutElement.key, oldValue, newValue);
+                    });
+                  }
+                };
+
+                let errorMessage = null;
+                if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
+                  errorMessage = this.state.errorData[layoutElement.key];
+                }
 
                 resultingFromElement = (
                   <DatePicker
@@ -432,14 +586,13 @@ class Form extends React.Component<IFormProps, IFormState> {
                       floatingLabelText: layoutElement.label,
                       width: '100%',
                       ...layoutElement.muiProps,
+                      errorText: errorMessage,
                     }}
                     onChange={handleDatePickerFormItemChange}
                     qflProps={{
                       style: {
                         display: 'inline-block',
-                        width: itemWidth + '%',
-                        paddingRight: (isMostRight ? '0px' : '4px'),
-                        paddingLeft: (isMostLeft ? '0px' : '4px'),
+                        width: itemWidth + '%'
                       },
                       ...layoutElement.qflProps,
                     }}
@@ -452,7 +605,7 @@ class Form extends React.Component<IFormProps, IFormState> {
 
                 const initialValue = layoutElement.initialValue;
 
-                let currentValue = this.getFormItemValue(layoutElement.key);
+                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
                 if (currentValue === undefined) {
                   currentValue = initialValue;
                   if (!this.props.item) {
@@ -479,8 +632,21 @@ class Form extends React.Component<IFormProps, IFormState> {
                 }
 
                 const handleAutoCompleteFormItemChange = (event, index, oldValue, newValue) => {
-                  return this.handleFormItemChange('AutoComplete', layoutElement.key, oldValue, newValue, layoutElement.items[index], layoutElement);
+                  if (this.validateFormElement(layoutElement, newValue)) {
+                    const currentErrorData = this.state.errorData;
+                    delete currentErrorData[layoutElement.key];
+                    this.setState({
+                      errorData: currentErrorData
+                    }, () => {
+                      this.handleFormItemChange('AutoComplete', layoutElement.key, oldValue, newValue, layoutElement.items[index], layoutElement);
+                    });
+                  }
                 };
+
+                let errorMessage = null;
+                if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
+                  errorMessage = this.state.errorData[layoutElement.key];
+                }
 
                 let items = [];
                 let dataProvider = {};
@@ -510,18 +676,17 @@ class Form extends React.Component<IFormProps, IFormState> {
                     items={items}
                     dataFetcher={layoutElement.dataFetcher}
                     muiProps={{
-                      tabindex: tabIndex,
+                      tabIndex: tabIndex,
                       floatingLabelText: layoutElement.label,
                       width: '100%',
                       ...layoutElement.muiProps,
+                      errorText: errorMessage,
                     }}
                     onChange={handleAutoCompleteFormItemChange}
                     qflProps={{
                       style: {
                         display: 'inline-block',
-                        width: itemWidth + '%',
-                        paddingRight: (isMostRight ? '0px' : '4px'),
-                        paddingLeft: (isMostLeft ? '0px' : '4px'),
+                        width: itemWidth + '%'
                       },
                       ...layoutElement.qflProps,
                     }}
@@ -534,7 +699,7 @@ class Form extends React.Component<IFormProps, IFormState> {
               case 'TextField':
               default: { // tslint:disable-line no-switch-case-fall-through
                 const initialValue = layoutElement.initialValue;
-                let currentValue = this.getFormItemValue(layoutElement.key);
+                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
                 if (currentValue === undefined) {
                   currentValue = initialValue;
                   if (!this.props.item) {
@@ -561,25 +726,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                 }
 
                 const handleTextFieldFormItemChange = (oldValue, newValue) => {
-                  let isValid: boolean = true;
-                  if (layoutElement.validate && typeof layoutElement.validate === 'function') {
-                    const validationResult: { errorMessage: string } | boolean = layoutElement.validate(newValue, this.state.formData);
-                    if (validationResult && typeof validationResult === 'object') {
-                      const errorObj = {};
-                      errorObj[layoutElement.key] = validationResult.errorMessage;
-                      const currentErrorData = this.state.errorData;
-                      Object.assign(currentErrorData, errorObj);
-                      isValid = false;
-
-                      this.setState({
-                        errorData: currentErrorData
-                      });
-                    } else if (!validationResult) {
-                      isValid = false;
-                    }
-                  }
-
-                  if (isValid) {
+                  if (this.validateFormElement(layoutElement, newValue)) {
                     const currentErrorData = this.state.errorData;
                     delete currentErrorData[layoutElement.key];
                     this.setState({
@@ -587,9 +734,8 @@ class Form extends React.Component<IFormProps, IFormState> {
                     }, () => {
                       this.handleFormItemChange('TextField', layoutElement.key, oldValue, newValue);
                     });
-
                   }
-                }
+                };
 
                 let errorMessage = null;
                 if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
@@ -602,7 +748,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     value={currentValue}
                     theme={layoutElement.theme}
                     muiProps={{
-                      tabindex: tabIndex,
+                      tabIndex: tabIndex,
                       floatingLabelText: layoutElement.label,
                       width: '100%',
                       ...layoutElement.muiProps,
@@ -612,9 +758,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                     qflProps={{
                       style: {
                         display: 'inline-block',
-                        width: itemWidth + '%',
-                        paddingRight: (isMostRight ? '0px' : '4px'),
-                        paddingLeft: (isMostLeft ? '0px' : '4px'),
+                        width: itemWidth + '%'
                       },
                       ...layoutElement.qflProps,
                     }}

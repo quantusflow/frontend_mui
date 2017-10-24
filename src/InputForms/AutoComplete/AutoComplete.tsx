@@ -67,6 +67,19 @@ export default class AutoComplete extends React.Component<IAutoCompleteProps, IA
     this.setState({
       delayTimer: delayTimer,
       searchText: searchText,
+    }, () => {
+      let index = -1;
+      if (dataSource && dataSource.length > 0 && typeof dataSource[0] === 'object') {
+        let choosenValueKey: string = 'text';
+        const muiProps: any = this.props.muiProps;
+        if (muiProps && muiProps.dataSourceConfig && muiProps.dataSourceConfig.text) {
+          choosenValueKey = muiProps.dataSourceConfig.text;
+        }
+        dataSource && dataSource.map((item) => item[choosenValueKey]).indexOf(searchText);
+      } else {
+        index = dataSource.indexOf(searchText);
+      }
+      this.handleChange(searchText, index);
     });
   }
 
