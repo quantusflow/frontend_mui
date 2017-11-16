@@ -89,6 +89,7 @@ const getSelectable = (theme: {}, muiProps, qflProps, checkBoxClassName) => {
 };
 
 export interface ITableProps extends IMUIProps {
+  tableKey: string;
   thcSchema: any;
 
   selectorTheme?: {};
@@ -111,6 +112,8 @@ export interface ITableState {
  */
 class Table extends React.Component<ITableProps, ITableState> {
   public static defaultProps = {
+    tableKey: (new Date()).getTime(),
+
     theme: null,
     muiProps: {},
     qflProps: {},
@@ -142,9 +145,9 @@ class Table extends React.Component<ITableProps, ITableState> {
     );
     const refs: any = this.refs;
     const elementContainer = ((
-    refs.reactBootstrapTable
-      && (refs.reactBootstrapTable as React.Component<any, any>).refs
-      && ((refs.reactBootstrapTable as React.Component<any, any>).refs as any).table)
+      refs[`reactBootstrapTable_${this.props.tableKey}`] &&
+      (refs[`reactBootstrapTable_${this.props.tableKey}`] as React.Component<any, any>).refs &&
+      ((refs[`reactBootstrapTable_${this.props.tableKey}`] as React.Component<any, any>).refs as any).table)
       || null);
 
     if (elementContainer && $(elementContainer).children('.react-bs-container-body')) {
@@ -168,7 +171,7 @@ class Table extends React.Component<ITableProps, ITableState> {
   private cleanSelected() {
     this.handleRowSelectAll(false);
     const refs: any = this.refs;
-    (refs.reactBootstrapTable as BootstrapTable).cleanSelected();
+    (refs[`reactBootstrapTable_${this.props.tableKey}`] as BootstrapTable).cleanSelected();
   }
 
   private handleRowSelect(row, isSelected, event) {
@@ -250,12 +253,17 @@ class Table extends React.Component<ITableProps, ITableState> {
       rbtProps.selectRow = selectRowProp;
     }
 
-    selectRowProp.customComponent = getSelectable(this.props.selectorTheme, this.props.selectorMuiProps, this.props.selectorQflProps, this.props.checkBoxClassName);
+    selectRowProp.customComponent = getSelectable(
+      this.props.selectorTheme,
+      this.props.selectorMuiProps,
+      this.props.selectorQflProps,
+      this.props.checkBoxClassName
+    );
 
     return (
       <div {...qflProps}>
         <BootstrapTable
-          ref='reactBootstrapTable'
+          ref={`reactBootstrapTable_${this.props.tableKey}`}
           data={dataSource}
           {...rbtProps}
         >
