@@ -267,8 +267,14 @@ class Table extends React.Component<ITableProps, ITableState> {
           data={dataSource}
           {...rbtProps}
         >
-          {this.props.thcSchema.map((thcItem) => <TableHeaderColumn
-            key={thcItem.name} {...thcItem.thcProps}>{thcItem.name}</TableHeaderColumn>)}
+          {this.props.thcSchema.map((thcItem) => (
+            <TableHeaderColumn
+              key={thcItem.name}
+              {...thcItem.thcProps}
+            >
+              {thcItem.name}
+            </TableHeaderColumn>
+          ))}
         </BootstrapTable>
       </div>
     );
