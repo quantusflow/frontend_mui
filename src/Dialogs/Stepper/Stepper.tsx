@@ -116,7 +116,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
       this.props.onDialogClose(!!buttonClicked);
     }
     if (this.props.onFinish) {
-      this.props.onFinish();
+      this.props.onFinish(!!buttonClicked);
     }
   }
 
