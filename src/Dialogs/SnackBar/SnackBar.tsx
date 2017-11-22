@@ -28,7 +28,7 @@ class SnackBar extends React.Component<IMUIProps, {}> {
     });
 
     return (
-      <div>
+      <div {...qflProps}>
         <MUISnackbar {...muiProps}/>
       </div>
     );

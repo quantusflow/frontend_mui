@@ -77,15 +77,15 @@ class Form extends React.Component<IFormProps, IFormState> {
       errorData: {}
     };
 
-    const errorData = Form.validateFormData(props, state);
+    const errorData = Form.validateFormData(props, state, item);
     state.errorData = errorData;
 
     this.state = state;
   }
 
-  public static validateFormData(props: IFormProps, state: IFormState) {
+  public static validateFormData(props: IFormProps, state: IFormState, item: {}) {
     const formErrorData = {};
-    if (props.doValidate && props.layout && props.layout.length > 0 && props.item) {
+    if (props.doValidate && props.layout && props.layout.length > 0 && item) {
       for (let f = 0; f < props.layout.length; f++) {
         let formElement = props.layout[f];
         if (Object.prototype.toString.call(formElement) === '[object Array]' ) {
