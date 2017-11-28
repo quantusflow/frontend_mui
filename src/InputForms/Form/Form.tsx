@@ -32,7 +32,8 @@ export interface ILayoutItem {
   radioButtonMuiProps?: {};
   keyAttributeName?: string;
 
-  dataFetcher?(): Promise<Array<any>>;
+  dataFetcher?(searchText: string, autoCompleteComponent: React.Component<{}, {}>): Promise<Array<any>>;
+  noFilter?: boolean;
 
   validate?(value: any, formData: any): { errorMessage: string } | boolean;
 }
@@ -674,7 +675,13 @@ class Form extends React.Component<IFormProps, IFormState> {
                     theme={layoutElement.theme}
                     value={currentValue}
                     items={items}
-                    dataFetcher={layoutElement.dataFetcher}
+                    dataFetcher={
+                      (layoutElement.dataFetcher
+                        ? (searchText: string, autoCompleteItem: React.Component<{}, {}>): Promise<Array<{} | string>> =>
+                            layoutElement.dataFetcher(searchText, autoCompleteItem)
+                        : null
+                      )}
+                    noFilter={layoutElement.noFilter}
                     muiProps={{
                       tabIndex: tabIndex,
                       floatingLabelText: layoutElement.label,

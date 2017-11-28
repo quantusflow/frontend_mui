@@ -27,8 +27,8 @@ class IconButton extends React.Component<IIconButtonProps, {}> {
     icon: null,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   private renderIcon(muiProps?: {}) {

@@ -32,8 +32,8 @@ class Link extends React.Component<ILinkProps, {}> {
     href: '#',
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   public render() {

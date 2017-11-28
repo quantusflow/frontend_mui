@@ -15,8 +15,8 @@ class Toggle extends React.Component<IMUIProps, {}> {
     qflProps: {},
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   public render() {

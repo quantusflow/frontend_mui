@@ -51,8 +51,8 @@ class NavigationBar extends React.Component<INavigationBarProps, {}> {
     hideBarFill: false,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   private handleOnChange(e, route) {

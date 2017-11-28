@@ -38,8 +38,8 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
     onChoose: null,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       confirmData: {},

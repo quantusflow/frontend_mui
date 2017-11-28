@@ -22,8 +22,8 @@ class FloatingButton extends React.Component<IFloatingButtonProps, {}> {
     icon: null,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   public render() {

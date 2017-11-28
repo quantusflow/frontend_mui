@@ -21,8 +21,8 @@ class ToolBar extends React.Component<IToolBarProps, {}> {
     items: null,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   public render() {

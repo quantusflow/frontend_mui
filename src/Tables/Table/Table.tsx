@@ -128,8 +128,8 @@ class Table extends React.Component<ITableProps, ITableState> {
     checkBoxClassName: null,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       selectedRows: {},
     };
