@@ -50,18 +50,43 @@ export default class AutoComplete extends React.Component<IAutoCompleteProps, IA
 
     this.state = {
       delayTimer: null,
-      searchText: props.value,
-      value: this.findValue(props, items, props.value),
+      searchText: this.findText(props, items, props.value),
+      value: props.value,
       items,
     };
   }
 
-  private findValue(props: IAutoCompleteProps, items: Array<{} | string>, text: string): any {
-    let result: any = null;
+  private findText(props: IAutoCompleteProps, items: Array<{} | string>, value: any): string {
+    let result: string = null;
+
     if (items && items.length > 0) {
       const muiProps: any = props.muiProps;
-      let choosenValueKey: string = 'text';
-      let choosenTextKey: string = 'value';
+      let choosenValueKey: string = 'value';
+      let choosenTextKey: string = 'text';
+      if (muiProps && muiProps.dataSourceConfig && muiProps.dataSourceConfig.value) {
+        choosenValueKey = muiProps.dataSourceConfig.value;
+      }
+      if (muiProps && muiProps.dataSourceConfig && muiProps.dataSourceConfig.text) {
+        choosenTextKey = muiProps.dataSourceConfig.text;
+      }
+      for (const item of items) {
+        if (item[choosenValueKey] === value) {
+          result = item[choosenTextKey];
+          break;
+        }
+      }
+    }
+
+    return result;
+  }
+
+  private findValue(props: IAutoCompleteProps, items: Array<{} | string>, text: string): any {
+    let result: any = null;
+
+    if (items && items.length > 0) {
+      const muiProps: any = props.muiProps;
+      let choosenValueKey: string = 'value';
+      let choosenTextKey: string = 'text';
       if (muiProps && muiProps.dataSourceConfig && muiProps.dataSourceConfig.value) {
         choosenValueKey = muiProps.dataSourceConfig.value;
       }
