@@ -56,6 +56,8 @@ export interface IStepperProps extends IMUIProps {
   doneButtonQflProps?: {};
 
   maxWidth?: number;
+
+  stepperClassName?: string;
 }
 
 export interface IStepperState {
@@ -103,6 +105,8 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     doneButtonQflProps: {},
 
     maxWidth: 400,
+
+    stepperClassName: null,
   };
 
   constructor(props: IStepperProps) {
