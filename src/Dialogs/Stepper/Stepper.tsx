@@ -268,7 +268,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     });
 
     const stepper =
-      <div {...qflProps} style={{width: '100%'}}>
+      <div {...qflProps} style={{width: '100%'}} className={this.props.stepperClassName}>
         <MUIStepper {...muiProps} activeStep={stepIndex} linear={isLinear}>
           {stepperContent}
         </MUIStepper>

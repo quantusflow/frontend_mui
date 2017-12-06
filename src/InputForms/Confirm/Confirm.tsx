@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import RaisedButton from '../../Buttons/RaisedButton/RaisedButton';
+import FlatButton from '../../Buttons/FlatButton/FlatButton';
 
 import {IMUIProps} from '../../interfaces';
 import {buildTheme} from '../../themeBuilder';
@@ -9,8 +9,10 @@ export interface IConfirmLayout {
   key: string;
   label: string;
 
-  theme?: string;
-  muiProps?: {};
+  theme?: {};
+  muiProps?: {
+    secondary?: boolean;
+  };
   qflProps?: {};
 }
 
@@ -19,6 +21,9 @@ export interface IConfirmProps extends IMUIProps {
 
   message?: string;
   onChoose?: Function;
+
+  buttonContainerQflProps?: {};
+  textContainerQflProps?: {};
 }
 
 export interface IConfirmState {
@@ -36,6 +41,10 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
 
     message: null,
     onChoose: null,
+    buttonTheme: null,
+
+    buttonContainerQflProps: null,
+    textContainerQflProps: null,
   };
 
   constructor(props) {
@@ -62,12 +71,29 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
       componentName: 'Confirm',
     });
 
+    const bcProps = buildTheme({
+      theme: this.props.theme,
+      sourceMuiProps: {},
+      sourceQflProps: this.props.buttonContainerQflProps,
+      componentName: 'ButtonContainer',
+    });
+
+    const tcProps = buildTheme({
+      theme: this.props.theme,
+      sourceMuiProps: {},
+      sourceQflProps: this.props.textContainerQflProps,
+      componentName: 'TextContainer',
+    });
+
     const {layout} = this.props;
 
     const resultingButtons = layout.map((element: IConfirmLayout, elementIdx: number) => (
-      <RaisedButton
+      <FlatButton
         key={element.key}
-        theme={element.theme}
+        theme={{
+          ...(element.theme),
+          themeContext: (element.muiProps && element.muiProps.secondary ? 'cancel' : 'proceed'),
+        }}
         muiProps={{
           label: element.label,
           primary: true,
@@ -84,9 +110,11 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
 
     return (
       <div {...qflProps}>
-        <p>{this.props.message}</p>
+        <p {...tcProps.qflProps}>{this.props.message}</p>
         {children}
-        {resultingButtons}
+        <div {...bcProps.qflProps}>
+          {resultingButtons}
+        </div>
       </div>
     );
   }

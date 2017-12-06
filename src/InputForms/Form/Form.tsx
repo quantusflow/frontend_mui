@@ -25,16 +25,19 @@ export interface ILayoutItem {
   theme?: string;
   label?: string;
   muiProps?: {};
+  autoCompleteMuiProps?: {};
+  radioButtonMuiProps?: {};
   qflProps?: {};
+  autoCompleteQflProps?: {};
+  radioButtonQflProps?: {};
 
   items?: any;
   itemMapper?: Function;
-  radioButtonMuiProps?: {};
   keyAttributeName?: string;
 
-  dataFetcher?(searchText: string, autoCompleteComponent: React.Component<{}, {}>): Promise<Array<any>>;
   noFilter?: boolean;
 
+  dataFetcher?(searchText: string, autoCompleteComponent: React.Component<{}, {}>): Promise<Array<any>>;
   validate?(value: any, formData: any): { errorMessage: string } | boolean;
 }
 
@@ -408,6 +411,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                           width: itemWidth + '%',
                         },
                         ...layoutElement.qflProps,
+                        ...layoutElement.radioButtonQflProps,
                       }}
                     >
                       {layoutElement.items.map((radioBoxItem, radioBoxIdx) => <RadioButton
@@ -418,12 +422,13 @@ class Form extends React.Component<IFormProps, IFormState> {
                             display: 'inline-block',
                           },
                           iconStyle: {
-                            marginRight: '8px'
+                            marginRight: '8px',
                           },
                           value: radioBoxItem.value,
                           label: radioBoxItem.label,
                           checkedIcon: <CheckedIcon/>,
                           uncheckedIcon: <UncheckedIcon/>,
+                          ...layoutElement.muiProps,
                           ...layoutElement.radioButtonMuiProps,
                         }}
                       />)}
@@ -687,15 +692,17 @@ class Form extends React.Component<IFormProps, IFormState> {
                       floatingLabelText: layoutElement.label,
                       width: '100%',
                       ...layoutElement.muiProps,
+                      ...layoutElement.autoCompleteMuiProps,
                       errorText: errorMessage,
                     }}
                     onChange={handleAutoCompleteFormItemChange}
                     qflProps={{
                       style: {
                         display: 'inline-block',
-                        width: itemWidth + '%'
+                        width: itemWidth + '%',
                       },
                       ...layoutElement.qflProps,
+                      ...layoutElement.autoCompleteQflProps,
                     }}
                   >
                   </AutoComplete>
