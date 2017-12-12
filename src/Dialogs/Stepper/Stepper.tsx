@@ -41,6 +41,7 @@ export interface IStepperProps extends IMUIProps {
 
   prevLabel?: string;
   nextLabel?: string;
+  onNext?: Function;
   doneLabel?: string;
 
   prevButtonTheme?: {};
@@ -90,6 +91,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
 
     prevLabel: 'Zurück',
     nextLabel: 'Weiter',
+    onNext: null,
     doneLabel: 'Fertig',
 
     prevButtonTheme: null,
@@ -119,12 +121,20 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     };
   }
 
-  private handleNext() {
+  private handleNext(): void {
     const {stepIndex} = this.state;
-    this.setState({
-      stepIndex: stepIndex + 1,
-      finished: stepIndex >= this.props.steps.length - 1,
-    });
+    let continueStep: boolean = true;
+
+    if (this.props.onNext) {
+      continueStep = this.props.onNext(stepIndex);
+    }
+
+    if (continueStep) {
+      this.setState({
+        stepIndex: stepIndex + 1,
+        finished: stepIndex >= this.props.steps.length - 1,
+      });
+    }
   }
 
   private handlePrev() {
@@ -134,7 +144,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     }
   }
 
-  private getStepContent(stepIndex) {
+  public getStepContent(stepIndex) {
     if (this.props.steps[stepIndex].stepContent) {
       return (
         this.props.steps[stepIndex].stepContent
@@ -271,6 +281,27 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
       componentName: 'ButtonContainer',
     });
 
+    let previousButton = (
+      <FlatButton
+        theme={{
+          ...(this.props.prevButtonTheme || this.props.theme),
+          themeContext: 'prev',
+        }}
+        muiProps={{
+          label: this.props.prevLabel,
+          disabled: (stepIndex === 0),
+          onTouchTap: () => this.handlePrev(),
+          ...this.props.prevButtonMuiProps,
+        }}
+        qflProps={{
+          ...this.props.prevButtonQflProps,
+        }}
+      />
+    );
+
+    if (stepIndex === 0) {
+      previousButton = null;
+    }
     const stepper =
       <div {...qflProps} style={{width: '100%'}} className={this.props.stepperClassName}>
         <MUIStepper {...muiProps} activeStep={stepIndex} linear={isLinear}>
@@ -283,21 +314,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
             <div>
               {this.getStepContent(stepIndex)}
               <div {...bcProps.qflProps}>
-                <FlatButton
-                  theme={{
-                    ...(this.props.prevButtonTheme || this.props.theme),
-                    themeContext: 'prev',
-                  }}
-                  muiProps={{
-                    label: this.props.prevLabel,
-                    disabled: (stepIndex === 0),
-                    onTouchTap: () => this.handlePrev(),
-                    ...this.props.prevButtonMuiProps,
-                  }}
-                  qflProps={{
-                    ...this.props.prevButtonQflProps,
-                  }}
-                />
+                {previousButton}
                 {currentButton}
               </div>
             </div>

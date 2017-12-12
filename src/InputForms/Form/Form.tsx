@@ -46,6 +46,8 @@ export interface IFormProps extends IMUIProps {
   layout: Array<ILayoutItem | Array<ILayoutItem>>;
 
   doValidate?: boolean;
+  doValidateCallback?: Function;
+  focusOnItem?: number;
   keyAttributeName?: string;
   dataProvider?: Function;
   onChange?: Function;
@@ -66,6 +68,8 @@ class Form extends React.Component<IFormProps, IFormState> {
     qflProps: {},
 
     doValidate: false,
+    doValidateCallback: null,
+    focusOnItem: null,
     keyAttributeName: 'id',
     dataProvider: null,
     onChange: null,
@@ -87,9 +91,9 @@ class Form extends React.Component<IFormProps, IFormState> {
     this.state = state;
   }
 
-  public static validateFormData(props: IFormProps, state: IFormState, item: {}) {
+  public static validateFormData(props: IFormProps, state: IFormState, item: {}, doValidate?: boolean, component?: Form) {
     const formErrorData = {};
-    if (props.doValidate && props.layout && props.layout.length > 0 && item) {
+    if ((props.doValidate || doValidate) && props.layout && props.layout.length > 0 && item) {
       for (let f = 0; f < props.layout.length; f++) {
         let formElement = props.layout[f];
         if (Object.prototype.toString.call(formElement) === '[object Array]' ) {
@@ -104,11 +108,19 @@ class Form extends React.Component<IFormProps, IFormState> {
         }
       }
     }
+
+    let errorData = {};
     if (formErrorData && typeof formErrorData === 'object' && Object.keys(formErrorData).length > 0) {
-      return formErrorData;
-    } else {
-      return {};
+      errorData = formErrorData;
     }
+
+    if (doValidate && component) {
+      component.setState({
+        errorData,
+      });
+    }
+
+    return errorData;
   }
 
   private static validateItem(props: IFormProps, state: IFormState, formElement, errorData) {
