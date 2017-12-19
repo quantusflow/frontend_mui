@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table/lib/index.js';
+import {BootstrapTable, TableHeaderColumn} from '@quantusflow/react-bootstrap-table/lib/index.js';
 
 import CleanCheckbox from 'material-ui/svg-icons/action/done.js';
 import IndeterminateCheckbox from 'material-ui/svg-icons/content/remove.js';
@@ -208,8 +208,8 @@ class Table extends React.Component<ITableProps, ITableState> {
   }
 
   public render() {
-    const toastrCSS = require('react-bootstrap-table/css/toastr.css');
-    const reactBootstrapTableCSS = require('react-bootstrap-table/css/react-bootstrap-table.css');
+    const toastrCSS = require('@quantusflow/react-bootstrap-table/css/toastr.css');
+    const reactBootstrapTableCSS = require('@quantusflow/react-bootstrap-table/css/react-bootstrap-table.css');
 
     const dataSource = (this.props.dataSource || this.props.rbtProps.data);
     delete this.props.rbtProps.data;

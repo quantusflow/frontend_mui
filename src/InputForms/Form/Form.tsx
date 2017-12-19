@@ -805,7 +805,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                   this.setState({
                     errorData: currentErrorData,
                   }, () => {
-                    this.handleFormItemChange('TextField', layoutElement.key, oldValue, newValue);
+                    this.handleFormItemChange('Custom', layoutElement.key, oldValue, newValue);
                   });
                 }
               };
