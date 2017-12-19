@@ -37,6 +37,14 @@ class TextField extends React.Component<ITextFieldProps, ITextFieldState> {
     };
   }
 
+  public componentWillReceiveProps(nextProps: ITextFieldProps): void {
+    if (this.state.currentValue !== nextProps.value) {
+      this.setState({
+        currentValue: nextProps.value,
+      });
+    }
+  }
+
   private handleChange(e, fireUp?: boolean) {
     const oldValue = this.state.currentValue;
     const newValue = e.currentTarget.value;
