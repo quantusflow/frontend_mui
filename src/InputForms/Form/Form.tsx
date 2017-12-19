@@ -19,6 +19,8 @@ import {buildTheme} from '../../themeBuilder';
 export interface ILayoutItem {
   key: string;
   type: string;
+  itemComponentClass?: any;
+  itemComponentProps?: any;
   initialValue?: any;
   nullable?: boolean;
 
@@ -314,67 +316,12 @@ class Form extends React.Component<IFormProps, IFormState> {
           let resultingFromElement = <div/>;
 
           if (layoutElement) {
-            switch (layoutElement.type) {
-              case 'CheckBox': {
-                const initialValue = (layoutElement.hasOwnProperty('initialValue') && layoutElement.initialValue !== null
-                  ? layoutElement.initialValue
-                  : Form.getFormItemValue(this.props, this.state, layoutElement.key));
-
-                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
-                if (currentValue === undefined) {
-                  currentValue = initialValue;
-                  if (!this.props.item) {
-                    const curFormData = this.state.formData;
-                    if (curFormData[layoutElement.key] !== initialValue) {
-                      curFormData[layoutElement.key] = initialValue;
-                      setTimeout(
-                        () => {
-                          this.setState(
-                            {
-                              formData: curFormData,
-                            },
-                            () => {
-                              if (this.props.onChange) {
-                                this.props.onChange(this.state.formData);
-                              }
-                            },
-                          );
-                        },
-                        0,
-                      );
-                    }
-                  }
-                }
-
-                const handleCheckBoxFormItemChange = (event, oldValue, newValue) =>
-                  this.handleFormItemChange('CheckBox', layoutElement.key, oldValue, newValue);
-
-                resultingFromElement = (
-                  <CheckBox
-                    dataKey={layoutElement.key}
-                    theme={layoutElement.theme}
-                    value={currentValue}
-                    onChange={handleCheckBoxFormItemChange}
-                    muiProps={{
-                      label: layoutElement.label,
-                      ...layoutElement.muiProps,
-                    }}
-                    qflProps={{
-                      style: {
-                        display: 'inline-block',
-                        width: itemWidth + '%',
-                      },
-                      ...layoutElement.qflProps,
-                    }}
-                  />
-                );
-              }
-                break;
-              case 'RadioBox': {
-                if (layoutElement.items && layoutElement.items.length > 0) {
+            if (layoutElement.type) {
+              switch (layoutElement.type) {
+                case 'CheckBox': {
                   const initialValue = (layoutElement.hasOwnProperty('initialValue') && layoutElement.initialValue !== null
                     ? layoutElement.initialValue
-                    : (!layoutElement.nullable ? layoutElement.items[0].value : null));
+                    : Form.getFormItemValue(this.props, this.state, layoutElement.key));
 
                   let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
                   if (currentValue === undefined) {
@@ -402,19 +349,17 @@ class Form extends React.Component<IFormProps, IFormState> {
                     }
                   }
 
-                  const handleRadioBoxFormItemChange = (event, index, oldValue, newValue) =>
-                    this.handleFormItemChange('RadioBox', layoutElement.key, oldValue, newValue, layoutElement.items[index], layoutElement);
+                  const handleCheckBoxFormItemChange = (event, oldValue, newValue) =>
+                    this.handleFormItemChange('CheckBox', layoutElement.key, oldValue, newValue);
 
                   resultingFromElement = (
-                    <RadioBox
-                      key={layoutElement.key}
-                      value={currentValue}
-                      label={layoutElement.label}
+                    <CheckBox
+                      dataKey={layoutElement.key}
                       theme={layoutElement.theme}
-                      onChange={handleRadioBoxFormItemChange}
+                      value={currentValue}
+                      onChange={handleCheckBoxFormItemChange}
                       muiProps={{
-                        name: layoutElement.key,
-                        defaultSelected: initialValue,
+                        label: layoutElement.label,
                         ...layoutElement.muiProps,
                       }}
                       qflProps={{
@@ -423,374 +368,457 @@ class Form extends React.Component<IFormProps, IFormState> {
                           width: itemWidth + '%',
                         },
                         ...layoutElement.qflProps,
-                        ...layoutElement.radioButtonQflProps,
                       }}
-                    >
-                      {layoutElement.items.map((radioBoxItem, radioBoxIdx) => <RadioButton
-                        key={layoutElement.key + '-' + radioBoxIdx}
-                        muiProps={{
-                          style: {
-                            width: '50%',
-                            display: 'inline-block',
-                          },
-                          iconStyle: {
-                            marginRight: '8px',
-                          },
-                          value: radioBoxItem.value,
-                          label: radioBoxItem.label,
-                          checkedIcon: <CheckedIcon/>,
-                          uncheckedIcon: <UncheckedIcon/>,
-                          ...layoutElement.muiProps,
-                          ...layoutElement.radioButtonMuiProps,
-                        }}
-                      />)}
-                    </RadioBox>
+                    />
                   );
                 }
-              }
-                break;
-              case 'DropDown': {
-                const initialValue = layoutElement.initialValue;
+                  break;
+                case 'RadioBox': {
+                  if (layoutElement.items && layoutElement.items.length > 0) {
+                    const initialValue = (layoutElement.hasOwnProperty('initialValue') && layoutElement.initialValue !== null
+                      ? layoutElement.initialValue
+                      : (!layoutElement.nullable ? layoutElement.items[0].value : null));
 
-                let items = layoutElement.items;
-                let layoutItems = layoutElement.items;
-                if (layoutElement.itemMapper && typeof layoutElement.itemMapper === 'function') {
-                  items = [];
+                    let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
+                    if (currentValue === undefined) {
+                      currentValue = initialValue;
+                      if (!this.props.item) {
+                        const curFormData = this.state.formData;
+                        if (curFormData[layoutElement.key] !== initialValue) {
+                          curFormData[layoutElement.key] = initialValue;
+                          setTimeout(
+                            () => {
+                              this.setState(
+                                {
+                                  formData: curFormData,
+                                },
+                                () => {
+                                  if (this.props.onChange) {
+                                    this.props.onChange(this.state.formData);
+                                  }
+                                },
+                              );
+                            },
+                            0,
+                          );
+                        }
+                      }
+                    }
+
+                    const handleRadioBoxFormItemChange = (event, index, oldValue, newValue) =>
+                      this.handleFormItemChange('RadioBox', layoutElement.key, oldValue, newValue, layoutElement.items[index], layoutElement);
+
+                    resultingFromElement = (
+                      <RadioBox
+                        key={layoutElement.key}
+                        value={currentValue}
+                        label={layoutElement.label}
+                        theme={layoutElement.theme}
+                        onChange={handleRadioBoxFormItemChange}
+                        muiProps={{
+                          name: layoutElement.key,
+                          defaultSelected: initialValue,
+                          ...layoutElement.muiProps,
+                        }}
+                        qflProps={{
+                          style: {
+                            display: 'inline-block',
+                            width: itemWidth + '%',
+                          },
+                          ...layoutElement.qflProps,
+                          ...layoutElement.radioButtonQflProps,
+                        }}
+                      >
+                        {layoutElement.items.map((radioBoxItem, radioBoxIdx) => <RadioButton
+                          key={layoutElement.key + '-' + radioBoxIdx}
+                          muiProps={{
+                            style: {
+                              width: '50%',
+                              display: 'inline-block',
+                            },
+                            iconStyle: {
+                              marginRight: '8px',
+                            },
+                            value: radioBoxItem.value,
+                            label: radioBoxItem.label,
+                            checkedIcon: <CheckedIcon/>,
+                            uncheckedIcon: <UncheckedIcon/>,
+                            ...layoutElement.muiProps,
+                            ...layoutElement.radioButtonMuiProps,
+                          }}
+                        />)}
+                      </RadioBox>
+                    );
+                  }
+                }
+                  break;
+                case 'DropDown': {
+                  const initialValue = layoutElement.initialValue;
+
+                  let items = layoutElement.items;
+                  let layoutItems = layoutElement.items;
+                  if (layoutElement.itemMapper && typeof layoutElement.itemMapper === 'function') {
+                    items = [];
+                    let dataProvider = {};
+                    if (this.props.dataProvider && typeof this.props.dataProvider === 'function') {
+                      dataProvider = this.props.dataProvider();
+                      if (dataProvider.hasOwnProperty(layoutElement.key) && dataProvider[layoutElement.key]) {
+                        items = layoutElement.itemMapper(dataProvider[layoutElement.key]);
+
+                        layoutItems = items.map((dropDownItem, dropDownItemIdx) => (
+                          <MUIMenuItem key={layoutElement.key + '-' + dropDownItemIdx}
+                                       value={dropDownItem.value}
+                                       primaryText={dropDownItem.label}
+                          />
+                        ));
+                      }
+                    }
+                  } else {
+                    items = layoutElement.items;
+                    layoutItems = items.map((dropDownItem, dropDownItemIdx) => (
+                      <MUIMenuItem
+                        key={layoutElement.key + '-' + dropDownItemIdx}
+                        value={dropDownItem.value}
+                        primaryText={dropDownItem.label}
+                      />
+                    ));
+                  }
+
+                  let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key, layoutElement.keyAttributeName, items);
+                  if (currentValue === undefined) {
+                    currentValue = initialValue;
+                    if (!this.props.item) {
+                      const curFormData = this.state.formData;
+                      if (curFormData[layoutElement.key] !== initialValue) {
+                        curFormData[layoutElement.key] = initialValue;
+                        setTimeout(
+                          () => {
+                            this.setState(
+                              {
+                                formData: curFormData,
+                              },
+                              () => {
+                                if (this.props.onChange) {
+                                  this.props.onChange(this.state.formData);
+                                }
+                              },
+                            );
+                          },
+                          0,
+                        );
+                      }
+                    }
+                  }
+
+                  const handleDropDownFormItemChange = (event, index, oldValue, newValue) => {
+                    if (this.validateFormElement(layoutElement, newValue)) {
+                      const currentErrorData = this.state.errorData;
+                      delete currentErrorData[layoutElement.key];
+                      this.setState({
+                        errorData: currentErrorData
+                      }, () => {
+                        this.handleFormItemChange('DropDown', layoutElement.key, oldValue, newValue, items[index], layoutElement);
+                      });
+                    }
+                  };
+
+
+                  let errorMessage = null;
+                  if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
+                    errorMessage = this.state.errorData[layoutElement.key];
+                  }
+
+                  resultingFromElement = (
+                    <DropDown
+                      key={layoutElement.key}
+                      label={layoutElement.label}
+                      errorText={errorMessage}
+                      theme={layoutElement.theme}
+                      value={currentValue}
+                      muiProps={{
+                        ...layoutElement.muiProps,
+                      }}
+                      onChange={handleDropDownFormItemChange}
+                      qflProps={{
+                        style: {
+                          display: 'inline-block',
+                          width: itemWidth + '%'
+                        },
+                        ...layoutElement.qflProps,
+                      }}
+                    >
+                      {layoutItems}
+                    </DropDown>
+                  );
+                }
+                  break;
+                case 'DatePicker': {
+                  const initialValue = layoutElement.initialValue;
+                  let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
+                  if (currentValue === undefined) {
+                    currentValue = initialValue;
+                    if (!this.props.item) {
+                      const curFormData = this.state.formData;
+                      if (curFormData[layoutElement.key] !== initialValue) {
+                        curFormData[layoutElement.key] = initialValue;
+                        setTimeout(
+                          () => {
+                            this.setState(
+                              {
+                                formData: curFormData,
+                              },
+                              () => {
+                                if (this.props.onChange) {
+                                  this.props.onChange(this.state.formData);
+                                }
+                              },
+                            );
+                          },
+                          0,
+                        );
+                      }
+                    }
+                  }
+
+                  const handleDatePickerFormItemChange = (oldValue, newValue) => {
+                    if (this.validateFormElement(layoutElement, newValue)) {
+                      const currentErrorData = this.state.errorData;
+                      delete currentErrorData[layoutElement.key];
+                      this.setState({
+                        errorData: currentErrorData
+                      }, () => {
+                        this.handleFormItemChange('DatePicker', layoutElement.key, oldValue, newValue);
+                      });
+                    }
+                  };
+
+                  let errorMessage = null;
+                  if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
+                    errorMessage = this.state.errorData[layoutElement.key];
+                  }
+
+                  resultingFromElement = (
+                    <DatePicker
+                      key={layoutElement.key}
+                      value={currentValue}
+                      theme={layoutElement.theme}
+                      muiProps={{
+                        tabIndex,
+                        floatingLabelText: layoutElement.label,
+                        width: '100%',
+                        ...layoutElement.muiProps,
+                        errorText: errorMessage,
+                      }}
+                      onChange={handleDatePickerFormItemChange}
+                      qflProps={{
+                        style: {
+                          display: 'inline-block',
+                          width: itemWidth + '%'
+                        },
+                        ...layoutElement.qflProps,
+                      }}
+                    />
+                  );
+                }
+                  break;
+
+                case 'AutoComplete': {
+
+                  const initialValue = layoutElement.initialValue;
+
+                  let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
+                  if (currentValue === undefined) {
+                    currentValue = initialValue;
+                    if (!this.props.item) {
+                      const curFormData = this.state.formData;
+                      if (curFormData[layoutElement.key] !== initialValue) {
+                        curFormData[layoutElement.key] = initialValue;
+                        setTimeout(
+                          () => {
+                            this.setState(
+                              {
+                                formData: curFormData,
+                              },
+                              () => {
+                                if (this.props.onChange) {
+                                  this.props.onChange(this.state.formData);
+                                }
+                              },
+                            );
+                          },
+                          0,
+                        );
+                      }
+                    }
+                  }
+
+                  const handleAutoCompleteFormItemChange = (event, index, oldValue, newValue) => {
+                    if (this.validateFormElement(layoutElement, newValue)) {
+                      const currentErrorData = this.state.errorData;
+                      delete currentErrorData[layoutElement.key];
+                      this.setState({
+                        errorData: currentErrorData
+                      }, () => {
+                        this.handleFormItemChange('AutoComplete', layoutElement.key, oldValue, newValue, layoutElement.items[index], layoutElement);
+                      });
+                    }
+                  };
+
+                  let errorMessage = null;
+                  if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
+                    errorMessage = this.state.errorData[layoutElement.key];
+                  }
+
+                  let items = [];
                   let dataProvider = {};
                   if (this.props.dataProvider && typeof this.props.dataProvider === 'function') {
                     dataProvider = this.props.dataProvider();
                     if (dataProvider.hasOwnProperty(layoutElement.key) && dataProvider[layoutElement.key]) {
-                      items = layoutElement.itemMapper(dataProvider[layoutElement.key]);
-
-                      layoutItems = items.map((dropDownItem, dropDownItemIdx) => (
-                        <MUIMenuItem key={layoutElement.key + '-' + dropDownItemIdx}
-                                     value={dropDownItem.value}
-                                     primaryText={dropDownItem.label}
-                        />
-                      ));
+                      if (layoutElement.itemMapper && typeof layoutElement.itemMapper === 'function') {
+                        items = layoutElement.itemMapper(dataProvider[layoutElement.key]);
+                      } else if (layoutElement.items) {
+                        items = layoutElement.items;
+                      }
                     }
-                  }
-                } else {
-                  items = layoutElement.items;
-                  layoutItems = items.map((dropDownItem, dropDownItemIdx) => (
-                    <MUIMenuItem
-                      key={layoutElement.key + '-' + dropDownItemIdx}
-                      value={dropDownItem.value}
-                      primaryText={dropDownItem.label}
-                    />
-                  ));
-                }
-
-                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key, layoutElement.keyAttributeName, items);
-                if (currentValue === undefined) {
-                  currentValue = initialValue;
-                  if (!this.props.item) {
-                    const curFormData = this.state.formData;
-                    if (curFormData[layoutElement.key] !== initialValue) {
-                      curFormData[layoutElement.key] = initialValue;
-                      setTimeout(
-                        () => {
-                          this.setState(
-                            {
-                              formData: curFormData,
-                            },
-                            () => {
-                              if (this.props.onChange) {
-                                this.props.onChange(this.state.formData);
-                              }
-                            },
-                          );
-                        },
-                        0,
-                      );
-                    }
-                  }
-                }
-
-                const handleDropDownFormItemChange = (event, index, oldValue, newValue) => {
-                  if (this.validateFormElement(layoutElement, newValue)) {
-                    const currentErrorData = this.state.errorData;
-                    delete currentErrorData[layoutElement.key];
-                    this.setState({
-                      errorData: currentErrorData
-                    }, () => {
-                      this.handleFormItemChange('DropDown', layoutElement.key, oldValue, newValue, items[index], layoutElement);
-                    });
-                  }
-                };
-
-
-                let errorMessage = null;
-                if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
-                  errorMessage = this.state.errorData[layoutElement.key];
-                }
-
-                resultingFromElement = (
-                  <DropDown
-                    key={layoutElement.key}
-                    label={layoutElement.label}
-                    errorText={errorMessage}
-                    theme={layoutElement.theme}
-                    value={currentValue}
-                    muiProps={{
-                      ...layoutElement.muiProps,
-                    }}
-                    onChange={handleDropDownFormItemChange}
-                    qflProps={{
-                      style: {
-                        display: 'inline-block',
-                        width: itemWidth + '%'
-                      },
-                      ...layoutElement.qflProps,
-                    }}
-                  >
-                    {layoutItems}
-                  </DropDown>
-                );
-              }
-                break;
-              case 'DatePicker': {
-                const initialValue = layoutElement.initialValue;
-                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
-                if (currentValue === undefined) {
-                  currentValue = initialValue;
-                  if (!this.props.item) {
-                    const curFormData = this.state.formData;
-                    if (curFormData[layoutElement.key] !== initialValue) {
-                      curFormData[layoutElement.key] = initialValue;
-                      setTimeout(
-                        () => {
-                          this.setState(
-                            {
-                              formData: curFormData,
-                            },
-                            () => {
-                              if (this.props.onChange) {
-                                this.props.onChange(this.state.formData);
-                              }
-                            },
-                          );
-                        },
-                        0,
-                      );
-                    }
-                  }
-                }
-
-                const handleDatePickerFormItemChange = (oldValue, newValue) => {
-                  if (this.validateFormElement(layoutElement, newValue)) {
-                    const currentErrorData = this.state.errorData;
-                    delete currentErrorData[layoutElement.key];
-                    this.setState({
-                      errorData: currentErrorData
-                    }, () => {
-                      this.handleFormItemChange('DatePicker', layoutElement.key, oldValue, newValue);
-                    });
-                  }
-                };
-
-                let errorMessage = null;
-                if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
-                  errorMessage = this.state.errorData[layoutElement.key];
-                }
-
-                resultingFromElement = (
-                  <DatePicker
-                    key={layoutElement.key}
-                    value={currentValue}
-                    theme={layoutElement.theme}
-                    muiProps={{
-                      tabIndex,
-                      floatingLabelText: layoutElement.label,
-                      width: '100%',
-                      ...layoutElement.muiProps,
-                      errorText: errorMessage,
-                    }}
-                    onChange={handleDatePickerFormItemChange}
-                    qflProps={{
-                      style: {
-                        display: 'inline-block',
-                        width: itemWidth + '%'
-                      },
-                      ...layoutElement.qflProps,
-                    }}
-                  />
-                );
-              }
-                break;
-
-              case 'AutoComplete': {
-
-                const initialValue = layoutElement.initialValue;
-
-                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
-                if (currentValue === undefined) {
-                  currentValue = initialValue;
-                  if (!this.props.item) {
-                    const curFormData = this.state.formData;
-                    if (curFormData[layoutElement.key] !== initialValue) {
-                      curFormData[layoutElement.key] = initialValue;
-                      setTimeout(
-                        () => {
-                          this.setState(
-                            {
-                              formData: curFormData,
-                            },
-                            () => {
-                              if (this.props.onChange) {
-                                this.props.onChange(this.state.formData);
-                              }
-                            },
-                          );
-                        },
-                        0,
-                      );
-                    }
-                  }
-                }
-
-                const handleAutoCompleteFormItemChange = (event, index, oldValue, newValue) => {
-                  if (this.validateFormElement(layoutElement, newValue)) {
-                    const currentErrorData = this.state.errorData;
-                    delete currentErrorData[layoutElement.key];
-                    this.setState({
-                      errorData: currentErrorData
-                    }, () => {
-                      this.handleFormItemChange('AutoComplete', layoutElement.key, oldValue, newValue, layoutElement.items[index], layoutElement);
-                    });
-                  }
-                };
-
-                let errorMessage = null;
-                if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
-                  errorMessage = this.state.errorData[layoutElement.key];
-                }
-
-                let items = [];
-                let dataProvider = {};
-                if (this.props.dataProvider && typeof this.props.dataProvider === 'function') {
-                  dataProvider = this.props.dataProvider();
-                  if (dataProvider.hasOwnProperty(layoutElement.key) && dataProvider[layoutElement.key]) {
-                    if (layoutElement.itemMapper && typeof layoutElement.itemMapper === 'function') {
-                      items = layoutElement.itemMapper(dataProvider[layoutElement.key]);
+                  } else {
+                    if (layoutElement.items && layoutElement.itemMapper && typeof layoutElement.itemMapper === 'function') {
+                      items = layoutElement.itemMapper(layoutElement.items);
                     } else if (layoutElement.items) {
                       items = layoutElement.items;
                     }
                   }
-                } else {
-                  if (layoutElement.items && layoutElement.itemMapper && typeof layoutElement.itemMapper === 'function') {
-                    items = layoutElement.itemMapper(layoutElement.items);
-                  } else if (layoutElement.items) {
-                    items = layoutElement.items;
-                  }
-                }
 
-                resultingFromElement = (
-                  <AutoComplete
-                    key={layoutElement.key}
-                    label={layoutElement.label}
-                    theme={layoutElement.theme}
-                    value={currentValue}
-                    items={items}
-                    dataFetcher={
-                      (layoutElement.dataFetcher
-                        ? (searchText: string, autoCompleteItem: React.Component<{}, {}>): Promise<Array<{} | string>> =>
-                            layoutElement.dataFetcher(searchText, autoCompleteItem)
-                        : null
-                      )}
-                    noFilter={layoutElement.noFilter}
-                    muiProps={{
-                      tabIndex: tabIndex,
-                      floatingLabelText: layoutElement.label,
-                      width: '100%',
-                      ...layoutElement.muiProps,
-                      ...layoutElement.autoCompleteMuiProps,
-                      errorText: errorMessage,
-                    }}
-                    onChange={handleAutoCompleteFormItemChange}
-                    qflProps={{
-                      style: {
-                        display: 'inline-block',
-                        width: itemWidth + '%',
-                      },
-                      ...layoutElement.qflProps,
-                      ...layoutElement.autoCompleteQflProps,
-                    }}
-                  >
-                  </AutoComplete>
-                );
-
-              }
-                break;
-              case 'TextField':
-              default: { // tslint:disable-line no-switch-case-fall-through
-                const initialValue = layoutElement.initialValue;
-                let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
-                if (currentValue === undefined) {
-                  currentValue = initialValue;
-                  if (!this.props.item) {
-                    const curFormData = this.state.formData;
-                    if (curFormData[layoutElement.key] !== initialValue) {
-                      curFormData[layoutElement.key] = initialValue;
-                      setTimeout(
-                        () => {
-                          this.setState(
-                            {
-                              formData: curFormData,
-                            },
-                            () => {
-                              if (this.props.onChange) {
-                                this.props.onChange(this.state.formData);
-                              }
-                            },
-                          );
+                  resultingFromElement = (
+                    <AutoComplete
+                      key={layoutElement.key}
+                      label={layoutElement.label}
+                      theme={layoutElement.theme}
+                      value={currentValue}
+                      items={items}
+                      dataFetcher={
+                        (layoutElement.dataFetcher
+                            ? (searchText: string, autoCompleteItem: React.Component<{}, {}>): Promise<Array<{} | string>> =>
+                              layoutElement.dataFetcher(searchText, autoCompleteItem)
+                            : null
+                        )}
+                      noFilter={layoutElement.noFilter}
+                      muiProps={{
+                        tabIndex: tabIndex,
+                        floatingLabelText: layoutElement.label,
+                        width: '100%',
+                        ...layoutElement.muiProps,
+                        ...layoutElement.autoCompleteMuiProps,
+                        errorText: errorMessage,
+                      }}
+                      onChange={handleAutoCompleteFormItemChange}
+                      qflProps={{
+                        style: {
+                          display: 'inline-block',
+                          width: itemWidth + '%',
                         },
-                        0,
-                      );
+                        ...layoutElement.qflProps,
+                        ...layoutElement.autoCompleteQflProps,
+                      }}
+                    >
+                    </AutoComplete>
+                  );
+
+                }
+                  break;
+                case 'TextField':
+                default: { // tslint:disable-line no-switch-case-fall-through
+                  const initialValue = layoutElement.initialValue;
+                  let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
+                  if (currentValue === undefined) {
+                    currentValue = initialValue;
+                    if (!this.props.item) {
+                      const curFormData = this.state.formData;
+                      if (curFormData[layoutElement.key] !== initialValue) {
+                        curFormData[layoutElement.key] = initialValue;
+                        setTimeout(
+                          () => {
+                            this.setState(
+                              {
+                                formData: curFormData,
+                              },
+                              () => {
+                                if (this.props.onChange) {
+                                  this.props.onChange(this.state.formData);
+                                }
+                              },
+                            );
+                          },
+                          0,
+                        );
+                      }
                     }
                   }
-                }
 
-                const handleTextFieldFormItemChange = (oldValue, newValue) => {
-                  if (this.validateFormElement(layoutElement, newValue)) {
-                    const currentErrorData = this.state.errorData;
-                    delete currentErrorData[layoutElement.key];
-                    this.setState({
-                      errorData: currentErrorData
-                    }, () => {
-                      this.handleFormItemChange('TextField', layoutElement.key, oldValue, newValue);
-                    });
+                  const handleTextFieldFormItemChange = (oldValue, newValue) => {
+                    if (this.validateFormElement(layoutElement, newValue)) {
+                      const currentErrorData = this.state.errorData;
+                      delete currentErrorData[layoutElement.key];
+                      this.setState({
+                        errorData: currentErrorData,
+                      }, () => {
+                        this.handleFormItemChange('TextField', layoutElement.key, oldValue, newValue);
+                      });
+                    }
+                  };
+
+                  let errorMessage = null;
+                  if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
+                    errorMessage = this.state.errorData[layoutElement.key];
                   }
-                };
 
-                let errorMessage = null;
-                if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
-                  errorMessage = this.state.errorData[layoutElement.key];
+                  resultingFromElement = (
+                    <TextField
+                      key={layoutElement.key}
+                      value={currentValue}
+                      theme={layoutElement.theme}
+                      muiProps={{
+                        tabIndex: tabIndex,
+                        floatingLabelText: layoutElement.label,
+                        width: '100%',
+                        ...layoutElement.muiProps,
+                        errorText: errorMessage,
+                      }}
+                      onChange={handleTextFieldFormItemChange}
+                      qflProps={{
+                        style: {
+                          display: 'inline-block',
+                          width: itemWidth + '%',
+                        },
+                        ...layoutElement.qflProps,
+                      }}
+                    />
+                  );
                 }
-
-                resultingFromElement = (
-                  <TextField
-                    key={layoutElement.key}
-                    value={currentValue}
-                    theme={layoutElement.theme}
-                    muiProps={{
-                      tabIndex: tabIndex,
-                      floatingLabelText: layoutElement.label,
-                      width: '100%',
-                      ...layoutElement.muiProps,
-                      errorText: errorMessage,
-                    }}
-                    onChange={handleTextFieldFormItemChange}
-                    qflProps={{
-                      style: {
-                        display: 'inline-block',
-                        width: itemWidth + '%'
-                      },
-                      ...layoutElement.qflProps,
-                    }}
-                  />
-                );
               }
+            } else if (layoutElement.itemComponentClass) {
+              let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
+
+              const handleComponentFormItemChange = (oldValue, newValue) => {
+                if (this.validateFormElement(layoutElement, newValue)) {
+                  const currentErrorData = this.state.errorData;
+                  delete currentErrorData[layoutElement.key];
+                  this.setState({
+                    errorData: currentErrorData,
+                  }, () => {
+                    this.handleFormItemChange('TextField', layoutElement.key, oldValue, newValue);
+                  });
+                }
+              };
+
+              resultingFromElement = (
+                <layoutElement.itemComponentClass
+                  key={layoutElement.key}
+                  value={currentValue}
+                  theme={layoutElement.theme}
+                  onChange={handleComponentFormItemChange}
+                  {...layoutElement.itemComponentProps}
+                />
+              );
             }
           }
 

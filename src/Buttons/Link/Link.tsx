@@ -47,10 +47,10 @@ class Link extends React.Component<ILinkProps, {}> {
     const targetObj: { href?: string, to?: string } = {href: this.props.href};
 
     let linkComponent = (
-      <a style={extend(clone(muiProps.linkStyle, false), this.props.linkStyle)} {...targetObj}>
-                <span style={extend(clone(muiProps.labelStyle, false), this.props.labelStyle)}>
-                    {this.props.label}
-                </span>
+      <a style={extend(clone(muiProps.linkStyle, false), this.props.linkStyle)} {...targetObj} {...muiProps}>
+        <span style={extend(clone(muiProps.labelStyle, false), this.props.labelStyle)} >
+            {this.props.label}
+        </span>
       </a>
     );
 
@@ -59,10 +59,10 @@ class Link extends React.Component<ILinkProps, {}> {
       delete targetObj.href;
       targetObj.to = this.props.to;
       linkComponent = (
-        <IndexLink style={extend(clone(muiProps.linkStyle, false), this.props.linkStyle)} {...targetObj}>
-                    <span style={extend(clone(muiProps.labelStyle, false), this.props.labelStyle)}>
-                        {this.props.label}
-                    </span>
+        <IndexLink style={extend(clone(muiProps.linkStyle, false), this.props.linkStyle)} {...targetObj} {...muiProps}>
+          <span style={extend(clone(muiProps.labelStyle, false), this.props.labelStyle)}>
+              {this.props.label}
+          </span>
         </IndexLink>
       );
     }

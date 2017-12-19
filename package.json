@@ -21,7 +21,7 @@
     "intl-locales-supported": "^1.0.0",
     "jquery": "^3.2.1",
     "material-ui": "^0.18.7",
-    "react-bootstrap-table": "ssh://github.com/zimoony/react-bootstrap-table.git#master",
+    "@quantusflow/react-bootstrap-table": "3.4.0-rc1",
     "react-router": "2.4.1",
     "react-tap-event-plugin": "^2.0.1"
   },
