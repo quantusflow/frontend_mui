@@ -17,6 +17,7 @@ export interface INestedMenuItem {
   label?: string;
   path?: string;
   icon?: React.ReactNode;
+  onClick?: Function;
 }
 
 export interface IMenuItem {
@@ -117,6 +118,7 @@ class NavigationBar extends React.Component<INavigationBarProps, {}> {
                         className={nestedElement.className}
                         primaryText={nestedElement.label}
                         value={nestedElement.path}
+                        onClick={nestedElement.onClick}
                         leftIcon={nestedElement.icon}
                       />;
                     default:
