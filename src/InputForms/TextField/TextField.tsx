@@ -38,7 +38,7 @@ class TextField extends React.Component<ITextFieldProps, ITextFieldState> {
   }
 
   public componentWillReceiveProps(nextProps: ITextFieldProps): void {
-    if (this.state.currentValue !== nextProps.value) {
+    if (this.state.currentValue !== nextProps.value && (!nextProps.muiProps || !nextProps.muiProps.errorText)) {
       this.setState({
         currentValue: nextProps.value,
       });
