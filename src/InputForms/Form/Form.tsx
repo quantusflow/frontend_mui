@@ -47,6 +47,7 @@ export interface IFormProps extends IMUIProps {
   item: {};
   layout: Array<ILayoutItem | Array<ILayoutItem>>;
 
+  tabIndexOffset?: number;
   doValidate?: boolean;
   doValidateCallback?: Function;
   focusOnItem?: number;
@@ -68,6 +69,8 @@ class Form extends React.Component<IFormProps, IFormState> {
     theme: null,
     muiProps: {},
     qflProps: {},
+
+    tabIndexOffset: 30,
 
     doValidate: false,
     doValidateCallback: null,
@@ -838,7 +841,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                 }}
               >
                 {(layoutItem as Array<ILayoutItem>).map((subItem, subIdx) =>
-                  getElement(subItem, itemWidth, (30 + (idx * 10) + subIdx), subIdx === 0, subIdx === ((layoutItem as Array<ILayoutItem>).length - 1)))}
+                  getElement(subItem, itemWidth, (this.props.tabIndexOffset + (idx * 10) + subIdx), subIdx === 0, subIdx === ((layoutItem as Array<ILayoutItem>).length - 1)))}
               </div>
             );
           }
@@ -851,7 +854,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                 //paddingTop: ((layoutItem as ILayoutItem).type === 'DropDown' || (layoutItem as ILayoutItem).type === 'AutoComplete' ? '0.4vw' : '0vw'),
               }}
             >
-              {getElement((layoutItem as ILayoutItem), itemWidth, (30 + (idx * 10)), true, true)}
+              {getElement((layoutItem as ILayoutItem), itemWidth, (this.props.tabIndexOffset + (idx * 10)), true, true)}
             </div>
           );
         }
