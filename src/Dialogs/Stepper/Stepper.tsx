@@ -43,10 +43,12 @@ export interface IStepperProps extends IMUIProps {
   nextLabel?: string;
   onNext?: Function;
   doneLabel?: string;
+  cancelLabel?: string;
 
   prevButtonTheme?: {};
   nextButtonTheme?: {};
   doneButtonTheme?: {};
+  cancelButtonTheme?: {};
 
   buttonContainerQflProps?: {};
   prevButtonMuiProps?: {};
@@ -55,6 +57,8 @@ export interface IStepperProps extends IMUIProps {
   nextButtonQflProps?: {};
   doneButtonMuiProps?: {};
   doneButtonQflProps?: {};
+  cancelButtonMuiProps?: {};
+  cancelButtonQflProps?: {};
 
   maxWidth?: number;
 
@@ -93,10 +97,12 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     nextLabel: 'Weiter',
     onNext: null,
     doneLabel: 'Fertig',
+    cancelLabel: 'Abbrechen',
 
     prevButtonTheme: null,
     nextButtonTheme: null,
     doneButtonTheme: null,
+    cancelButtonTheme: null,
 
     buttonContainerQflProps: {},
     prevButtonMuiProps: {},
@@ -105,6 +111,8 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     nextButtonQflProps: {},
     doneButtonMuiProps: {},
     doneButtonQflProps: {},
+    cancelButtonMuiProps: {},
+    cancelButtonQflProps: {},
 
     maxWidth: 400,
 
@@ -179,6 +187,26 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
         sourceQflProps: this.props.dialogQflProps,
         componentName: 'StepperDialog',
     });
+
+    let cancelButton = null;
+    if (this.props.cancelLabel || this.props.cancelLabel !== null) {
+      cancelButton = (
+        <FlatButton
+          theme={{
+            ...(this.props.cancelButtonTheme || this.props.theme),
+            themeContext: 'cancel',
+          }}
+          muiProps={{
+            label: this.props.cancelLabel,
+            onTouchTap: (): void => this.handleClose(false),
+            ...this.props.cancelButtonMuiProps,
+          }}
+          qflProps={{
+            ...this.props.cancelButtonQflProps,
+          }}
+        />
+      );
+    }
 
     let currentButton = null;
     if (stepIndex === this.props.steps.length - 1) {
@@ -314,6 +342,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
             <div>
               {this.getStepContent(stepIndex)}
               <div {...bcProps.qflProps}>
+                {cancelButton}
                 {previousButton}
                 {currentButton}
               </div>
