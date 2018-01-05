@@ -603,7 +603,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                   }
 
                   if (currentValue && typeof currentValue.getMonth === 'function') {
-                    currentValue = currentValue.toISOString();
+                    currentValue = currentValue.toString();
                   }
                   resultingFromElement = (
                     <DatePicker
