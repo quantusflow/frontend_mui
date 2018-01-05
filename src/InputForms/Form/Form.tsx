@@ -602,6 +602,9 @@ class Form extends React.Component<IFormProps, IFormState> {
                     errorMessage = this.state.errorData[layoutElement.key];
                   }
 
+                  if (currentValue && typeof currentValue.getMonth === 'function') {
+                    currentValue = currentValue.toISOString();
+                  }
                   resultingFromElement = (
                     <DatePicker
                       key={layoutElement.key}
