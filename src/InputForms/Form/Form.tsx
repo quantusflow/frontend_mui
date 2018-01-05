@@ -155,6 +155,8 @@ class Form extends React.Component<IFormProps, IFormState> {
           if (items[i].value === result) {
             foundInItems = true;
             break;
+          } else if (result && result.hasOwnProperty()) {
+
           }
         }
         if (!foundInItems) {
@@ -213,7 +215,7 @@ class Form extends React.Component<IFormProps, IFormState> {
     } else {
       if (element && element.hasOwnProperty('keyAttributeName')) {
         curFormData[key] = {};
-        curFormData[key][choosenElement.keyAttributeName] = newValue;
+        curFormData[key][element.keyAttributeName] = newValue;
       } else {
         curFormData[key] = newValue;
       }
@@ -518,7 +520,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                       const currentErrorData = this.state.errorData;
                       delete currentErrorData[layoutElement.key];
                       this.setState({
-                        errorData: currentErrorData
+                        errorData: currentErrorData,
                       }, () => {
                         this.handleFormItemChange('DropDown', layoutElement.key, oldValue, newValue, items[index], layoutElement);
                       });
