@@ -96,7 +96,7 @@ class Form extends React.Component<IFormProps, IFormState> {
     this.state = state;
   }
 
-  public static validateFormData(props: IFormProps, state: IFormState, item: {}, doValidate?: boolean, component?: Form) {
+  public static validateFormData(props: IFormProps, state: IFormState, item: {}, doValidate?: boolean, component?: Form): {} {
     const formErrorData = {};
     if ((props.doValidate || doValidate) && props.layout && props.layout.length > 0 && item) {
       for (let f = 0; f < props.layout.length; f++) {
@@ -203,6 +203,14 @@ class Form extends React.Component<IFormProps, IFormState> {
       return result;
     } else if (keyAttributeName && state.formData && state.formData.hasOwnProperty(key)) {
       return state.formData[key][keyAttributeName];
+    }
+  }
+
+  public componentWillReceiveProps(nextProps: IFormProps): void {
+    if (this.state.formData && nextProps.item && JSON.stringify(this.state.formData) !== JSON.stringify(nextProps.item)) {
+      this.setState({
+        formData: nextProps.item,
+      });
     }
   }
 
@@ -526,7 +534,6 @@ class Form extends React.Component<IFormProps, IFormState> {
                       });
                     }
                   };
-
 
                   let errorMessage = null;
                   if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
