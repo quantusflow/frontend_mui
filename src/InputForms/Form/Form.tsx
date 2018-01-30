@@ -4,6 +4,7 @@ import DatePicker from '../../DateTime/DatePicker/DatePicker';
 import AutoComplete from '../AutoComplete/AutoComplete';
 import CheckBox from '../CheckBox/CheckBox';
 import DropDown from '../DropDown/DropDown';
+import FlatButton from '../../Buttons/FlatButton/FlatButton';
 import RadioBox from '../RadioBox/RadioBox';
 import TextField from '../TextField/TextField';
 
@@ -24,7 +25,7 @@ export interface ILayoutItem {
   initialValue?: any;
   nullable?: boolean;
 
-  theme?: string;
+  theme?: {};
   label?: string;
   muiProps?: {};
   autoCompleteMuiProps?: {};
@@ -39,6 +40,7 @@ export interface ILayoutItem {
 
   noFilter?: boolean;
 
+  onClick?: Function;
   dataFetcher?(searchText: string, autoCompleteComponent: React.Component<{}, {}>): Promise<Array<any>>;
   validate?(value: any, formData: any): { errorMessage: string } | boolean;
 }
@@ -738,6 +740,77 @@ class Form extends React.Component<IFormProps, IFormState> {
                     </AutoComplete>
                   );
 
+                }
+                  break;
+                case 'Label': {
+                  const initialValue = layoutElement.initialValue;
+                  let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
+                  if (currentValue === undefined) {
+                    currentValue = initialValue;
+                    if (!this.props.item) {
+                      const curFormData = this.state.formData;
+                      if (curFormData[layoutElement.key] !== initialValue) {
+                        curFormData[layoutElement.key] = initialValue;
+                        setTimeout(
+                          () => {
+                            this.setState({
+                              formData: curFormData,
+                            });
+                          },
+                          0,
+                        );
+                      }
+                    }
+                  }
+
+                  const labelTheme = buildTheme({
+                    theme: layoutElement.theme,
+                    sourceMuiProps: {},
+                    sourceQflProps: this.props.qflProps,
+                    componentName: 'Label',
+                  });
+
+                  const containerStyle = (
+                    labelTheme.qflProps.containerStyle
+                    ? labelTheme.qflProps.containerStyle
+                    : {}
+                  );
+                  const floatingLabelStyle = (
+                    labelTheme.qflProps.floatingLabelStyle
+                    ? labelTheme.qflProps.floatingLabelStyle
+                    : {}
+                  );
+                  const labelStyle = (
+                    labelTheme.qflProps.style
+                    ? labelTheme.qflProps.style
+                    : {}
+                  );
+
+                  resultingFromElement = (
+                    <div style={...containerStyle}>
+                      <span style={...floatingLabelStyle}>{layoutElement.label}</span>
+                      <span style={...labelStyle}>{currentValue}</span>
+                    </div>
+                  );
+                }
+                  break;
+                case 'Button': {
+                  resultingFromElement = (
+                    <FlatButton
+                      theme={{
+                        ...layoutElement.theme,
+                        themeContext: 'form',
+                      }}
+                      muiProps={{
+                        label: layoutElement.label,
+                        onTouchTap: (): void => layoutElement.onClick(this),
+                        ...layoutElement.muiProps,
+                      }}
+                      qflProps={{
+                        ...layoutElement.qflProps,
+                      }}
+                    />
+                  );
                 }
                   break;
                 case 'TextField':
