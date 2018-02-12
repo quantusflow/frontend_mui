@@ -923,6 +923,7 @@ class Form extends React.Component<IFormProps, IFormState> {
                 key={idx}
                 style={{
                   width: '100%',
+                  ...qflProps.formItemContainerStyle
                 }}
               >
                 {(layoutItem as Array<ILayoutItem>).map((subItem, subIdx) =>
@@ -936,6 +937,7 @@ class Form extends React.Component<IFormProps, IFormState> {
               key={idx}
               style={{
                 width: '100%',
+                ...qflProps.formItemContainerStyle
                 //paddingTop: ((layoutItem as ILayoutItem).type === 'DropDown' || (layoutItem as ILayoutItem).type === 'AutoComplete' ? '0.4vw' : '0vw'),
               }}
             >
