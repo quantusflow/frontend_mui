@@ -364,8 +364,18 @@ class Form extends React.Component<IFormProps, IFormState> {
                     }
                   }
 
-                  const handleCheckBoxFormItemChange = (event, oldValue, newValue) =>
-                    this.handleFormItemChange('CheckBox', layoutElement.key, oldValue, newValue);
+                  const handleCheckBoxFormItemChange = (event, oldValue, newValue) => {
+                    const validationResult: boolean = this.validateFormElement(layoutElement, newValue);
+                    const currentErrorData: {} = this.state.errorData;
+                    if (validationResult) {
+                      delete currentErrorData[layoutElement.key];
+                    }
+                    this.setState({
+                      errorData: currentErrorData,
+                    }, () => {
+                      this.handleFormItemChange('CheckBox', layoutElement.key, oldValue, newValue);
+                    });
+                  };
 
                   resultingFromElement = (
                     <CheckBox
@@ -526,15 +536,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                   }
 
                   const handleDropDownFormItemChange = (event, index, oldValue, newValue) => {
-                    if (this.validateFormElement(layoutElement, newValue)) {
-                      const currentErrorData = this.state.errorData;
+                    const validationResult: boolean = this.validateFormElement(layoutElement, newValue);
+                    const currentErrorData: {} = this.state.errorData;
+                    if (validationResult) {
                       delete currentErrorData[layoutElement.key];
-                      this.setState({
-                        errorData: currentErrorData,
-                      }, () => {
-                        this.handleFormItemChange('DropDown', layoutElement.key, oldValue, newValue, items[index], layoutElement);
-                      });
                     }
+                    this.setState({
+                      errorData: currentErrorData,
+                    }, () => {
+                      this.handleFormItemChange('DropDown', layoutElement.key, oldValue, newValue, items[index], layoutElement);
+                    });
                   };
 
                   let errorMessage = null;
@@ -595,15 +606,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                   }
 
                   const handleDatePickerFormItemChange = (oldValue, newValue) => {
-                    if (this.validateFormElement(layoutElement, newValue)) {
-                      const currentErrorData = this.state.errorData;
+                    const validationResult: boolean = this.validateFormElement(layoutElement, newValue);
+                    const currentErrorData: {} = this.state.errorData;
+                    if (validationResult) {
                       delete currentErrorData[layoutElement.key];
-                      this.setState({
-                        errorData: currentErrorData
-                      }, () => {
-                        this.handleFormItemChange('DatePicker', layoutElement.key, oldValue, newValue);
-                      });
                     }
+                    this.setState({
+                      errorData: currentErrorData,
+                    }, () => {
+                      this.handleFormItemChange('DatePicker', layoutElement.key, oldValue, newValue);
+                    });
                   };
 
                   let errorMessage = null;
@@ -670,15 +682,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                   }
 
                   const handleAutoCompleteFormItemChange = (event, index, oldValue, newValue) => {
-                    if (this.validateFormElement(layoutElement, newValue)) {
-                      const currentErrorData = this.state.errorData;
+                    const validationResult: boolean = this.validateFormElement(layoutElement, newValue);
+                    const currentErrorData: {} = this.state.errorData;
+                    if (validationResult) {
                       delete currentErrorData[layoutElement.key];
-                      this.setState({
-                        errorData: currentErrorData
-                      }, () => {
-                        this.handleFormItemChange('AutoComplete', layoutElement.key, oldValue, newValue, layoutElement.items[index], layoutElement);
-                      });
                     }
+                    this.setState({
+                      errorData: currentErrorData
+                    }, () => {
+                      this.handleFormItemChange('AutoComplete', layoutElement.key, oldValue, newValue, layoutElement.items[index], layoutElement);
+                    });
                   };
 
                   let errorMessage = null;
@@ -843,15 +856,16 @@ class Form extends React.Component<IFormProps, IFormState> {
                   }
 
                   const handleTextFieldFormItemChange = (oldValue, newValue) => {
-                    if (this.validateFormElement(layoutElement, newValue)) {
-                      const currentErrorData = this.state.errorData;
+                    const validationResult: boolean = this.validateFormElement(layoutElement, newValue);
+                    const currentErrorData: {} = this.state.errorData;
+                    if (validationResult) {
                       delete currentErrorData[layoutElement.key];
-                      this.setState({
-                        errorData: currentErrorData,
-                      }, () => {
-                        this.handleFormItemChange('TextField', layoutElement.key, oldValue, newValue);
-                      });
                     }
+                    this.setState({
+                      errorData: currentErrorData,
+                    }, () => {
+                      this.handleFormItemChange('TextField', layoutElement.key, oldValue, newValue);
+                    });
                   };
 
                   let errorMessage = null;
@@ -887,15 +901,16 @@ class Form extends React.Component<IFormProps, IFormState> {
               let currentValue = Form.getFormItemValue(this.props, this.state, layoutElement.key);
 
               const handleComponentFormItemChange = (oldValue, newValue) => {
-                if (this.validateFormElement(layoutElement, newValue)) {
-                  const currentErrorData = this.state.errorData;
+                const validationResult: boolean = this.validateFormElement(layoutElement, newValue)
+                const currentErrorData: {} = this.state.errorData;
+                if (validationResult) {
                   delete currentErrorData[layoutElement.key];
-                  this.setState({
-                    errorData: currentErrorData,
-                  }, () => {
-                    this.handleFormItemChange('Custom', layoutElement.key, oldValue, newValue);
-                  });
                 }
+                this.setState({
+                  errorData: currentErrorData,
+                }, () => {
+                  this.handleFormItemChange('Custom', layoutElement.key, oldValue, newValue);
+                });
               };
 
               resultingFromElement = (
