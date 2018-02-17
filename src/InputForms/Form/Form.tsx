@@ -913,12 +913,18 @@ class Form extends React.Component<IFormProps, IFormState> {
                 });
               };
 
+              let errorMessage = null;
+              if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
+                errorMessage = this.state.errorData[layoutElement.key];
+              }
+
               resultingFromElement = (
                 <layoutElement.itemComponentClass
                   key={layoutElement.key}
                   value={currentValue}
                   theme={layoutElement.theme}
                   onChange={handleComponentFormItemChange}
+                  errorText={errorMessage}
                   {...layoutElement.itemComponentProps}
                 />
               );
