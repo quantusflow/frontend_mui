@@ -377,12 +377,18 @@ class Form extends React.Component<IFormProps, IFormState> {
                     });
                   };
 
+                  let errorMessage = null;
+                  if (this.state.errorData.hasOwnProperty(layoutElement.key)) {
+                    errorMessage = this.state.errorData[layoutElement.key];
+                  }
+
                   resultingFromElement = (
                     <CheckBox
                       dataKey={layoutElement.key}
                       theme={layoutElement.theme}
                       value={currentValue}
                       onChange={handleCheckBoxFormItemChange}
+                      errorText={errorMessage}
                       muiProps={{
                         label: layoutElement.label,
                         ...layoutElement.muiProps,

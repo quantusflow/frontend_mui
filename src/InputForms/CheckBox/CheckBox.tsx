@@ -10,6 +10,7 @@ export interface ICheckBoxProps extends IMUIProps {
 
   value?: boolean;
   onChange?: Function;
+  errorText?: string;
 }
 
 export interface ICheckBoxState {
@@ -27,6 +28,7 @@ class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
 
     value: false,
     onChange: null,
+    errorText: null,
   };
 
   constructor(props: ICheckBoxProps) {
@@ -65,6 +67,7 @@ class CheckBox extends React.Component<ICheckBoxProps, ICheckBoxState> {
     return (
       <div {...qflProps}>
         <MUICheckBox {...muiProps} checked={this.state.currentValue} onCheck={(e) => this.handleChange(e)}/>
+        <span style={...qflProps.errorLabelStyle}>{this.props.errorText}</span>
       </div>
     );
   }

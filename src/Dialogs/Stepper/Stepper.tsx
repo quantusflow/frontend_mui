@@ -161,12 +161,21 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
   }
 
   private handleClose(buttonClicked) {
-    this.setState({open: false});
-    if (this.props.onDialogClose) {
-      this.props.onDialogClose(!!buttonClicked);
+    const {stepIndex} = this.state;
+    let continueStep: boolean = true;
+
+    if (this.props.onNext) {
+      continueStep = this.props.onNext(stepIndex);
     }
-    if (this.props.onFinish) {
-      this.props.onFinish(!!buttonClicked);
+
+    if (continueStep) {
+      this.setState({open: false});
+      if (this.props.onDialogClose) {
+        this.props.onDialogClose(!!buttonClicked);
+      }
+      if (this.props.onFinish) {
+        this.props.onFinish(!!buttonClicked);
+      }
     }
   }
 
