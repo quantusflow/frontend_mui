@@ -164,7 +164,7 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
     const {stepIndex} = this.state;
     let continueStep: boolean = true;
 
-    if (this.props.onNext) {
+    if (this.props.onNext && !!buttonClicked) {
       continueStep = this.props.onNext(stepIndex);
     }
 
