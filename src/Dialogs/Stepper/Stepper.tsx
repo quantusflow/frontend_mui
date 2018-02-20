@@ -207,7 +207,11 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
           }}
           muiProps={{
             label: this.props.cancelLabel,
-            onTouchTap: (): void => this.handleClose(false),
+            onClick: (e: MouseEvent): void => {
+              e.stopPropagation();
+              e.preventDefault();
+              this.handleClose(false);
+            },
             ...this.props.cancelButtonMuiProps,
           }}
           qflProps={{
@@ -227,7 +231,11 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
           }}
           muiProps={{
             label: this.props.doneLabel,
-            onTouchTap: (buttonClicked) => this.handleClose(buttonClicked),
+            onClick: (e: MouseEvent): void => {
+              e.stopPropagation();
+              e.preventDefault();
+              this.handleClose(e);
+            },
             ...this.props.doneButtonMuiProps,
           }}
           qflProps={{
@@ -244,7 +252,11 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
           }}
           muiProps={{
             label: this.props.nextLabel,
-            onTouchTap: () => this.handleNext(),
+            onClick: (e: MouseEvent) => {
+              e.stopPropagation();
+              e.preventDefault();
+              this.handleNext();
+            },
             ...this.props.nextButtonMuiProps,
           }}
           qflProps={{
@@ -327,7 +339,11 @@ class Stepper extends React.Component<IStepperProps, IStepperState> {
         muiProps={{
           label: this.props.prevLabel,
           disabled: (stepIndex === 0),
-          onTouchTap: () => this.handlePrev(),
+          onClick: (e: MouseEvent): void => {
+            e.stopPropagation();
+            e.preventDefault();
+            this.handlePrev();
+          },
           ...this.props.prevButtonMuiProps,
         }}
         qflProps={{
