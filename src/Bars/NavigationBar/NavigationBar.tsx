@@ -115,6 +115,7 @@ class NavigationBar extends React.Component<INavigationBarProps, {}> {
                       return <ListItem
                         key={nestedIdx}
                         {...listItemMuiProps}
+                        data-key={nestedElement.key}
                         className={nestedElement.className}
                         primaryText={nestedElement.label}
                         value={nestedElement.path}
