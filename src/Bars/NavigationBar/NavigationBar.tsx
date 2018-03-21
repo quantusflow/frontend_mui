@@ -16,6 +16,7 @@ export interface INestedMenuItem {
   className?: string;
   label?: string;
   path?: string;
+  key?: string;
   icon?: React.ReactNode;
   onClick?: Function;
 }
